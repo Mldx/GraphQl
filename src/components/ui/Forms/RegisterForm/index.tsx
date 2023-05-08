@@ -2,6 +2,8 @@ import { useForm } from 'react-hook-form';
 import styles from '../Form.module.scss';
 import ValidationErrorMessage from '../ValidationErrorMessage';
 import FormSubmitButton from '../FormSubmitButton';
+import { useState } from 'react';
+import ResponseErrorMessage from '../ResponseErrorMessage';
 
 interface IRegisterForm {
   email: string;
@@ -14,14 +16,20 @@ function RegisterForm() {
     handleSubmit,
     formState: { errors },
   } = useForm<IRegisterForm>();
-
+  const [respError, setRespError] = useState<null | string>(null);
   const emailRegex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
   const passRegex = /^(?=.*[a-zA-Zа-яА-Я])(?=.*\d)(?=.*[-_@$!%*?&])[a-zA-Zа-яА-Я\d\-_@$!%*?&]{8,}$/;
+  const clearRespErrorMessage = () => setRespError(null);
+
+  const onSubmit = (data: IRegisterForm) => {
+    console.log(data);
+    setRespError('auth/invalid-hash-derived-key-length'); //TODO: тест ошибки
+  };
 
   return (
     <form
       className={styles.form}
-      onSubmit={handleSubmit((data) => console.log(data))}
+      onSubmit={handleSubmit((data) => onSubmit(data))}
       noValidate={true}
       autoComplete="off"
     >
@@ -32,6 +40,7 @@ function RegisterForm() {
           className={styles.input}
           type="text"
           placeholder="Email"
+          onFocus={clearRespErrorMessage}
           {...register('email', {
             required: 'Field is required',
             pattern: {
@@ -48,6 +57,7 @@ function RegisterForm() {
           className={styles.input}
           placeholder="Password"
           type="password"
+          onFocus={clearRespErrorMessage}
           {...register('password', {
             required: 'Field is required',
             pattern: {
@@ -59,6 +69,7 @@ function RegisterForm() {
         <ValidationErrorMessage errorMessage={errors.password?.message} />
       </label>
 
+      <ResponseErrorMessage errorMessage={respError} />
       <FormSubmitButton text="Register" />
     </form>
   );
