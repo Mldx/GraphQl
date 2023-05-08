@@ -1,5 +1,5 @@
 import { useForm } from 'react-hook-form';
-import styles from './RegisterForm.module.scss';
+import styles from '../Form.module.scss';
 import ValidationErrorMessage from '../ValidationErrorMessage';
 import FormSubmitButton from '../FormSubmitButton';
 
