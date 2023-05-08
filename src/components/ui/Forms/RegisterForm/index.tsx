@@ -15,6 +15,9 @@ function RegisterForm() {
     formState: { errors },
   } = useForm<IRegisterForm>();
 
+  const emailRegex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
+  const passRegex = /^(?=.*[a-zA-Zа-яА-Я])(?=.*\d)(?=.*[-_@$!%*?&])[a-zA-Zа-яА-Я\d\-_@$!%*?&]{8,}$/;
+
   return (
     <form
       className={styles.form}
@@ -32,7 +35,7 @@ function RegisterForm() {
           {...register('email', {
             required: 'Field is required',
             pattern: {
-              value: /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/,
+              value: emailRegex,
               message: 'Incorrect pattern',
             },
           })}
@@ -48,8 +51,7 @@ function RegisterForm() {
           {...register('password', {
             required: 'Field is required',
             pattern: {
-              value:
-                /^(?=.*[a-zA-Zа-яА-Я])(?=.*\d)(?=.*[-_@$!%*?&])[a-zA-Zа-яА-Я\d\-_@$!%*?&]{8,}$/,
+              value: passRegex,
               message: 'Incorrect pattern',
             },
           })}
