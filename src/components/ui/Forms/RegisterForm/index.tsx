@@ -33,7 +33,7 @@ function RegisterForm() {
       noValidate={true}
       autoComplete="off"
     >
-      <h1 className={styles.title}>Sign up</h1>
+      <h1 className={styles.title}>Create Account</h1>
 
       <label className={styles.label}>
         <input
@@ -70,7 +70,7 @@ function RegisterForm() {
       </label>
 
       <ResponseErrorMessage errorMessage={respError} />
-      <FormSubmitButton text="Register" />
+      <FormSubmitButton text="Sign up" />
     </form>
   );
 }
