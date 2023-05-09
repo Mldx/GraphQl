@@ -4,6 +4,8 @@ import ValidationErrorMessage from '../ValidationErrorMessage';
 import FormSubmitButton from '../FormSubmitButton';
 import { useState } from 'react';
 import ResponseErrorMessage from '../ResponseErrorMessage';
+import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
+import { useNavigate } from 'react-router-dom';
 
 interface IRegisterForm {
   email: string;
@@ -16,14 +18,23 @@ function RegisterForm() {
     handleSubmit,
     formState: { errors },
   } = useForm<IRegisterForm>();
+
+  const navigate = useNavigate();
   const [respError, setRespError] = useState<null | string>(null);
   const emailRegex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
   const passRegex = /^(?=.*[a-zA-Zа-яА-Я])(?=.*\d)(?=.*[-_@$!%*?&])[a-zA-Zа-яА-Я\d\-_@$!%*?&]{8,}$/;
+
   const clearRespErrorMessage = () => setRespError(null);
 
   const onSubmit = (data: IRegisterForm) => {
-    console.log(data);
-    setRespError('auth/invalid-hash-derived-key-length'); //TODO: тест ошибки
+    const auth = getAuth();
+    createUserWithEmailAndPassword(auth, data.email, data.password)
+      .then(() => {
+        navigate('/');
+      })
+      .catch((error) => {
+        setRespError(error.code);
+      });
   };
 
   return (
