@@ -12,7 +12,6 @@ function LoginPage() {
     const auth = getAuth();
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       setLoading(false);
-      console.log(auth.currentUser);
       if (user) {
         navigate('/');
       }
