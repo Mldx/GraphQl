@@ -6,7 +6,7 @@ import styles from './Button.module.scss';
 
 export type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement>;
 
-const Button = ({ children, disabled, className, ...props }: ButtonProps) => {
+const CustomButton = ({ children, disabled, className, ...props }: ButtonProps) => {
   return (
     <button
       type="button"
@@ -19,4 +19,4 @@ const Button = ({ children, disabled, className, ...props }: ButtonProps) => {
   );
 };
 
-export default Button;
+export default CustomButton;

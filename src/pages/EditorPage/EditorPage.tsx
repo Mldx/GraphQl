@@ -3,7 +3,7 @@ import Index, { TabItem } from '../../components/Tabs';
 import * as monacoEditor from 'monaco-editor/esm/vs/editor/editor.api';
 import Monaco from '@monaco-editor/react';
 import styles from './EditorPage.module.scss';
-import Button from '../../components/Button';
+import CustomButton from '../../components/CustomButton';
 
 const Editor: React.FC = () => {
   const defaultTabs: TabItem[] = [
@@ -109,9 +109,9 @@ const Editor: React.FC = () => {
           }}
         />
         <div className={styles.control}>
-          <Button onClick={showValue} className={styles.control_btn}>
+          <CustomButton onClick={showValue} className={styles.control_btn}>
             query
-          </Button>
+          </CustomButton>
         </div>
         <div className={styles.editor_answer} />
       </div>
