@@ -1,5 +1,5 @@
 import React, { useRef, useState } from 'react';
-import Index, { TabItem } from '../../components/Tabs';
+import Tabs, { TabItem } from '../../components/Tabs';
 import * as monacoEditor from 'monaco-editor/esm/vs/editor/editor.api';
 import Monaco from '@monaco-editor/react';
 import styles from './EditorPage.module.scss';
@@ -77,7 +77,7 @@ const EditorPage: React.FC = () => {
 
   return (
     <div className={styles.editor}>
-      <Index
+      <Tabs
         tabs={tabs}
         selectedTabId={selectedTabId}
         onClickTab={(id: string) => {

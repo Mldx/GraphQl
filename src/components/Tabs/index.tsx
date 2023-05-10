@@ -18,7 +18,7 @@ export type TabsProps = {
   onClickTabDelete: (id: string) => void;
 };
 
-const Index: React.FC<TabsProps> = ({
+const Tabs: React.FC<TabsProps> = ({
   className,
   selectedTabId,
   tabs,
@@ -62,4 +62,4 @@ const Index: React.FC<TabsProps> = ({
   );
 };
 
-export default Index;
+export default Tabs;
