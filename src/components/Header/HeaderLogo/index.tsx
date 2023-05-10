@@ -1,4 +1,4 @@
-import style from './style.module.scss';
+import style from './HeaderLogo.module.scss';
 
 export const HeaderLogo: React.FC = () => {
   return (

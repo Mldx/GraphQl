@@ -1,4 +1,4 @@
-import style from './style.module.scss';
+import style from './Header.module.scss';
 import { Navbar } from './Navbar';
 import { HeaderLogo } from './HeaderLogo';
 import { useLayoutEffect, useState } from 'react';

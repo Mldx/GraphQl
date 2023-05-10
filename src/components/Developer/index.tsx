@@ -1,5 +1,5 @@
 import { IDeveloper } from 'types';
-import style from './style.module.scss';
+import style from './Developer.module.scss';
 
 export const Developer = (props: IDeveloper) => {
   return (
