@@ -5,7 +5,7 @@ import Monaco from '@monaco-editor/react';
 import styles from './EditorPage.module.scss';
 import CustomButton from '../../components/CustomButton';
 
-const Editor: React.FC = () => {
+const EditorPage: React.FC = () => {
   const defaultTabs: TabItem[] = [
     {
       tabId: crypto.randomUUID(),
@@ -119,4 +119,4 @@ const Editor: React.FC = () => {
   );
 };
 
-export default Editor;
+export default EditorPage;

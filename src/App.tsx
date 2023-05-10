@@ -2,7 +2,7 @@ import { Navigate, Route, Routes } from 'react-router-dom';
 import { Layout } from './components/Layout';
 import { NotFound } from './pages/notFound';
 import { Welcome } from './pages/welcome';
-import Editor from './pages/EditorPage/EditorPage';
+import EditorPage from './pages/EditorPage';
 
 function App() {
   return (
@@ -10,7 +10,7 @@ function App() {
       <Route path="/" element={<Layout />}>
         <Route index element={<Welcome />} />
         <Route path="/404" element={<NotFound />} />
-        <Route path="/main" element={<Editor />} />
+        <Route path="/main" element={<EditorPage />} />
         <Route path="*" element={<Navigate to="/404" replace />} />
       </Route>
     </Routes>
