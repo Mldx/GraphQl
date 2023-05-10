@@ -1,7 +1,7 @@
 import style from './WelcomePage.module.scss';
 import { Developer } from '../../components/Developer';
 import { developers } from './../../utils/developer';
-import { IDeveloper } from './../../types';
+import { IDeveloper } from '../../types';
 
 export const WelcomePage: React.FC = () => {
   return (
