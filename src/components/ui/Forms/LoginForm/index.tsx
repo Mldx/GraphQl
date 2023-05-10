@@ -2,15 +2,25 @@ import styles from '../Form.module.scss';
 import FormSubmitButton from '../FormSubmitButton';
 import React, { useState } from 'react';
 import ResponseErrorMessage from '../ResponseErrorMessage';
+import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
+import { useNavigate } from 'react-router-dom';
 
 function LoginForm() {
+  const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [pass, setPass] = useState('');
   const [respError, setRespError] = useState<null | string>(null);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent, email: string, pass: string) => {
     e.preventDefault();
-    setRespError('auth/invalid-hash-derived-key-length'); //TODO: тест ошибки
+    const auth = getAuth();
+    signInWithEmailAndPassword(auth, email, pass)
+      .then(() => {
+        navigate('/');
+      })
+      .catch((error) => {
+        setRespError(error.code);
+      });
   };
 
   const clearRespErrorMessage = () => setRespError(null);
@@ -20,7 +30,7 @@ function LoginForm() {
       className={styles.form}
       noValidate={true}
       autoComplete="off"
-      onSubmit={(e) => handleSubmit(e)}
+      onSubmit={(e) => handleSubmit(e, email, pass)}
     >
       <h1 className={styles.title}>Login</h1>
 
