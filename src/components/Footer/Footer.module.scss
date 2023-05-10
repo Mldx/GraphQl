@@ -10,22 +10,27 @@
   padding: 0 .5rem;
   color: black;
 }
+
 .rsschool_link {
   height: 3rem;
   width: 5rem;
+
   &:hover {
     opacity: .5;
   }
 }
+
 .GHLink {
   color: black;
   cursor: pointer;
   transition: .5s;
+
   &:hover {
     color: #8ee100;
   }
 }
-.gitHubList{
+
+.gitHubList {
   display: flex;
   flex-wrap: wrap;
   gap: .5rem;

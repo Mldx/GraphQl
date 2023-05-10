@@ -57,6 +57,7 @@
 
   &:hover {
     background-color: $color-dusty-gray;
+
     & span::before,
     & span::after {
       background-color: $color-iron-gray;
