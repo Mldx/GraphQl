@@ -1,13 +1,16 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import Tabs from '../../Tabs/Tabs';
 import { TabItem } from '../../Tabs/Tabs';
+import * as monacoEditor from 'monaco-editor/esm/vs/editor/editor.api';
+import Monaco from '@monaco-editor/react';
 import styles from './EditorPage.module.scss';
+import Button from '../../Button/Button';
 
 const Editor: React.FC = () => {
   const defaultTabs: TabItem[] = [
     {
       tabId: crypto.randomUUID(),
-      label: `New Tab`,
+      label: 'New Tab',
       query: 'query',
       answer: 'answer',
     },
@@ -18,9 +21,9 @@ const Editor: React.FC = () => {
   const addTab = () => {
     const newTab = {
       tabId: crypto.randomUUID(),
-      label: `New Tab`,
-      query: `query`,
-      answer: `answer`,
+      label: 'New Tab',
+      query: 'query',
+      answer: 'answer',
     };
     setTabs((tabs) => [...tabs, newTab]);
   };
@@ -47,17 +50,30 @@ const Editor: React.FC = () => {
     }
   };
 
-  const onChangeQuery = (event: React.ChangeEvent<HTMLTextAreaElement>): void => {
-    event.preventDefault();
-    setTabs((tabs) =>
-      tabs.map((tab) => {
-        if (tab.tabId === selectedTabId) {
-          return { ...tab, query: event.target.value };
-        } else {
-          return tab;
-        }
-      })
-    );
+  const onChangeQuery = (value: string | undefined): void => {
+    if (value) {
+      setTabs((tabs) =>
+        tabs.map((tab) => {
+          if (tab.tabId === selectedTabId) {
+            return { ...tab, query: value };
+          } else {
+            return tab;
+          }
+        })
+      );
+    }
+  };
+
+  const editorRef = useRef<monacoEditor.editor.IStandaloneCodeEditor | null>(null);
+
+  const handleEditorDidMount = (editor: monacoEditor.editor.IStandaloneCodeEditor) => {
+    editorRef.current = editor;
+  };
+
+  const showValue = () => {
+    if (editorRef.current !== null) {
+      console.log(editorRef.current.getValue());
+    }
   };
 
   return (
@@ -72,11 +88,32 @@ const Editor: React.FC = () => {
         onClickTabDelete={deleteTab}
       />
       <div key={tabs[selectedIndex].tabId} className={styles.editor_inner}>
-        <textarea
-          className={styles.editor_query}
-          onChange={(event) => onChangeQuery(event)}
+        <Monaco
+          height="100%"
+          defaultLanguage="javascript"
           defaultValue={tabs[selectedIndex].query}
+          onMount={handleEditorDidMount}
+          onChange={(value) => onChangeQuery(value)}
+          options={{
+            minimap: {
+              enabled: false,
+            },
+            scrollbar: {
+              vertical: 'hidden',
+              horizontal: 'hidden',
+            },
+            renderLineHighlight: 'none',
+            contextmenu: false,
+            overviewRulerBorder: false,
+            tabSize: 2,
+            quickSuggestions: false,
+          }}
         />
+        <div className={styles.control}>
+          <Button onClick={showValue} className={styles.control_btn}>
+            query
+          </Button>
+        </div>
         <div className={styles.editor_answer} />
       </div>
     </div>
