@@ -1,6 +1,6 @@
 import style from './style.module.scss';
 
-export const Logo: React.FC = () => {
+export const HeaderLogo: React.FC = () => {
   return (
     <div className={style.wrapper}>
       <img className={style.logo_img} src="graphql.svg" alt="graphql" />

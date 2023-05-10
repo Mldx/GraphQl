@@ -1,8 +1,8 @@
 import style from './style.module.scss';
-import { Navbar } from './navbar';
-import { BtnsGroup } from './headerBtns';
-import { Logo } from './logoGroup';
+import { Navbar } from './Navbar';
+import { HeaderLogo } from './HeaderLogo';
 import { useLayoutEffect, useState } from 'react';
+import { HeaderBtns } from './HeaderBtns';
 
 export const Header: React.FC = () => {
   const sticky = useStickyHeader(1);
@@ -10,9 +10,9 @@ export const Header: React.FC = () => {
   return (
     <header className={`${sticky ? `${style.sticky}` : `${style.header}`}`}>
       <div className={style.wrapper}>
-        <Logo />
+        <HeaderLogo />
         <Navbar />
-        <BtnsGroup />
+        <HeaderBtns />
       </div>
     </header>
   );
