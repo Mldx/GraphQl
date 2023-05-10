@@ -11,15 +11,6 @@
     border-bottom-right-radius: 5px;
     border-top-right-radius: 5px;
     border-bottom-left-radius: 5px;
-
-    & textarea {
-      resize: none;
-      border-radius: 5px;
-
-      &:focus {
-        outline: none;
-      }
-    }
   }
 
   &_query {
