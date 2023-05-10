@@ -32,8 +32,9 @@ export const Developer = (props: IDeveloper) => {
           <div className="position">FRONT-END DEVELOPER</div>
           <ul>
             {props.tasks.map((el: string, index) => (
-              // eslint-disable-next-line react/jsx-key
-              <li className={style.task}>{el}</li>
+              <li className={style.task} key={index}>
+                {el}
+              </li>
             ))}
           </ul>
         </div>
