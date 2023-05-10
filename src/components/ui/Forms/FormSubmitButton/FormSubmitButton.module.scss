@@ -1,0 +1,19 @@
+.button {
+  background: #eeeeee;
+  height: 35px;
+  width: 200px;
+  padding: 5px;
+  border: none;
+  border-radius: 10px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: transform .05s linear;
+
+  &:focus-visible {
+    outline: none;
+  }
+
+  &:active {
+    transform: scale(0.97);
+  }
+}
