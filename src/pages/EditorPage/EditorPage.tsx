@@ -1,10 +1,10 @@
 import React, { useState, useRef } from 'react';
-import Tabs from '../../Tabs/Tabs';
-import { TabItem } from '../../Tabs/Tabs';
+import Tabs from '../../components/Tabs/Tabs';
+import { TabItem } from '../../components/Tabs/Tabs';
 import * as monacoEditor from 'monaco-editor/esm/vs/editor/editor.api';
 import Monaco from '@monaco-editor/react';
 import styles from './EditorPage.module.scss';
-import Button from '../../Button/Button';
+import Button from '../../components/Button/Button';
 
 const Editor: React.FC = () => {
   const defaultTabs: TabItem[] = [

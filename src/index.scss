@@ -29,3 +29,12 @@ a {
   margin: 0;
   padding: 0;
 }
+
+.decorationsOverviewRuler {
+  display: none !important;
+}
+
+.monaco-editor,
+.monaco-editor .overflow-guard {
+  border-radius: 5px;
+}

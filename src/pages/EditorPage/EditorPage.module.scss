@@ -1,10 +1,14 @@
-@import '../../../styles/variables.scss';
+@import '../../styles/variables.scss';
 
 .editor {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+
   &_inner {
     background: $color-light-gray;
     padding: 7px;
-    height: calc(100vh - 66px - 4rem);
+    height: calc(100vh - 66px - 4rem - 128px);
     display: flex;
     column-gap: 5px;
     justify-content: space-between;
