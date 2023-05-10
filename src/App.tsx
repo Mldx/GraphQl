@@ -1,6 +1,6 @@
 import { Navigate, Route, Routes } from 'react-router-dom';
 import { Layout } from './components/Layout';
-import { NotFound } from './pages/notFound';
+import { NotFound } from './pages/NotFoundPage';
 import { Welcome } from './pages/welcome';
 import EditorPage from './pages/EditorPage';
 
