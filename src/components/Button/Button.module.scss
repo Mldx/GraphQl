@@ -1,0 +1,37 @@
+@import '../../styles/variables.scss';
+
+.button {
+  padding: 15px 28px 16px;
+  display: flex;
+  background: $color-dusty-gray;
+  border: none;
+  text-align: center;
+  color: #fff;
+  cursor: pointer;
+
+  &:hover {
+    opacity: 0.7;
+  }
+
+  &_disabled {
+    background: $color-light-gray;
+    line-height: 130%;
+    cursor: initial;
+  }
+
+  &_loader {
+    opacity: 0.4;
+    border-color: $color-graphite-gray;
+    border-right-color: transparent;
+    margin-right: 18px;
+  }
+
+  &_loading {
+    padding-left: 20.18px;
+  }
+
+  &_disabled:hover {
+    opacity: initial;
+  }
+
+}
