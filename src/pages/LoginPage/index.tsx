@@ -1,8 +1,8 @@
-import LoginForm from '../../components/ui/Forms/LoginForm';
 import styles from './LoginPage.module.scss';
 import { Link, useNavigate } from 'react-router-dom';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import { useEffect, useState } from 'react';
+import LoginForm from '../../components/Forms/LoginForm';
 
 function LoginPage() {
   const navigate = useNavigate();
