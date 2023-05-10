@@ -1,6 +1,6 @@
 import styles from './SignupPage.module.scss';
 import { Link } from 'react-router-dom';
-import RegisterForm from '../../ui/Forms/RegisterForm';
+import RegisterForm from '../../components/ui/Forms/RegisterForm';
 
 function SignupPage() {
   return (
