@@ -2,7 +2,7 @@ import styles from './SignupPage.module.scss';
 import { Link, useNavigate } from 'react-router-dom';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import { useEffect, useState } from 'react';
-import RegisterForm from '../../components/Forms/RegisterForm';
+import RegisterForm from '../../components/forms/RegisterForm';
 
 function SignupPage() {
   const navigate = useNavigate();
