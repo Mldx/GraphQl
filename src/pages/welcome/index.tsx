@@ -1,5 +1,5 @@
 import style from './style.module.scss';
-import { Developer } from './../../components/developer';
+import { Developer } from '../../components/Developer';
 import { developers } from './../../utils/developer';
 import { IDeveloper } from './../../types';
 
