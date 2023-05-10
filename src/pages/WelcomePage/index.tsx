@@ -1,9 +1,9 @@
-import style from './style.module.scss';
+import style from './WelcomePage.module.scss';
 import { Developer } from '../../components/Developer';
 import { developers } from './../../utils/developer';
 import { IDeveloper } from './../../types';
 
-export const Welcome: React.FC = () => {
+export const WelcomePage: React.FC = () => {
   return (
     <div className={style.dev_page}>
       <div className={style.title_wrap}>
