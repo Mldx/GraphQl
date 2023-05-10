@@ -1,0 +1,39 @@
+.wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .5rem;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  height: 100%;
+  margin: 0 auto;
+  padding: 0 .5rem;
+  color: black;
+}
+.rsschool_link {
+  height: 3rem;
+  width: 5rem;
+  &:hover {
+    opacity: .5;
+  }
+}
+.GHLink {
+  color: black;
+  cursor: pointer;
+  transition: .5s;
+  &:hover {
+    color: #8ee100;
+  }
+}
+.gitHubList{
+  display: flex;
+  flex-wrap: wrap;
+  gap: .5rem;
+  justify-content: center;
+}
+
+.schoolLink {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .5rem;
+}

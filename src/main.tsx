@@ -6,7 +6,7 @@ import { Provider } from 'react-redux';
 import { store } from './store/store.ts';
 
 import 'normalize.css';
-import './index.scss';
+import './index.css';
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <BrowserRouter>
