@@ -1,0 +1,22 @@
+.button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #eeeeee;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: transform .05s linear;
+  font-weight: 200;
+  font-size: 1.2rem;
+  width: fit-content;
+  padding: 5px 20px;
+
+  &:focus-visible {
+    outline: none;
+  }
+
+  &:active {
+    transform: scale(0.97);
+  }
+}
