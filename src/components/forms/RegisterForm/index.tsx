@@ -42,7 +42,6 @@ function RegisterForm() {
       className={styles.form}
       onSubmit={handleSubmit((data) => onSubmit(data))}
       noValidate={true}
-      autoComplete="off"
     >
       <h1 className={styles.title}>Create Account</h1>
 
@@ -50,6 +49,7 @@ function RegisterForm() {
         <input
           className={styles.input}
           type="text"
+          autoComplete="off"
           placeholder="Email"
           onFocus={clearRespErrorMessage}
           {...register('email', {
@@ -68,6 +68,7 @@ function RegisterForm() {
           className={styles.input}
           placeholder="Password"
           type="password"
+          autoComplete="off"
           onFocus={clearRespErrorMessage}
           {...register('password', {
             required: 'Field is required',
