@@ -1,9 +1,9 @@
 import React, { useRef, useState } from 'react';
-import Tabs, { TabItem } from '../../components/Tabs';
+import Tabs, { TabItem } from 'components/Tabs';
 import * as monacoEditor from 'monaco-editor/esm/vs/editor/editor.api';
 import Monaco from '@monaco-editor/react';
 import styles from './EditorPage.module.scss';
-import CustomButton from '../../components/CustomButton';
+import CustomButton from 'components/CustomButton';
 
 const EditorPage: React.FC = () => {
   const defaultTabs: TabItem[] = [
