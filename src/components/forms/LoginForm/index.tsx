@@ -16,7 +16,7 @@ function LoginForm() {
     const auth = getAuth();
     signInWithEmailAndPassword(auth, email, pass)
       .then(() => {
-        navigate('/');
+        navigate('/main');
       })
       .catch((error) => {
         setRespError(error.code);

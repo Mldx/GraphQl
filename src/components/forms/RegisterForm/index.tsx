@@ -30,7 +30,7 @@ function RegisterForm() {
     const auth = getAuth();
     createUserWithEmailAndPassword(auth, data.email, data.password)
       .then(() => {
-        navigate('/');
+        navigate('/main');
       })
       .catch((error) => {
         setRespError(error.code);
