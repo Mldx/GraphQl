@@ -28,7 +28,10 @@ function SignupPage() {
     <div className={styles.signup_page_wrapper}>
       <RegisterForm />
       <div>
-        Already have an account? <Link to="/login">login</Link>
+        Already have an account?&nbsp;
+        <Link to="/login" className={styles.link}>
+          login
+        </Link>
       </div>
     </div>
   );

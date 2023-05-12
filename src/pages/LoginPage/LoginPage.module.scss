@@ -5,3 +5,13 @@
   align-items: center;
   margin-top: 40px;
 }
+
+.link {
+  transition: color .15s linear;
+  color: #000000;
+  text-decoration: underline;
+
+  &:hover {
+    color: #8ee100;
+  }
+}
