@@ -1,6 +1,6 @@
 import style from './HeaderBtns.module.scss';
-import NavigateButton from '../../NavigateButton';
-import LogoutButton from '../../LogoutButton';
+import NavigateButton from 'components/NavigateButton';
+import LogoutButton from 'components/LogoutButton';
 
 export const HeaderBtns: React.FC<{ isLogin: boolean }> = ({ isLogin }) => {
   return (
