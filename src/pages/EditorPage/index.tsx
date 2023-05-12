@@ -19,7 +19,7 @@ const EditorPage: React.FC = () => {
   const [selectedTabId, setSelectedTabId] = useState(defaultTabs[0].tabId);
   const [tabs, setTabs] = useState(defaultTabs);
 
-  //TODO: это подписка на проверку логина и редирект есть не залогинен
+  //TODO: это подписка на проверку логина и редирект если не залогинен
   const navigate = useNavigate();
   const [loading, setLoading] = useState(true);
 
