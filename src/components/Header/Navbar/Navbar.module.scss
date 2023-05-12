@@ -1,0 +1,23 @@
+.nav {
+  display: flex;
+  height: 100%;
+}
+
+.nav_list {
+  display: flex;
+  flex-wrap: wrap;
+  height: 100%;
+  justify-content: space-between;
+  align-items: center;
+  gap: .5rem;
+}
+
+.link {
+  color: black;
+  cursor: pointer;
+  transition: .5s;
+
+  &:hover {
+    color: #8ee100;
+  }
+}
