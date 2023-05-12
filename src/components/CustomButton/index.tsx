@@ -2,7 +2,7 @@ import React from 'react';
 
 import classnames from 'classnames';
 
-import styles from './Button.module.scss';
+import styles from './CustomButton.module.scss';
 
 export type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement>;
 
