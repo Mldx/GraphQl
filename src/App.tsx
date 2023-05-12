@@ -1,10 +1,10 @@
 import { Navigate, Route, Routes } from 'react-router-dom';
-import { Layout } from './components/Layout';
-import { NotFoundPage } from './pages/NotFoundPage';
-import { WelcomePage } from './pages/WelcomePage';
-import EditorPage from './pages/EditorPage';
-import LoginPage from './pages/LoginPage';
-import SignupPage from './pages/SignupPage';
+import { Layout } from 'components/Layout';
+import { NotFoundPage } from 'pages/NotFoundPage';
+import { WelcomePage } from 'pages/WelcomePage';
+import EditorPage from 'pages/EditorPage';
+import LoginPage from 'pages/LoginPage';
+import SignupPage from 'pages/SignupPage';
 
 function App() {
   return (

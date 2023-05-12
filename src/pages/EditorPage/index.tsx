@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Tabs, { TabItem } from '../../components/Tabs';
 import * as monacoEditor from 'monaco-editor/esm/vs/editor/editor.api';
 import Monaco from '@monaco-editor/react';
