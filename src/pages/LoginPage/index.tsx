@@ -13,7 +13,7 @@ function LoginPage() {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       setLoading(false);
       if (user) {
-        navigate('/');
+        navigate('/main');
       }
     });
 
