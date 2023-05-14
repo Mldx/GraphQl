@@ -1,13 +1,8 @@
 import styles from './SignupPage.module.scss';
-<<<<<<< HEAD:src/pages/SignupPage/index.tsx
-import { Link } from 'react-router-dom';
-import RegisterForm from '../../components/ui/Forms/RegisterForm';
-=======
 import { Link, useNavigate } from 'react-router-dom';
-import RegisterForm from '../../ui/Forms/RegisterForm';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import { useEffect, useState } from 'react';
->>>>>>> develop:src/components/pages/SignupPage/index.tsx
+import RegisterForm from 'components/forms/RegisterForm';
 
 function SignupPage() {
   const navigate = useNavigate();

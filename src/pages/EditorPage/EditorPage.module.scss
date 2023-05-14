@@ -1,0 +1,45 @@
+@import 'styles/variables.scss';
+
+.editor {
+  max-width:$width-wrap-app-content;
+  margin: 0 auto;
+  padding: 20px;
+
+  &_inner {
+    background: $color-light-gray;
+    padding: 7px;
+    height: calc(100vh - 66px - 4rem - 128px);
+    display: flex;
+    column-gap: 5px;
+    justify-content: space-between;
+    border-bottom-right-radius: 5px;
+    border-top-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+  }
+
+  &_query {
+    width: 100%;
+    background-color: $color-dusty-gray;
+  }
+
+  &_answer {
+    width: 100%;
+    background-color: $color-dusty-gray;
+    border-radius: 5px;
+  }
+}
+
+.control {
+  &_btn {
+    border-radius: 5px;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-self: center;
+  }
+
+  & button {
+    padding: 5px;
+  }
+}

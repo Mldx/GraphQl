@@ -10,22 +10,38 @@
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
 }
+
 #root {
   height: 100%;
 }
+
 body {
   height: 100%;
 }
+
 ul li {
   list-style-type: none;
 }
+
 nav {
   list-style: none;
 }
+
 a {
   text-decoration: none;
 }
+
 * {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
+}
+
+.decorationsOverviewRuler {
+  display: none !important;
+}
+
+.monaco-editor,
+.monaco-editor .overflow-guard {
+  border-radius: 5px;
 }
