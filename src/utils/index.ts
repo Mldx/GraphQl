@@ -1,4 +1,7 @@
-export const entity = {
+import { QueryItem } from 'types/index';
+
+export const getStartQuery = (): QueryItem => ({
+  id: crypto.randomUUID(),
   query: {
     tabName: 'New Tab',
     value: '',
@@ -10,9 +13,9 @@ export const entity = {
     tabName: 'Variables',
     value: '',
   },
-  isVariablesSelected: true,
+  selectedVarsOrHeadersTab: 'variables',
   headers: {
     tabName: 'Headers',
     value: '',
   },
-};
+});

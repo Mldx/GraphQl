@@ -15,6 +15,12 @@
     border-bottom-right-radius: 5px;
     border-top-right-radius: 5px;
     border-bottom-left-radius: 5px;
+
+    &>div:nth-child(1) {
+      overflow: hidden;
+      position: relative;
+      width: 100%;
+    }
   }
 
   &_query {
@@ -24,12 +30,16 @@
 
   &_answer {
     width: 100%;
-    background-color: $color-dusty-gray;
+    background-color: #fff;
     border-radius: 5px;
   }
 }
 
 .control {
+  background-color: #fff;
+  padding: 4px;
+  border-radius: 5px;
+
   &_btn {
     border-radius: 5px;
     width: 50px;
