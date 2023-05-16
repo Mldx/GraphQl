@@ -3,6 +3,7 @@ import { HeaderLogo } from './HeaderLogo';
 import { useEffect, useLayoutEffect, useState } from 'react';
 import { HeaderBtns } from './HeaderBtns';
 import { getAuth, onAuthStateChanged, User } from 'firebase/auth';
+import SwitchLng from 'components/Header/SwitchLng';
 
 export const Header: React.FC = () => {
   const sticky = useStickyHeader(1);
@@ -27,6 +28,7 @@ export const Header: React.FC = () => {
     <header className={`${sticky ? `${style.sticky}` : `${style.header}`}`}>
       <div className={style.wrapper}>
         <HeaderLogo />
+        <SwitchLng />
         {!loading && <HeaderBtns isLogin={!!currentUser} />}
       </div>
     </header>
