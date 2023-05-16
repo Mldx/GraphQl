@@ -27,6 +27,12 @@
       "task4": "Footer",
       "description": "Hello, my name is Yuliya. I am a self-taught front-end developer. I primarily focus on writing clean, elegant, and efficient code. I am proficient in HTML, CSS, SCSS, JavaScript and Type Script."
     }
+  },
+  "buttons": {
+    "main": "go to main page",
+    "signin": "signin",
+    "signup": "signup",
+    "logout": "logout"
   }
 }
 
