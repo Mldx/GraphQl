@@ -8,6 +8,7 @@ import editorOptions from 'constants/monacoSettings';
 import { QueryItem } from 'types/index';
 import { getStartQuery } from 'utils/index';
 import styles from './EditorPage.module.scss';
+import Schema from 'components/Schema';
 
 type FieldName = 'query' | 'variables' | 'headers';
 
@@ -154,7 +155,9 @@ const EditorPage: React.FC = () => {
             query
           </CustomButton>
         </div>
-        <div className={styles.editor_answer} />
+        <div className={styles.editor_answer}>
+          <Schema>Schema</Schema>
+        </div>
       </div>
     </div>
   );
