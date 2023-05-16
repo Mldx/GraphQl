@@ -6,6 +6,7 @@ import { store } from './store/store.ts';
 
 import 'normalize.css';
 import './index.scss';
+import './i18n.ts';
 import './firebase/firebase.ts';
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
