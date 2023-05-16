@@ -2,6 +2,31 @@
   "welcomePage": {
     "tittle_part1": "Welcome to our app.",
     "tittle_part2": "We hope you enjoy it."
+  },
+  "developers": {
+    "anton": {
+      "name": "Anton",
+      "position": "FRONT-END DEVELOPER",
+      "task1": "Authorisation",
+      "task2": "Login/Signup pages",
+      "task3": "Localization",
+      "description": "Greetings, my name is Anton Zaprustski. I come from Belarus. I have graduated BNTU, faculty of information technology and robotics. Currently, I am studying at RS School. Studying is my pleasure, I enjoy uncovering new ways to improve myself."
+    },
+    "maksim": {
+      "name": "Maksim",
+      "position": "FRONT-END DEVELOPER",
+      "task1": "Main page",
+      "description": "Hi, everybody! My main goal is to become a front-end developer. I have some experience from the 2021Q1. I am ready to work hard again, to learn another new technologies and to continue my develop."
+    },
+    "julia": {
+      "name": "Julia",
+      "position": "FRONT-END DEVELOPER",
+      "task1": "Welcome page",
+      "task2": "404 page",
+      "task3": "Header",
+      "task4": "Footer",
+      "description": "Hello, my name is Yuliya. I am a self-taught front-end developer. I primarily focus on writing clean, elegant, and efficient code. I am proficient in HTML, CSS, SCSS, JavaScript and Type Script."
+    }
   }
 }
 

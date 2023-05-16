@@ -1,14 +1,16 @@
 import { IDeveloper } from 'types';
 import style from './Developer.module.scss';
+import { useTranslation } from 'react-i18next';
 
 export const Developer = (props: IDeveloper) => {
+  const { t } = useTranslation();
   return (
     <div className={style.card_info}>
       <div className={style.dev_main}>
         <img className={style.developer_img} src={props.photo} alt="" />
         <div>
           <div className={style.contacts}>
-            <div className={style.name}>{props.name}</div>
+            <div className={style.name}>{t(props.name)}</div>
             <a
               className={style.developer_link}
               href={props.gitHub}
@@ -29,17 +31,17 @@ export const Developer = (props: IDeveloper) => {
               </svg>
             </a>
           </div>
-          <div className="position">FRONT-END DEVELOPER</div>
+          <div className="position">{t(props.position)}</div>
           <ul>
             {props.tasks.map((el: string, index) => (
               <li className={style.task} key={index}>
-                {el}
+                {t(el)}
               </li>
             ))}
           </ul>
         </div>
       </div>
-      <p>{props.description}</p>
+      <p>{t(props.description)}</p>
     </div>
   );
 };
