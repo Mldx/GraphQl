@@ -1,8 +1,10 @@
-import React, { useRef, useState } from 'react';
-import Tabs, { TabItem } from 'components/Tabs';
+import { useEffect, useRef, useState } from 'react';
 import * as monacoEditor from 'monaco-editor/esm/vs/editor/editor.api';
 import Monaco from '@monaco-editor/react';
 import styles from './EditorPage.module.scss';
+import Tabs, { TabItem } from 'components/Tabs';
+import { useNavigate } from 'react-router-dom';
+import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import CustomButton from 'components/CustomButton';
 
 const EditorPage: React.FC = () => {
@@ -16,6 +18,23 @@ const EditorPage: React.FC = () => {
   ];
   const [selectedTabId, setSelectedTabId] = useState(defaultTabs[0].tabId);
   const [tabs, setTabs] = useState(defaultTabs);
+
+  //TODO: это подписка на проверку логина и редирект если не залогинен
+  const navigate = useNavigate();
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const auth = getAuth();
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      setLoading(false);
+      if (!user) {
+        navigate('/');
+      }
+    });
+
+    return unsubscribe;
+  }, [navigate]);
+  //TODO: тут заканчивается
 
   const addTab = () => {
     const newTab = {
@@ -74,6 +93,10 @@ const EditorPage: React.FC = () => {
       console.log(editorRef.current.getValue());
     }
   };
+
+  if (loading) {
+    return null;
+  }
 
   return (
     <div className={styles.editor}>

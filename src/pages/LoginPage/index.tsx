@@ -13,7 +13,7 @@ function LoginPage() {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       setLoading(false);
       if (user) {
-        navigate('/');
+        navigate('/main');
       }
     });
 
@@ -28,7 +28,10 @@ function LoginPage() {
     <div className={styles.login_page_wrapper}>
       <LoginForm />
       <div>
-        You don&apos;t have an account, <Link to="/signup">create an account</Link>
+        You don&apos;t have an account,&nbsp;
+        <Link to="/signup" className={styles.link}>
+          create an account
+        </Link>
       </div>
     </div>
   );
