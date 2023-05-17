@@ -28,8 +28,10 @@ export const Header: React.FC = () => {
     <header className={`${sticky ? `${style.sticky}` : `${style.header}`}`}>
       <div className={style.wrapper}>
         <HeaderLogo />
-        <SwitchLng />
-        {!loading && <HeaderBtns isLogin={!!currentUser} />}
+        <div className={style.box1}>
+          <SwitchLng />
+          {!loading && <HeaderBtns isLogin={!!currentUser} />}
+        </div>
       </div>
     </header>
   );
