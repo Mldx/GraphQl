@@ -3,6 +3,7 @@ import { Layout } from 'components/Layout';
 import { NotFoundPage } from 'pages/NotFoundPage';
 import { WelcomePage } from 'pages/WelcomePage';
 import EditorPage from 'pages/EditorPage';
+import { Schema } from 'pages/Schema';
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
         <Route index element={<WelcomePage />} />
         <Route path="/404" element={<NotFoundPage />} />
         <Route path="/main" element={<EditorPage />} />
+        <Route path="/schema" element={<Schema />} />
         <Route path="*" element={<Navigate to="/404" replace />} />
       </Route>
     </Routes>

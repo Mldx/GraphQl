@@ -15,6 +15,11 @@ export const Navbar: React.FC = () => {
             Main
           </NavLink>
         </li>
+        <li className={style.nav_item}>
+          <NavLink className={style.link} to="/schema">
+            Schema
+          </NavLink>
+        </li>
       </ul>
     </nav>
   );
