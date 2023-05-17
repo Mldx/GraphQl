@@ -33,6 +33,26 @@
     "signin": "войти",
     "signup": "зарегистрироваться",
     "logout": "выйти"
+  },
+  "loginPage": {
+    "description_part1": "У вас нет аккаунта, ",
+    "description_part2": "создайте"
+  },
+  "signupPage": {
+    "description_part1": "Уже есть аккаунт? ",
+    "description_part2": "войдите"
+  },
+  "forms": {
+    "placeholder_email": "Электронная почта",
+    "placeholder_password": "Пароль",
+    "login": {
+      "tittle": "Авторизация",
+      "button": "Войти"
+    },
+    "signup": {
+      "tittle": "Создать аккаунт",
+      "button": "Зарегистрироваться"
+    }
   }
 }
 

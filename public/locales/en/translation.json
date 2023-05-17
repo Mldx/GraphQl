@@ -33,6 +33,26 @@
     "signin": "signin",
     "signup": "signup",
     "logout": "logout"
+  },
+  "loginPage": {
+    "description_part1": "You don't have an account, ",
+    "description_part2": "create an account"
+  },
+  "signupPage": {
+    "description_part1": "Already have an account? ",
+    "description_part2": "login"
+  },
+  "forms": {
+    "placeholder_email": "Email",
+    "placeholder_password": "Password",
+    "login": {
+      "tittle": "Login",
+      "button": "Login"
+    },
+    "signup": {
+      "tittle": "Create Account",
+      "button": "Sign up"
+    }
   }
 }
 

@@ -4,13 +4,16 @@ import React, { useState } from 'react';
 import ResponseErrorMessage from '../ResponseErrorMessage';
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 function LoginForm() {
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [pass, setPass] = useState('');
   const [respError, setRespError] = useState<null | string>(null);
-
+  const placeholderEmail = t('forms.placeholder_email');
+  const placeholderPassword = t('forms.placeholder_password');
   const handleSubmit = (e: React.FormEvent, email: string, pass: string) => {
     e.preventDefault();
     const auth = getAuth();
@@ -27,13 +30,13 @@ function LoginForm() {
 
   return (
     <form className={styles.form} noValidate={true} onSubmit={(e) => handleSubmit(e, email, pass)}>
-      <h1 className={styles.title}>Login</h1>
+      <h1 className={styles.title}>{t('forms.login.tittle')}</h1>
 
       <label className={styles.label}>
         <input
           className={styles.input}
           type="text"
-          placeholder="Email"
+          placeholder={placeholderEmail}
           value={email}
           onFocus={clearRespErrorMessage}
           onChange={(e) => setEmail(e.target.value)}
@@ -43,7 +46,7 @@ function LoginForm() {
       <label className={styles.label}>
         <input
           className={styles.input}
-          placeholder="Password"
+          placeholder={placeholderPassword}
           type="password"
           value={pass}
           autoComplete="off"
@@ -52,7 +55,7 @@ function LoginForm() {
         />
       </label>
       <ResponseErrorMessage errorMessage={respError} />
-      <FormSubmitButton text="Login" />
+      <FormSubmitButton text="forms.login.button" />
     </form>
   );
 }
