@@ -12,6 +12,12 @@
   box-shadow: 4px 5px 9px 0px rgba(33, 55, 71, 0.2);
   opacity: 0;
 	animation: fadeIn $animation-time-welcome ease-in both;
+  transition: .9s;
+  will-change: transform;
+  cursor: pointer;
+  &:hover {
+    scale: 1.03;
+  }
 
   @media (max-width: 600px) {
     max-width: calc(100%);
