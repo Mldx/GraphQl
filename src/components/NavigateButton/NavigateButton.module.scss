@@ -10,9 +10,9 @@
   cursor: pointer;
   transition: transform .05s linear;
   font-weight: 200;
-  padding: 5px 20px;
   font-size: 1.2rem;
-  transition: .1s;
+  padding: 5px 20px;
+  transition: .5s;
   &:hover {
     background-color: $hover-btn;
     opacity: .7;

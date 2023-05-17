@@ -16,7 +16,7 @@ function LoginForm() {
     const auth = getAuth();
     signInWithEmailAndPassword(auth, email, pass)
       .then(() => {
-        navigate('/');
+        navigate('/main');
       })
       .catch((error) => {
         setRespError(error.code);
@@ -26,12 +26,7 @@ function LoginForm() {
   const clearRespErrorMessage = () => setRespError(null);
 
   return (
-    <form
-      className={styles.form}
-      noValidate={true}
-      autoComplete="off"
-      onSubmit={(e) => handleSubmit(e, email, pass)}
-    >
+    <form className={styles.form} noValidate={true} onSubmit={(e) => handleSubmit(e, email, pass)}>
       <h1 className={styles.title}>Login</h1>
 
       <label className={styles.label}>
@@ -51,6 +46,7 @@ function LoginForm() {
           placeholder="Password"
           type="password"
           value={pass}
+          autoComplete="off"
           onFocus={clearRespErrorMessage}
           onChange={(e) => setPass(e.target.value)}
         />

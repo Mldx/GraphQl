@@ -1,8 +1,7 @@
 .form {
   display: flex;
   flex-direction: column;
-  width: 320px;
-  margin: 0 auto;
+  max-width: fit-content;
   row-gap: 30px;
   align-items: center;
   padding: 30px;
