@@ -4,8 +4,8 @@ import { developers } from 'utils/developer';
 import { IDeveloper } from 'types';
 
 export const WelcomePage: React.FC = () => (
-  <div className={style.dev_page}>
-    <div className={style.dev_page_wrap}>
+  <div className={style.welcome_page}>
+    <div className={style.welcome_page_wrap}>
       <div className={style.title_wrap}>
         <h1 className={style.title_main}>GraphiQL</h1>
         <p className={style.title}>

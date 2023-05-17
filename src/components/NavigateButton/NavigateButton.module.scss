@@ -4,7 +4,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #eeeeee;
+  background: $bg-btn-header;
   border: none;
   border-radius: 10px;
   cursor: pointer;
@@ -15,7 +15,6 @@
   transition: .5s;
   &:hover {
     background-color: $hover-btn;
-    opacity: .7;
   }
 
   &:focus-visible {

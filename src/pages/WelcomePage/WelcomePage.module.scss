@@ -1,14 +1,15 @@
 @import 'styles/variables.scss';
 
-.dev_page {
+.welcome_page {
   height: 100%;
   max-width: 100%;
+  display: flex;
   background-image: url("bg.jpeg");
   background-position: center; 
   background-repeat: no-repeat; 
   background-size: cover;
   background-color: #d4d4d4;
-
+  
   &_wrap {
     max-width: $width-wrap-app-content;
     margin: 0 auto;
@@ -52,6 +53,7 @@
 
 .title_main {
   width: 100%;
+  margin: 0;
   text-align: left;
   color: rgb(61, 60, 60);
 }
