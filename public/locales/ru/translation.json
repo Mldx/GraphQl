@@ -60,6 +60,12 @@
     "oneSpecCheck": "требуется 1+ спец символ",
     "min8sym": "требуется 8+ символов",
     "emailCheck": "некорректная почта"
+  },
+  "firebaseResponseMessage": {
+    "auth/invalid-email": "недействительный email",
+    "auth/missing-password": "пожалуйста, введите пароль",
+    "auth/wrong-password": "неверный пароль",
+    "auth/too-many-requests": "слишком много запросов"
   }
 }
 

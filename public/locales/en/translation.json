@@ -60,6 +60,12 @@
     "oneSpecCheck": "required 1+ spec symbol",
     "min8sym": "required 8+ symbols",
     "emailCheck": "invalid email"
+  },
+  "firebaseResponseMessage": {
+    "auth/invalid-email": "invalid email",
+    "auth/missing-password": "please enter your password",
+    "auth/wrong-password": "wrong password",
+    "auth/too-many-requests": "too many requests"
   }
 }
 
