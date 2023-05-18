@@ -1,15 +1,21 @@
+@import 'styles/variables.scss';
+
 .button {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #eeeeee;
+  background: $bg-btn-header;
   border: none;
   border-radius: 10px;
   cursor: pointer;
-  transition: transform .05s linear;
+  transition: transform .05s linear, background-color .1s linear;
   font-weight: 200;
   padding: 5px 20px;
   font-size: 1.2rem;
+
+  &:hover {
+    background-color: $hover-btn;
+  }
 
   &:focus-visible {
     outline: none;

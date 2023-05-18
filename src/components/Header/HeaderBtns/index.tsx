@@ -4,7 +4,7 @@ import LogoutButton from 'components/LogoutButton';
 
 export const HeaderBtns: React.FC<{ isLogin: boolean }> = ({ isLogin }) => {
   return (
-    <div className={style.btnsWrapper}>
+    <div className={style.btns_wrapper}>
       {isLogin ? (
         <>
           <NavigateButton text="go to main page" url="/main" />

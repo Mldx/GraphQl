@@ -4,13 +4,11 @@ import { Footer } from 'components/Footer';
 import style from './Layout.module.scss';
 
 export const Layout: React.FC = () => (
-  <div className={style.layoutWrap}>
+  <div className={style.layout_wrap}>
     <Header />
     <main className={style.main}>
       <Outlet />
     </main>
-    <footer className={style.footer}>
-      <Footer />
-    </footer>
+    <Footer />
   </div>
 );
