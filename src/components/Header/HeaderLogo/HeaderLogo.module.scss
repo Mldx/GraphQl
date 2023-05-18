@@ -3,6 +3,11 @@
   display: flex;
   align-items: center;
   gap: 0.2rem;
+  cursor: pointer;
+
+  &:hover .logo_img {
+    transform: rotate(180deg) scale(1.15);
+  }
 }
 
 .logo {
@@ -12,4 +17,6 @@
 
 .logo_img {
   height: 3rem;
+  transition: transform .4s ease;
 }
+

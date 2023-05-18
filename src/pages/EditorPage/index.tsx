@@ -1,7 +1,9 @@
-import React, { useCallback, useRef, useState } from 'react';
-import Tabs from 'components/Tabs';
-import * as monacoEditor from 'monaco-editor/esm/vs/editor/editor.api';
+import React, { useEffect, useCallback, useRef, useState } from 'react';
 import Monaco from '@monaco-editor/react';
+import * as monacoEditor from 'monaco-editor/esm/vs/editor/editor.api';
+import Tabs from 'components/Tabs';
+import { useNavigate } from 'react-router-dom';
+import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import CustomButton from 'components/CustomButton';
 import Variables from 'components/Variables';
 import { editorOptions } from 'constants/monacoSettings';
@@ -45,6 +47,23 @@ const EditorPage: React.FC = () => {
     },
     [queries, selectedQueryIndex]
   );
+
+  //TODO: это подписка на проверку логина и редирект если не залогинен
+  const navigate = useNavigate();
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const auth = getAuth();
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      setLoading(false);
+      if (!user) {
+        navigate('/');
+      }
+    });
+
+    return unsubscribe;
+  }, [navigate]);
+  //TODO: тут заканчивается
 
   const deleteTab = useCallback(
     (queryIdToDelete: string) => {
@@ -94,9 +113,6 @@ const EditorPage: React.FC = () => {
 
   const handleEditorDidMount = (editor: monacoEditor.editor.IStandaloneCodeEditor) => {
     editorRef.current = editor;
-    editorRef.current?.onDidAttemptReadOnlyEdit(() => {
-      editorRef.current?.trigger('editor', 'beforeTextInput', {});
-    });
   };
 
   const currentTabs = [
@@ -125,6 +141,10 @@ const EditorPage: React.FC = () => {
       isSelected: tab.id === selectedQueryId,
     };
   });
+
+  if (loading) {
+    return null;
+  }
 
   return (
     <div className={styles.editor}>
