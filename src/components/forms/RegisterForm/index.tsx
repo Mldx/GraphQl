@@ -24,7 +24,6 @@ function RegisterForm() {
   const navigate = useNavigate();
   const [respError, setRespError] = useState<null | string>(null);
   const emailRegex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
-  const passRegex = /^(?=.*[a-zA-Zа-яА-Я])(?=.*\d)(?=.*[-_@$!%*?&])[a-zA-Zа-яА-Я\d\-_@$!%*?&]{8,}$/;
   const placeholderEmail = t('forms.placeholder_email');
   const placeholderPassword = t('forms.placeholder_password');
   const clearRespErrorMessage = () => setRespError(null);
@@ -56,10 +55,10 @@ function RegisterForm() {
           placeholder={placeholderEmail}
           onFocus={clearRespErrorMessage}
           {...register('email', {
-            required: 'Field is required',
+            required: 'validateMessages.required',
             pattern: {
               value: emailRegex,
-              message: 'Incorrect pattern',
+              message: 'validateMessages.emailCheck',
             },
           })}
         />
@@ -74,10 +73,14 @@ function RegisterForm() {
           autoComplete="off"
           onFocus={clearRespErrorMessage}
           {...register('password', {
-            required: 'Field is required',
-            pattern: {
-              value: passRegex,
-              message: 'Incorrect pattern',
+            required: 'validateMessages.required',
+            validate: {
+              oneLetterCheck: (v) =>
+                /^(?=.*[a-zA-Zа-яА-Я]).*$/.test(v) || 'validateMessages.oneLetterCheck',
+              oneDigitCheck: (v) => /^(?=.*\d).*$/.test(v) || 'validateMessages.oneDigitCheck',
+              oneSpecCheck: (v) =>
+                /^(?=.*[-_@#$%^&+=]).*$/.test(v) || 'validateMessages.oneSpecCheck',
+              min8sym: (v) => /^.{8,}$/.test(v) || 'validateMessages.min8sym',
             },
           })}
         />

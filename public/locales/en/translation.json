@@ -52,6 +52,14 @@
       "tittle": "Create Account",
       "button": "Sign up"
     }
+  },
+  "validateMessages": {
+    "required": "field is required",
+    "oneLetterCheck": "required 1+ letter",
+    "oneDigitCheck": "required 1+ digit",
+    "oneSpecCheck": "required 1+ spec symbol",
+    "min8sym": "required 8+ symbols",
+    "emailCheck": "invalid email"
   }
 }
 
