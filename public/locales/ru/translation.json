@@ -62,11 +62,12 @@
     "emailCheck": "некорректная почта"
   },
   "firebaseResponseMessage": {
-    "auth/invalid-email": "недействительный email",
+    "auth/invalid-email": "недействительный адрес электронной почты",
     "auth/missing-password": "пожалуйста, введите пароль",
     "auth/wrong-password": "неверный пароль",
     "auth/too-many-requests": "слишком много запросов",
-    "auth/user-not-found": "такой пользователь не найден"
+    "auth/user-not-found": "пользователь не найден",
+    "auth/email-already-in-use": "этот адрес электронный почты уже используется"
   }
 }
 
