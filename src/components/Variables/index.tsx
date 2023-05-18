@@ -1,4 +1,4 @@
-import editorOptions from 'constants/monacoSettings';
+import { editorOptions } from 'constants/monacoSettings';
 import Monaco from '@monaco-editor/react';
 import * as monacoEditor from 'monaco-editor/esm/vs/editor/editor.api';
 import CustomButton from 'components/CustomButton';

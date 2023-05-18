@@ -1,6 +1,6 @@
 import * as monacoEditor from 'monaco-editor/esm/vs/editor/editor.api';
 
-const editorOptions: monacoEditor.editor.IStandaloneEditorConstructionOptions = {
+export const editorOptions: monacoEditor.editor.IStandaloneEditorConstructionOptions = {
   minimap: {
     enabled: false,
   },
@@ -15,4 +15,8 @@ const editorOptions: monacoEditor.editor.IStandaloneEditorConstructionOptions = 
   quickSuggestions: false,
 };
 
-export default editorOptions;
+export const editorOptionsNoEdit = Object.assign({}, editorOptions, {
+  readOnly: true,
+  dragAndDrop: false,
+  lineNumbers: 'off',
+});
