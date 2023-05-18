@@ -1,14 +1,14 @@
-import React, { useCallback, useMemo, useRef, useState } from 'react';
+import React, { useCallback, useRef, useState } from 'react';
 import Tabs from 'components/Tabs';
 import * as monacoEditor from 'monaco-editor/esm/vs/editor/editor.api';
 import Monaco from '@monaco-editor/react';
 import CustomButton from 'components/CustomButton';
 import Variables from 'components/Variables';
-import editorOptions from 'constants/monacoSettings';
+import { editorOptions } from 'constants/monacoSettings';
 import { QueryItem } from 'types/index';
-import { getStartQuery } from 'utils/index';
+import { getStartQuery, makeRequest, parseQuery } from 'utils/index';
 import styles from './EditorPage.module.scss';
-import Schema from 'components/Schema';
+import Response from 'components/Response';
 
 type FieldName = 'query' | 'variables' | 'headers';
 
@@ -18,6 +18,7 @@ const EditorPage: React.FC = () => {
   const [selectedQueryId, setSelectedQueryId] = useState(defaultQuery[0].id);
   const [queries, setQueries] = useState(defaultQuery);
   const [isVarsAndHeadersOpen, setIsVarsAndHeadersOpen] = useState(false);
+  const [responseData, setResponseData] = useState('');
 
   const selectedQueryIndex = queries.findIndex((tab) => tab.id === selectedQueryId);
   const addTab = useCallback(() => {
@@ -26,78 +27,90 @@ const EditorPage: React.FC = () => {
     setSelectedQueryId(newQuery.id);
   }, []);
 
-  const changeTab = (id: string, tabName: string) => {
-    if (tabName === 'New Tab') {
-      setSelectedQueryId(id);
-    } else if (queries[selectedQueryIndex].selectedVarsOrHeadersTab !== tabName) {
-      const newVarsOrHeadersTab =
-        queries[selectedQueryIndex].selectedVarsOrHeadersTab === 'variables'
-          ? 'headers'
-          : 'variables';
-      setQueries((currQueries) =>
-        currQueries.map((query: QueryItem) =>
-          query.id === id ? { ...query, selectedVarsOrHeadersTab: newVarsOrHeadersTab } : query
-        )
-      );
-    }
-  };
+  const changeTab = useCallback(
+    (id: string, tabName: string) => {
+      if (tabName === 'New Tab') {
+        setSelectedQueryId(id);
+      } else if (queries[selectedQueryIndex].selectedVarsOrHeadersTab !== tabName) {
+        const newVarsOrHeadersTab =
+          queries[selectedQueryIndex].selectedVarsOrHeadersTab === 'variables'
+            ? 'headers'
+            : 'variables';
+        setQueries((currQueries) =>
+          currQueries.map((query: QueryItem) =>
+            query.id === id ? { ...query, selectedVarsOrHeadersTab: newVarsOrHeadersTab } : query
+          )
+        );
+      }
+    },
+    [queries, selectedQueryIndex]
+  );
 
-  const deleteTab = (queryIdToDelete: string) => {
-    const queryIndexToDelete = queries.findIndex((query) => query.id === queryIdToDelete);
-    const filteredQueries = queries.filter((query) => query.id !== queryIdToDelete);
-    if (filteredQueries.length > 0) {
-      const prevQueryIndex = queryIndexToDelete === 0 ? 0 : queryIndexToDelete - 1;
-      setSelectedQueryId(filteredQueries[prevQueryIndex].id);
-      setQueries(filteredQueries);
-    } else {
-      setQueries(defaultQuery);
-      setSelectedQueryId(() => defaultQuery[0].id);
-    }
-  };
+  const deleteTab = useCallback(
+    (queryIdToDelete: string) => {
+      const queryIndexToDelete = queries.findIndex((query) => query.id === queryIdToDelete);
+      const filteredQueries = queries.filter((query) => query.id !== queryIdToDelete);
+      if (filteredQueries.length > 0) {
+        const prevQueryIndex = queryIndexToDelete === 0 ? 0 : queryIndexToDelete - 1;
+        setSelectedQueryId(filteredQueries[prevQueryIndex].id);
+        setQueries(filteredQueries);
+      } else {
+        setQueries(defaultQuery);
+        setSelectedQueryId(() => defaultQuery[0].id);
+      }
+    },
+    [queries]
+  );
 
-  const onChangeQuery = (value: string | undefined, field: FieldName): void => {
-    if (value) {
-      setQueries((queries) =>
-        queries.map((query) => {
-          if (query.id === selectedQueryId) {
-            const newQuery = { ...query };
-            newQuery[field] = { ...newQuery[field], value };
-            return newQuery;
-          } else {
-            return query;
-          }
-        })
-      );
-    }
-  };
+  const onChangeQuery = useCallback(
+    (value: string | undefined, field: FieldName): void => {
+      if (value) {
+        setQueries((queries) =>
+          queries.map((query) => {
+            if (query.id === selectedQueryId) {
+              const newQuery = { ...query };
+              newQuery[field] = { ...newQuery[field], value };
+              return newQuery;
+            } else {
+              return query;
+            }
+          })
+        );
+      }
+    },
+    [selectedQueryId]
+  );
 
-  const showValue = () => {
-    if (editorRef.current) {
-      console.log(editorRef.current.getValue());
-    }
-  };
+  const showValue = useCallback(async () => {
+    const query = queries[selectedQueryIndex].query.value;
+    const variables = queries[selectedQueryIndex].variables.value;
+
+    const resultQuery = variables ? parseQuery(query, JSON.parse(variables)) : query;
+    const responseData = await makeRequest(resultQuery);
+    setResponseData(responseData as string);
+  }, [queries, selectedQueryIndex]);
 
   const editorRef = useRef<monacoEditor.editor.IStandaloneCodeEditor | null>(null);
 
   const handleEditorDidMount = (editor: monacoEditor.editor.IStandaloneCodeEditor) => {
     editorRef.current = editor;
+    editorRef.current?.onDidAttemptReadOnlyEdit(() => {
+      editorRef.current?.trigger('editor', 'beforeTextInput', {});
+    });
   };
 
-  const currentTabs = useMemo(
-    () => [
-      {
-        tabId: queries[selectedQueryIndex].id,
-        label: queries[selectedQueryIndex].variables.tabName,
-        query: queries[selectedQueryIndex].variables.value,
-      },
-      {
-        tabId: queries[selectedQueryIndex].id,
-        label: queries[selectedQueryIndex].headers.tabName,
-        query: queries[selectedQueryIndex].headers.value,
-      },
-    ],
-    [queries, selectedQueryIndex]
-  );
+  const currentTabs = [
+    {
+      tabId: queries[selectedQueryIndex].id,
+      label: queries[selectedQueryIndex].variables.tabName,
+      query: queries[selectedQueryIndex].variables.value,
+    },
+    {
+      tabId: queries[selectedQueryIndex].id,
+      label: queries[selectedQueryIndex].headers.tabName,
+      query: queries[selectedQueryIndex].headers.value,
+    },
+  ];
 
   const editorContent =
     queries[selectedQueryIndex].selectedVarsOrHeadersTab === 'variables'
@@ -125,7 +138,6 @@ const EditorPage: React.FC = () => {
       <div key={queries[selectedQueryIndex].id} className={styles.editor_inner}>
         <div>
           <Monaco
-            height="100%"
             defaultLanguage="javascript"
             defaultValue={queries[selectedQueryIndex].query.value}
             onMount={handleEditorDidMount}
@@ -155,9 +167,7 @@ const EditorPage: React.FC = () => {
             query
           </CustomButton>
         </div>
-        <div className={styles.editor_answer}>
-          <Schema>Schema</Schema>
-        </div>
+        <Response responseData={responseData}></Response>
       </div>
     </div>
   );

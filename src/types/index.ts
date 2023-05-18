@@ -20,3 +20,7 @@ export interface QueryItem {
   selectedVarsOrHeadersTab: 'variables' | 'headers';
   headers: TabItem;
 }
+
+export interface Variables {
+  page: string;
+}

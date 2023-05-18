@@ -1,0 +1,27 @@
+.response {
+  position: relative;
+  width: 100%;
+  background-color: #fff;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  font-size: 14px;
+
+  .response_container {
+    max-width: 200px;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+
+    &__active {
+      width: 90%;
+      max-width: initial;
+      overflow-y: auto;
+      text-align: initial;
+      justify-content: initial;
+      align-items: initial;
+    }
+  }
+}
+
