@@ -53,8 +53,8 @@ function RegisterForm() {
           type="text"
           autoComplete="off"
           placeholder={placeholderEmail}
-          onFocus={clearRespErrorMessage}
           {...register('email', {
+            onChange: () => respError && clearRespErrorMessage,
             required: 'validateMessages.required',
             pattern: {
               value: emailRegex,
@@ -71,8 +71,8 @@ function RegisterForm() {
           placeholder={placeholderPassword}
           type="password"
           autoComplete="off"
-          onFocus={clearRespErrorMessage}
           {...register('password', {
+            onChange: () => respError && clearRespErrorMessage,
             required: 'validateMessages.required',
             validate: {
               oneLetterCheck: (v) =>

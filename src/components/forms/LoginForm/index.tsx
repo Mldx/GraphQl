@@ -38,8 +38,10 @@ function LoginForm() {
           type="text"
           placeholder={placeholderEmail}
           value={email}
-          onFocus={clearRespErrorMessage}
-          onChange={(e) => setEmail(e.target.value)}
+          onChange={(e) => {
+            setEmail(e.target.value);
+            respError && clearRespErrorMessage();
+          }}
         />
       </label>
 
@@ -50,8 +52,10 @@ function LoginForm() {
           type="password"
           value={pass}
           autoComplete="off"
-          onFocus={clearRespErrorMessage}
-          onChange={(e) => setPass(e.target.value)}
+          onChange={(e) => {
+            setPass(e.target.value);
+            respError && clearRespErrorMessage();
+          }}
         />
       </label>
       <ResponseErrorMessage errorMessage={respError} />
