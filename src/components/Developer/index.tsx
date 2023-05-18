@@ -10,7 +10,7 @@ export const Developer = (props: IDeveloper) => {
         <img className={style.developer_img} src={props.photo} alt="" />
         <div>
           <div className={style.contacts}>
-            <div className={style.name}>{t(props.name)}</div>
+            <h2 className={style.name}>{t(props.name)}</h2>
             <a
               className={style.developer_link}
               href={props.gitHub}
@@ -18,8 +18,8 @@ export const Developer = (props: IDeveloper) => {
               rel="noreferrer"
             >
               <svg
-                width="20"
-                height="20"
+                width="25"
+                height="25"
                 viewBox="0 0 20 20"
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
