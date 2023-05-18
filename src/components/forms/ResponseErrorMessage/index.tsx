@@ -9,7 +9,7 @@ function ResponseErrorMessage(props: IValidationErrorMessageProps) {
   const { t } = useTranslation();
   const { errorMessage } = props;
   return errorMessage ? (
-    <div className={styles.validation_error}>{t(`firebaseResponseMessage.${errorMessage}`)}</div>
+    <div className={styles.response_error}>{t(`firebaseResponseMessage.${errorMessage}`)}</div>
   ) : null;
 }
 
