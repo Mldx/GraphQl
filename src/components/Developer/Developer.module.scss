@@ -8,13 +8,13 @@
   border-radius: 10px;
   background-color: rgba(248, 248, 248, 0.9);
   gap: 2rem;
-  border-radius: 10px;
-  box-shadow: 4px 5px 9px 0px rgba(33, 55, 71, 0.2);
+  box-shadow: 4px 5px 9px 0 rgba(33, 55, 71, 0.2);
   opacity: 0;
-	animation: fadeIn $animation-time-welcome ease-in both;
+  animation: fadeIn $animation-time-welcome ease-in both;
   transition: .9s;
   will-change: transform;
   cursor: pointer;
+
   &:hover {
     scale: 1.03;
   }
@@ -49,12 +49,12 @@
 }
 
 @keyframes fadeIn {
-	from {
-		opacity: 0;
-		transform: translate3d(0, -20%, 0);
-	}
-	to {
-		opacity: 1;
-		transform: translate3d(0, 0, 0);
-	}
+  from {
+    opacity: 0;
+    transform: translate3d(0, -20%, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
 }
