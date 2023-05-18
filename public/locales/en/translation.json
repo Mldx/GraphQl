@@ -65,7 +65,8 @@
     "auth/invalid-email": "invalid email",
     "auth/missing-password": "please enter your password",
     "auth/wrong-password": "wrong password",
-    "auth/too-many-requests": "too many requests"
+    "auth/too-many-requests": "too many requests",
+    "auth/user-not-found": "user not found"
   }
 }
 

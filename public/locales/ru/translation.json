@@ -65,7 +65,8 @@
     "auth/invalid-email": "недействительный email",
     "auth/missing-password": "пожалуйста, введите пароль",
     "auth/wrong-password": "неверный пароль",
-    "auth/too-many-requests": "слишком много запросов"
+    "auth/too-many-requests": "слишком много запросов",
+    "auth/user-not-found": "такой пользователь не найден"
   }
 }
 
