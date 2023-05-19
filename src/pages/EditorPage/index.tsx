@@ -31,6 +31,10 @@ const EditorPage: React.FC = () => {
 
   const changeTab = useCallback(
     (id: string, tabName: string) => {
+      if (!isVarsAndHeadersOpen && tabName !== 'New Tab') {
+        setIsVarsAndHeadersOpen(true);
+      }
+
       if (tabName === 'New Tab') {
         setSelectedQueryId(id);
       } else if (queries[selectedQueryIndex].selectedVarsOrHeadersTab !== tabName) {
@@ -45,7 +49,7 @@ const EditorPage: React.FC = () => {
         );
       }
     },
-    [queries, selectedQueryIndex]
+    [isVarsAndHeadersOpen, queries, selectedQueryIndex]
   );
 
   //TODO: это подписка на проверку логина и редирект если не залогинен
