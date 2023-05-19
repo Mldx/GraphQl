@@ -21,7 +21,7 @@ export const getStartQuery = (): QueryItem => ({
   },
 });
 
-export const makeRequest = (query: string) => {
+export const makeRequest = (query: string): object | null => {
   return fetch(baseURL, {
     method: 'POST',
     headers: {

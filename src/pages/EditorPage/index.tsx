@@ -20,7 +20,7 @@ const EditorPage: React.FC = () => {
   const [selectedQueryId, setSelectedQueryId] = useState(defaultQuery[0].id);
   const [queries, setQueries] = useState(defaultQuery);
   const [isVarsAndHeadersOpen, setIsVarsAndHeadersOpen] = useState(false);
-  const [responseData, setResponseData] = useState('');
+  const [responseData, setResponseData] = useState<object | null>(null);
 
   const selectedQueryIndex = queries.findIndex((tab) => tab.id === selectedQueryId);
   const addTab = useCallback(() => {
@@ -69,7 +69,7 @@ const EditorPage: React.FC = () => {
     (queryIdToDelete: string) => {
       const queryIndexToDelete = queries.findIndex((query) => query.id === queryIdToDelete);
       const filteredQueries = queries.filter((query) => query.id !== queryIdToDelete);
-      if (filteredQueries.length > 0) {
+      if (filteredQueries.length) {
         const prevQueryIndex = queryIndexToDelete === 0 ? 0 : queryIndexToDelete - 1;
         setSelectedQueryId(filteredQueries[prevQueryIndex].id);
         setQueries(filteredQueries);
@@ -100,13 +100,15 @@ const EditorPage: React.FC = () => {
     [selectedQueryId]
   );
 
-  const showValue = useCallback(async () => {
+  const fetchAndSetResponse = useCallback(async () => {
     const query = queries[selectedQueryIndex].query.value;
     const variables = queries[selectedQueryIndex].variables.value;
 
     const resultQuery = variables ? parseQuery(query, JSON.parse(variables)) : query;
-    const responseData = await makeRequest(resultQuery);
-    setResponseData(responseData as string);
+    if (resultQuery) {
+      const responseData = await makeRequest(resultQuery);
+      setResponseData(responseData);
+    }
   }, [queries, selectedQueryIndex]);
 
   const editorRef = useRef<monacoEditor.editor.IStandaloneCodeEditor | null>(null);
@@ -183,7 +185,7 @@ const EditorPage: React.FC = () => {
           </Variables>
         </div>
         <div className={styles.control}>
-          <CustomButton onClick={showValue} className={styles.control_btn}>
+          <CustomButton onClick={fetchAndSetResponse} className={styles.control_btn}>
             query
           </CustomButton>
         </div>

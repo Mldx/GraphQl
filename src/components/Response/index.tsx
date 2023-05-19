@@ -6,7 +6,11 @@ import { editorOptionsNoEdit } from 'constants/monacoSettings';
 import Schema from 'components/Schema';
 import styles from './Response.module.scss';
 
-const Response = ({ responseData }) => {
+interface ResponseProps {
+  responseData: object | null;
+}
+
+const Response = ({ responseData }: ResponseProps) => {
   const editorRef = useRef<monacoEditor.editor.IStandaloneCodeEditor | null>(null);
 
   const handleEditorDidMount = (editor: monacoEditor.editor.IStandaloneCodeEditor) => {
