@@ -1,10 +1,20 @@
+@import 'styles/variables.scss';
+
+.footer {
+  flex: 0 0 auto;
+  width: 100%;
+  min-height: 4rem;
+  background-color: rgb(233, 230, 230);
+  border-top: solid .1px rgb(108, 108, 108);
+}
+
 .wrapper {
   display: flex;
   flex-wrap: wrap;
   gap: .5rem;
   justify-content: space-between;
   align-items: center;
-  max-width: 1200px;
+  max-width: $width-wrap-app-content;
   height: 100%;
   margin: 0 auto;
   padding: 0 .5rem;
@@ -30,15 +40,19 @@
   }
 }
 
-.gitHubList {
+.gitHub_list {
   display: flex;
   flex-wrap: wrap;
-  gap: .5rem;
+  font-size: 1.1rem;
+  font-weight: 500;
+  gap: 1rem;
   justify-content: center;
 }
 
-.schoolLink {
+.school_link {
   display: flex;
   flex-wrap: wrap;
+  font-size: 1.3rem;
+  font-weight: 500;
   gap: .5rem;
 }
