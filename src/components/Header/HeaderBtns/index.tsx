@@ -7,7 +7,7 @@ export const HeaderBtns: React.FC<{ isLogin: boolean }> = ({ isLogin }) => {
     <div className={style.btns_wrapper}>
       {isLogin ? (
         <>
-          <NavigateButton text="go to main page" url="/main" />
+          <NavigateButton text="main" url="/main" />
           <LogoutButton />
         </>
       ) : (

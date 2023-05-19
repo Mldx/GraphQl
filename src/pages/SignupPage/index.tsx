@@ -3,8 +3,10 @@ import { Link, useNavigate } from 'react-router-dom';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import { useEffect, useState } from 'react';
 import RegisterForm from 'components/forms/RegisterForm';
+import { useTranslation } from 'react-i18next';
 
 function SignupPage() {
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const [loading, setLoading] = useState(true);
 
@@ -28,9 +30,9 @@ function SignupPage() {
     <div className={styles.signup_page_wrapper}>
       <RegisterForm />
       <div>
-        Already have an account?&nbsp;
+        {t('signupPage.description_part1')}
         <Link to="/login" className={styles.link}>
-          login
+          {t('signupPage.description_part2')}
         </Link>
       </div>
     </div>

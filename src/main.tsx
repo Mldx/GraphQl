@@ -6,7 +6,8 @@ import { store } from './store/store.ts';
 
 import 'normalize.css';
 import './index.scss';
-import './firebase/firebase.ts';
+import './i18next/';
+import './firebase/';
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <BrowserRouter>
