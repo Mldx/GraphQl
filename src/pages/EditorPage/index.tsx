@@ -186,7 +186,9 @@ const EditorPage: React.FC = () => {
         </div>
         <div className={styles.control}>
           <CustomButton onClick={fetchAndSetResponse} className={styles.control_btn}>
-            query
+            <svg width="35" height="35" viewBox="3.5,4.5,24,24">
+              <path d="M 11 9 L 24 16 L 11 23 z"></path>
+            </svg>
           </CustomButton>
         </div>
         <Response responseData={responseData}></Response>
