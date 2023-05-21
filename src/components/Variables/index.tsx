@@ -4,6 +4,7 @@ import * as monacoEditor from 'monaco-editor/esm/vs/editor/editor.api';
 import CustomButton from 'components/CustomButton';
 import styles from './Variables.module.scss';
 import { useEffect, useRef, useState } from 'react';
+import { handleEditorDidMount } from 'utils/index';
 
 type VariablesProps = {
   isOpen: boolean;
@@ -24,10 +25,6 @@ const Variables = ({
 
   const editorRef = useRef<monacoEditor.editor.IStandaloneCodeEditor | null>(null);
   const btnSign = isOpen ? '∨' : '∧';
-
-  const handleEditorDidMount = (editor: monacoEditor.editor.IStandaloneCodeEditor) => {
-    editorRef.current = editor;
-  };
 
   useEffect(() => {
     if (editorRef.current) {
@@ -51,10 +48,10 @@ const Variables = ({
         <div className={styles.variables_editor}>
           <Monaco
             height="100%"
-            defaultLanguage="javascript"
+            defaultLanguage="typescript"
             defaultValue={editorContent}
             value={value}
-            onMount={handleEditorDidMount}
+            onMount={handleEditorDidMount(editorRef)}
             onChange={handleEditorChange}
             options={editorOptions}
           />

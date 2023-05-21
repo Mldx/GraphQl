@@ -5,6 +5,7 @@ import * as monacoEditor from 'monaco-editor/esm/vs/editor/editor.api';
 import { editorOptionsNoEdit } from 'constants/monacoSettings';
 import Schema from 'components/Schema';
 import styles from './Response.module.scss';
+import { handleEditorDidMount } from 'utils/index';
 
 interface ResponseProps {
   responseData: object | null;
@@ -12,10 +13,6 @@ interface ResponseProps {
 
 const Response = ({ responseData }: ResponseProps) => {
   const editorRef = useRef<monacoEditor.editor.IStandaloneCodeEditor | null>(null);
-
-  const handleEditorDidMount = (editor: monacoEditor.editor.IStandaloneCodeEditor) => {
-    editorRef.current = editor;
-  };
   const formattedData = JSON.stringify(responseData, null, 2);
 
   return (
@@ -27,8 +24,8 @@ const Response = ({ responseData }: ResponseProps) => {
       >
         {responseData ? (
           <Monaco
-            defaultLanguage="javascript"
-            onMount={handleEditorDidMount}
+            defaultLanguage="typescript"
+            onMount={handleEditorDidMount(editorRef)}
             value={formattedData}
             options={editorOptionsNoEdit}
           />

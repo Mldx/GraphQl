@@ -8,7 +8,7 @@ import CustomButton from 'components/CustomButton';
 import Variables from 'components/Variables';
 import { editorOptions } from 'constants/monacoSettings';
 import { QueryItem } from 'types/index';
-import { getStartQuery, makeRequest, parseQuery } from 'utils/index';
+import { getStartQuery, handleEditorDidMount, makeRequest, parseQuery } from 'utils/index';
 import styles from './EditorPage.module.scss';
 import Response from 'components/Response';
 
@@ -117,10 +117,6 @@ const EditorPage: React.FC = () => {
 
   const editorRef = useRef<monacoEditor.editor.IStandaloneCodeEditor | null>(null);
 
-  const handleEditorDidMount = (editor: monacoEditor.editor.IStandaloneCodeEditor) => {
-    editorRef.current = editor;
-  };
-
   const currentTabs = [
     {
       tabId: queries[selectedQueryIndex].id,
@@ -164,9 +160,9 @@ const EditorPage: React.FC = () => {
       <div key={queries[selectedQueryIndex].id} className={styles.editor_inner}>
         <div>
           <Monaco
-            defaultLanguage="javascript"
+            defaultLanguage="typescript"
             defaultValue={queries[selectedQueryIndex].query.value}
-            onMount={handleEditorDidMount}
+            onMount={handleEditorDidMount(editorRef)}
             onChange={(value) => onChangeQuery(value, 'query')}
             options={editorOptions}
           />
