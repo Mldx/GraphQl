@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import {
-  GraphQLSchema,
   buildClientSchema,
-  GraphQLObjectType,
-  GraphQLNamedType,
+  GraphQLField,
+  GraphQLInputField,
   GraphQLInputObjectType,
+  GraphQLNamedType,
+  GraphQLObjectType,
   GraphQLScalarType,
+  GraphQLSchema,
 } from 'graphql';
 import { Link } from 'react-router-dom';
 import styles from './Sch.module.scss';
@@ -124,6 +126,16 @@ function Sch() {
   const [curType, setCurType] = useState<GraphQLObjectType | GraphQLNamedType | null | undefined>(
     null
   );
+  const [curScreen, setCurScreen] = useState<
+    Array<
+      | GraphQLObjectType
+      | GraphQLNamedType
+      | GraphQLField<string, string>
+      | GraphQLInputField
+      | undefined
+      | null
+    >
+  >([null]);
 
   useEffect(() => {
     fetch(serverUrl, options)
@@ -132,6 +144,7 @@ function Sch() {
         const schema = buildClientSchema(data.data);
         setSchema(schema);
         setCurType(schema.getQueryType());
+        setCurScreen([schema.getQueryType(), schema.getQueryType()]);
       })
       .catch((error) => {
         setError(error.message);
@@ -147,23 +160,32 @@ function Sch() {
   }
   const handleClickType = (e: React.MouseEvent<HTMLAnchorElement>) => {
     const text = e.currentTarget.text.replace(/[^a-zA-Z]/g, '');
-    console.log(text);
     setCurType(schema.getType(text));
-    console.log(schema.getType(text));
+    setCurScreen([...curScreen, schema.getType(text)]);
   };
   const handleClickField = (e: React.MouseEvent<HTMLAnchorElement>) => {
     const text = e.currentTarget.text;
-    console.log(text);
     if (curType instanceof GraphQLObjectType || curType instanceof GraphQLInputObjectType) {
-      console.log(curType.getFields()[text]);
+      setCurScreen([...curScreen, curType.getFields()[text]]);
     }
   };
+  const handleClickBack = () => {
+    if (curScreen.length > 2) {
+      const lastScreen = curScreen[curScreen.length - 2];
+      lastScreen && lastScreen.name && setCurType(schema.getType(lastScreen.name));
+    }
+    setCurScreen(curScreen.slice(0, -1));
+  };
 
-  if (curType instanceof GraphQLObjectType) {
-    const fields = curType ? Object.values(curType.getFields()) : [];
+  const curScr = curScreen[curScreen.length - 1];
+  if (curScr instanceof GraphQLObjectType) {
+    const fields = curScr ? Object.values(curScr.getFields()) : [];
     return (
       <div className={styles.main_container}>
-        <div>{curType?.name}</div>
+        <div onClick={handleClickBack}>
+          {curScreen.length > 2 && '<' + curScreen[curScreen.length - 2]?.name}
+        </div>
+        <div className={styles.name}>{curScr?.name}</div>
         {fields.map((field, index) => (
           <div key={index}>
             <div>
@@ -202,11 +224,14 @@ function Sch() {
     );
   }
 
-  if (curType instanceof GraphQLInputObjectType) {
-    const fields = curType ? Object.values(curType.getFields()) : [];
+  if (curScr instanceof GraphQLInputObjectType) {
+    const fields = curScr ? Object.values(curScr.getFields()) : [];
     return (
       <div className={styles.main_container}>
-        <div>{curType?.name}</div>
+        <div onClick={handleClickBack}>
+          {curScreen.length > 2 && '<' + curScreen[curScreen.length - 2]?.name}
+        </div>
+        <div className={styles.name}>{curScr?.name}</div>
         {fields.map((field, index) => (
           <div key={index}>
             <div>
@@ -227,17 +252,51 @@ function Sch() {
     );
   }
 
-  if (curType instanceof GraphQLScalarType) {
+  if (curScr instanceof GraphQLScalarType) {
     return (
       <div className={styles.main_container}>
-        <div>{curType?.name}</div>
+        <div onClick={handleClickBack}>
+          {curScreen.length > 2 && '<' + curScreen[curScreen.length - 2]?.name}
+        </div>
+        <div className={styles.name}>{curScr?.name}</div>
         <div className={styles.desc}>
-          <p>{curType.description && curType.description.replaceAll('`', '')}</p>
+          <p>{curScr.description && curScr.description.replaceAll('`', '')}</p>
         </div>
       </div>
     );
   }
-  return <></>;
+  return (
+    <div className={styles.main_container}>
+      <div onClick={handleClickBack}>
+        {curScreen.length > 2 && '<' + curScreen[curScreen.length - 2]?.name}
+      </div>
+      <div className={styles.name}>{curScr?.name}</div>
+      <div>{curScr?.description}</div>
+      <div>
+        Type:
+        <Link to="" onClick={(e) => handleClickType(e)}>
+          {curScr && 'type' in curScr && curScr.type.toString()}
+        </Link>
+      </div>
+      {curScr && 'args' in curScr && !!curScr.args.length && (
+        <div>
+          <div>Arguments:</div>
+          <span>
+            {curScr.args.map((arg, argIndex) => (
+              <div key={argIndex}>
+                <span>
+                  <span>{arg.name}</span>:
+                  <Link to="" onClick={(e) => handleClickType(e)}>
+                    {` ${arg.type.toString()}`}
+                  </Link>
+                </span>
+              </div>
+            ))}
+          </span>
+        </div>
+      )}
+    </div>
+  );
 }
 
 export default Sch;
