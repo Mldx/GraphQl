@@ -14,12 +14,14 @@ export const editorOptions: monacoEditor.editor.IStandaloneEditorConstructionOpt
   tabSize: 2,
   quickSuggestions: false,
   padding: {
-    top: 10,
-    bottom: 10,
+    top: 5,
+    bottom: 5,
   },
   hover: {
     enabled: false,
   },
+  hideCursorInOverviewRuler: true,
+  overviewRulerLanes: 0,
 };
 
 export const editorOptionsNoEdit = Object.assign({}, editorOptions, {
