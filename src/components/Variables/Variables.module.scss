@@ -7,6 +7,8 @@
   width: 100%;
   bottom: 0;
   background-color: #fff;
+  border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
 
   &>div:nth-child(2) {
     margin-left: 5px;
