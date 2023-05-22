@@ -179,10 +179,10 @@ function Sch() {
 
   const curScr = curScreen[curScreen.length - 1];
   if (curScr instanceof GraphQLObjectType) {
-    const fields = curScr ? Object.values(curScr.getFields()) : [];
+    const fields = Object.values(curScr.getFields());
     return (
       <div className={styles.main_container}>
-        <div onClick={handleClickBack}>
+        <div className={styles.backMenu} onClick={handleClickBack}>
           {curScreen.length > 2 && '<' + curScreen[curScreen.length - 2]?.name}
         </div>
         <div className={styles.name}>{curScr?.name}</div>
@@ -201,7 +201,7 @@ function Sch() {
                         <span>
                           <span>{arg.name}</span>:
                           <Link to="" onClick={(e) => handleClickType(e)}>
-                            {arg.type.toString()}
+                            {` ${arg.type.toString()}`}
                           </Link>
                         </span>
                       </div>
@@ -228,7 +228,7 @@ function Sch() {
     const fields = curScr ? Object.values(curScr.getFields()) : [];
     return (
       <div className={styles.main_container}>
-        <div onClick={handleClickBack}>
+        <div className={styles.backMenu} onClick={handleClickBack}>
           {curScreen.length > 2 && '<' + curScreen[curScreen.length - 2]?.name}
         </div>
         <div className={styles.name}>{curScr?.name}</div>
@@ -255,7 +255,7 @@ function Sch() {
   if (curScr instanceof GraphQLScalarType) {
     return (
       <div className={styles.main_container}>
-        <div onClick={handleClickBack}>
+        <div className={styles.backMenu} onClick={handleClickBack}>
           {curScreen.length > 2 && '<' + curScreen[curScreen.length - 2]?.name}
         </div>
         <div className={styles.name}>{curScr?.name}</div>
@@ -267,7 +267,7 @@ function Sch() {
   }
   return (
     <div className={styles.main_container}>
-      <div onClick={handleClickBack}>
+      <div className={styles.backMenu} onClick={handleClickBack}>
         {curScreen.length > 2 && '<' + curScreen[curScreen.length - 2]?.name}
       </div>
       <div className={styles.name}>{curScr?.name}</div>
@@ -275,7 +275,7 @@ function Sch() {
       <div>
         Type:
         <Link to="" onClick={(e) => handleClickType(e)}>
-          {curScr && 'type' in curScr && curScr.type.toString()}
+          {curScr && 'type' in curScr && ` ${curScr.type.toString()}`}
         </Link>
       </div>
       {curScr && 'args' in curScr && !!curScr.args.length && (
