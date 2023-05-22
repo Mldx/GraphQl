@@ -1,6 +1,6 @@
 import style from './Header.module.scss';
 import { HeaderLogo } from './HeaderLogo';
-import { useStickyHeader } from 'hooks/index';
+import { useStickyHeader } from 'hooks/sticky-header';
 import { useEffect, useState } from 'react';
 import { HeaderBtns } from './HeaderBtns';
 import { getAuth, onAuthStateChanged, User } from 'firebase/auth';

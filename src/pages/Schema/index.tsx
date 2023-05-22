@@ -1,26 +1,44 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-import { graphql } from 'cm6-graphql';
 import { useEffect, useState } from 'react';
-import { buildHTTPExecutor } from '@graphql-tools/executor-http';
-import { schemaFromExecutor } from '@graphql-tools/wrap';
-import { GraphQLSchema } from 'graphql/type';
+import CodeEditor from '@uiw/react-textarea-code-editor';
+import { useGetSchema } from '../../hooks/get-schema';
 
 export const Schema = () => {
-  const [myGraphQLSchema, setMyGraphQLSchema] = useState<GraphQLSchema>();
-  useEffect(() => {
-    const fetchSchema = async () => {
-      const remoteExecutor = buildHTTPExecutor({ endpoint: 'https://rickandmortyapi.com/graphql' });
+  const [schemaGet, setSchemaGet] = useState<undefined | string>();
+  const [schemaDoc, setSchemaDoc] = useState<undefined | string>();
+  const { schema } = useGetSchema();
+  const [loading, setLoading] = useState(false);
 
-      const postsSubschema = {
-        schema: await schemaFromExecutor(remoteExecutor),
-        executor: remoteExecutor,
-      };
-      const fields = postsSubschema.schema.getQueryType()?.getFields();
-      //const result = JSON.parse(JSON.stringify(fields));
-      setMyGraphQLSchema(postsSubschema.schema);
-    };
-    fetchSchema();
-  }, []);
-  console.log(myGraphQLSchema);
-  return <div> </div>;
+  useEffect(() => {
+    if (!schema) {
+      setLoading(true);
+      return;
+    } else {
+      setLoading(false);
+      setSchemaGet(schema);
+    }
+  }, [schema]);
+
+  function handlerClickDocs() {
+    setSchemaDoc(schemaGet);
+  }
+  return (
+    <>
+      {loading && <p>Loading...</p>}
+      {!loading && schema && (
+        <>
+          <button onClick={handlerClickDocs}>Show Docs</button>
+          <CodeEditor
+            readOnly={true}
+            value={schemaDoc}
+            language="graphql"
+            placeholder=""
+            padding={15}
+            style={{
+              fontSize: 14,
+            }}
+          />
+        </>
+      )}
+    </>
+  );
 };
