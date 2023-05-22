@@ -7,18 +7,17 @@ import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import CustomButton from 'components/CustomButton';
 import Variables from 'components/Variables';
 import { editorOptions } from 'constants/monacoSettings';
-import { QueryItem } from 'types/index';
+import { FieldName, QueryItem } from 'types/index';
 import {
   getIndex,
   getStartQuery,
   handleEditorDidMount,
   makeRequest,
   parseQuery,
+  updateQueryField,
 } from 'utils/editor';
 import styles from './EditorPage.module.scss';
 import Response from 'components/Response';
-
-type FieldName = 'query' | 'variables' | 'headers';
 
 const defaultQuery: QueryItem[] = [getStartQuery()];
 
@@ -92,17 +91,7 @@ const EditorPage: React.FC = () => {
   const onChangeQuery = useCallback(
     (value: string | undefined, field: FieldName): void => {
       if (value !== undefined) {
-        setQueries((queries) =>
-          queries.map((query) => {
-            if (query.id === selectedQueryId) {
-              const newQuery = { ...query };
-              newQuery[field] = { ...newQuery[field], value };
-              return newQuery;
-            } else {
-              return query;
-            }
-          })
-        );
+        setQueries((queries) => updateQueryField(queries, field, value, selectedQueryId));
       }
     },
     [selectedQueryId]
@@ -116,15 +105,7 @@ const EditorPage: React.FC = () => {
     if (resultQuery) {
       const responseData = await makeRequest(resultQuery);
       setQueries((queries) =>
-        queries.map((query) => {
-          if (query.id === selectedQueryId) {
-            const newQuery = { ...query };
-            newQuery.answer = { ...newQuery.answer, value: JSON.stringify(responseData) };
-            return newQuery;
-          } else {
-            return query;
-          }
-        })
+        updateQueryField(queries, 'answer', JSON.stringify(responseData), selectedQueryId)
       );
     }
   }, [selectedQueryId, activeQuery.query.value, activeQuery.variables.value]);

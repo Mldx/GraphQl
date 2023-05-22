@@ -24,3 +24,5 @@ export interface QueryItem {
 export interface Variables {
   page: string;
 }
+
+export type FieldName = 'query' | 'variables' | 'headers' | 'answer';

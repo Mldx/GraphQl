@@ -1,5 +1,5 @@
 import { baseURL } from 'constants/index';
-import { QueryItem, Variables } from 'types/index';
+import { FieldName, QueryItem, Variables } from 'types/index';
 import * as monacoEditor from 'monaco-editor/esm/vs/editor/editor.api';
 
 export const getStartQuery = (): QueryItem => ({
@@ -70,3 +70,20 @@ export const handleEditorDidMount = (
 
 export const getIndex = (array: QueryItem[], id: string) =>
   array.findIndex((item) => item.id === id);
+
+export const updateQueryField = (
+  queries: QueryItem[],
+  field: FieldName,
+  value: string,
+  id: string
+) => {
+  return queries.map((query) => {
+    if (query.id === id) {
+      const newQuery = { ...query };
+      newQuery[field] = { ...newQuery[field], value };
+      return newQuery;
+    } else {
+      return query;
+    }
+  });
+};
