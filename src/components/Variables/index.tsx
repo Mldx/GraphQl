@@ -4,7 +4,7 @@ import * as monacoEditor from 'monaco-editor/esm/vs/editor/editor.api';
 import CustomButton from 'components/CustomButton';
 import styles from './Variables.module.scss';
 import { useEffect, useRef, useState } from 'react';
-import { handleEditorDidMount } from 'utils/index';
+import { handleEditorDidMount } from 'utils/editor';
 
 type VariablesProps = {
   isOpen: boolean;

@@ -67,3 +67,6 @@ export const handleEditorDidMount = (
     editorRef.current = editor;
   };
 };
+
+export const getIndex = (array: QueryItem[], id: string) =>
+  array.findIndex((item) => item.id === id);

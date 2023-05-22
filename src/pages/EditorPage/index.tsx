@@ -8,7 +8,13 @@ import CustomButton from 'components/CustomButton';
 import Variables from 'components/Variables';
 import { editorOptions } from 'constants/monacoSettings';
 import { QueryItem } from 'types/index';
-import { getStartQuery, handleEditorDidMount, makeRequest, parseQuery } from 'utils/index';
+import {
+  getIndex,
+  getStartQuery,
+  handleEditorDidMount,
+  makeRequest,
+  parseQuery,
+} from 'utils/editor';
 import styles from './EditorPage.module.scss';
 import Response from 'components/Response';
 
@@ -21,8 +27,7 @@ const EditorPage: React.FC = () => {
   const [queries, setQueries] = useState(defaultQuery);
   const [isVarsAndHeadersOpen, setIsVarsAndHeadersOpen] = useState(false);
 
-  const selectedQueryIndex = queries.findIndex((tab) => tab.id === selectedQueryId);
-  const activeQuery = queries[selectedQueryIndex];
+  const activeQuery = queries[getIndex(queries, selectedQueryId)];
 
   const addTab = useCallback(() => {
     const newQuery = getStartQuery();
@@ -70,7 +75,7 @@ const EditorPage: React.FC = () => {
 
   const deleteTab = useCallback(
     (queryIdToDelete: string) => {
-      const queryIndexToDelete = queries.findIndex((query) => query.id === queryIdToDelete);
+      const queryIndexToDelete = getIndex(queries, queryIdToDelete);
       const filteredQueries = queries.filter((query) => query.id !== queryIdToDelete);
       if (filteredQueries.length) {
         const prevQueryIndex = queryIndexToDelete === 0 ? 0 : queryIndexToDelete - 1;

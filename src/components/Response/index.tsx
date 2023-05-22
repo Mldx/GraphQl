@@ -5,7 +5,7 @@ import * as monacoEditor from 'monaco-editor/esm/vs/editor/editor.api';
 import { editorOptionsNoEdit } from 'constants/monacoSettings';
 import Schema from 'components/Schema';
 import styles from './Response.module.scss';
-import { handleEditorDidMount } from 'utils/index';
+import { handleEditorDidMount } from 'utils/editor';
 
 interface ResponseProps {
   responseData: object | null;
