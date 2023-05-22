@@ -1,7 +1,7 @@
 @import 'styles/variables.scss';
 
 .editor {
-  max-width:$width-wrap-app-content;
+  max-width: $width-wrap-app-content;
   margin: 0 auto;
   padding: 20px;
 
@@ -13,23 +13,26 @@
     column-gap: 5px;
     justify-content: space-between;
     border-bottom-right-radius: 5px;
-    border-top-right-radius: 5px;
     border-bottom-left-radius: 5px;
+
+    &>div:nth-child(1) {
+      overflow: hidden;
+      position: relative;
+      width: 100%;
+    }
   }
 
   &_query {
     width: 100%;
     background-color: $color-dusty-gray;
   }
-
-  &_answer {
-    width: 100%;
-    background-color: $color-dusty-gray;
-    border-radius: 5px;
-  }
 }
 
 .control {
+  background-color: #fff;
+  padding: 4px;
+  border-radius: 5px;
+
   &_btn {
     border-radius: 5px;
     width: 50px;
@@ -37,6 +40,10 @@
     display: flex;
     align-items: center;
     justify-self: center;
+
+    &>svg {
+      fill: $color-graphite-gray;
+    }
   }
 
   & button {

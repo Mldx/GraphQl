@@ -1,23 +1,59 @@
-import { useEffect, useRef, useState } from 'react';
-import * as monacoEditor from 'monaco-editor/esm/vs/editor/editor.api';
+import React, { useEffect, useCallback, useRef, useState } from 'react';
 import Monaco from '@monaco-editor/react';
-import styles from './EditorPage.module.scss';
-import Tabs, { TabItem } from 'components/Tabs';
+import * as monacoEditor from 'monaco-editor/esm/vs/editor/editor.api';
+import Tabs from 'components/Tabs';
 import { useNavigate } from 'react-router-dom';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import CustomButton from 'components/CustomButton';
+import Variables from 'components/Variables';
+import { editorOptions } from 'constants/monacoSettings';
+import { FieldName, QueryItem } from 'types/index';
+import {
+  getIndex,
+  getStartQuery,
+  handleEditorDidMount,
+  makeRequest,
+  parseQuery,
+  updateQueryField,
+} from 'utils/editor';
+import styles from './EditorPage.module.scss';
+import Response from 'components/Response';
+
+const defaultQuery: QueryItem[] = [getStartQuery()];
 
 const EditorPage: React.FC = () => {
-  const defaultTabs: TabItem[] = [
-    {
-      tabId: crypto.randomUUID(),
-      label: 'New Tab',
-      query: 'query',
-      answer: 'answer',
+  const [selectedQueryId, setSelectedQueryId] = useState(defaultQuery[0].id);
+  const [queries, setQueries] = useState(defaultQuery);
+  const [isVarsAndHeadersOpen, setIsVarsAndHeadersOpen] = useState(false);
+
+  const activeQuery = queries[getIndex(queries, selectedQueryId)];
+
+  const addTab = useCallback(() => {
+    const newQuery = getStartQuery();
+    setQueries((currQueries) => [...currQueries, newQuery]);
+    setSelectedQueryId(newQuery.id);
+  }, []);
+
+  const changeTab = useCallback(
+    (id: string, tabName: string) => {
+      if (!isVarsAndHeadersOpen && tabName !== 'New Tab') {
+        setIsVarsAndHeadersOpen(true);
+      }
+
+      if (tabName === 'New Tab') {
+        setSelectedQueryId(id);
+      } else if (activeQuery.selectedVarsOrHeadersTab !== tabName) {
+        const newVarsOrHeadersTab =
+          activeQuery.selectedVarsOrHeadersTab === 'variables' ? 'headers' : 'variables';
+        setQueries((currQueries) =>
+          currQueries.map((query: QueryItem) =>
+            query.id === id ? { ...query, selectedVarsOrHeadersTab: newVarsOrHeadersTab } : query
+          )
+        );
+      }
     },
-  ];
-  const [selectedTabId, setSelectedTabId] = useState(defaultTabs[0].tabId);
-  const [tabs, setTabs] = useState(defaultTabs);
+    [isVarsAndHeadersOpen, activeQuery.selectedVarsOrHeadersTab]
+  );
 
   //TODO: это подписка на проверку логина и редирект если не залогинен
   const navigate = useNavigate();
@@ -36,63 +72,74 @@ const EditorPage: React.FC = () => {
   }, [navigate]);
   //TODO: тут заканчивается
 
-  const addTab = () => {
-    const newTab = {
-      tabId: crypto.randomUUID(),
-      label: 'New Tab',
-      query: 'query',
-      answer: 'answer',
-    };
-    setTabs((tabs) => [...tabs, newTab]);
-  };
+  const deleteTab = useCallback(
+    (queryIdToDelete: string) => {
+      const queryIndexToDelete = getIndex(queries, queryIdToDelete);
+      const filteredQueries = queries.filter((query) => query.id !== queryIdToDelete);
+      if (filteredQueries.length) {
+        const prevQueryIndex = queryIndexToDelete === 0 ? 0 : queryIndexToDelete - 1;
+        setSelectedQueryId(filteredQueries[prevQueryIndex].id);
+        setQueries(filteredQueries);
+      } else {
+        setQueries(defaultQuery);
+        setSelectedQueryId(() => defaultQuery[0].id);
+      }
+    },
+    [queries]
+  );
 
-  const changeTab = (id: string) => {
-    setSelectedTabId(id);
-  };
+  const onChangeQuery = useCallback(
+    (value: string | undefined, field: FieldName): void => {
+      if (value !== undefined) {
+        setQueries((queries) => updateQueryField(queries, field, value, selectedQueryId));
+      }
+    },
+    [selectedQueryId]
+  );
 
-  const selectedIndex = tabs.findIndex((tab) => tab.tabId === selectedTabId);
+  const fetchAndSetResponse = useCallback(async () => {
+    const query = activeQuery.query.value;
+    const variables = activeQuery.variables.value;
 
-  const deleteTab = (tabIdToDelete: string) => {
-    const filteredTabs = tabs.filter((tab) => tab.tabId !== tabIdToDelete);
-    if (filteredTabs.length > 0) {
-      setTabs(filteredTabs);
-      setSelectedTabId((currentTabId) => {
-        if (currentTabId === tabIdToDelete) {
-          return filteredTabs[filteredTabs.length - 1].tabId;
-        }
-        return currentTabId;
-      });
-    } else {
-      setTabs(defaultTabs);
-      setSelectedTabId(() => defaultTabs[0].tabId);
-    }
-  };
-
-  const onChangeQuery = (value: string | undefined): void => {
-    if (value) {
-      setTabs((tabs) =>
-        tabs.map((tab) => {
-          if (tab.tabId === selectedTabId) {
-            return { ...tab, query: value };
-          } else {
-            return tab;
-          }
-        })
+    const resultQuery = variables ? parseQuery(query, JSON.parse(variables)) : query;
+    if (resultQuery) {
+      const responseData = await makeRequest(resultQuery);
+      setQueries((queries) =>
+        updateQueryField(queries, 'answer', JSON.stringify(responseData), selectedQueryId)
       );
     }
-  };
+  }, [selectedQueryId, activeQuery.query.value, activeQuery.variables.value]);
 
   const editorRef = useRef<monacoEditor.editor.IStandaloneCodeEditor | null>(null);
 
-  const handleEditorDidMount = (editor: monacoEditor.editor.IStandaloneCodeEditor) => {
-    editorRef.current = editor;
-  };
+  const currentTabs = [
+    {
+      tabId: activeQuery.id,
+      label: activeQuery.variables.tabName,
+      query: activeQuery.variables.value,
+    },
+    {
+      tabId: activeQuery.id,
+      label: activeQuery.headers.tabName,
+      query: activeQuery.headers.value,
+    },
+  ];
 
-  const showValue = () => {
-    if (editorRef.current !== null) {
-      console.log(editorRef.current.getValue());
-    }
-  };
+  const editorContent =
+    activeQuery.selectedVarsOrHeadersTab === 'variables'
+      ? activeQuery.variables.value
+      : activeQuery.headers.value;
+
+  const answerContent = activeQuery.answer.value ? JSON.parse(activeQuery.answer.value) : '';
+
+  const tabs = queries.map((tab) => {
+    return {
+      tabId: tab.id,
+      label: tab.query.tabName,
+      query: tab.query.value,
+      isSelected: tab.id === selectedQueryId,
+    };
+  });
 
   if (loading) {
     return null;
@@ -102,41 +149,44 @@ const EditorPage: React.FC = () => {
     <div className={styles.editor}>
       <Tabs
         tabs={tabs}
-        selectedTabId={selectedTabId}
-        onClickTab={(id: string) => {
-          changeTab(id);
-        }}
+        selectedTabId={selectedQueryId}
+        onClickTab={(id: string) => changeTab(id, 'New Tab')}
         onClickTabAdd={addTab}
         onClickTabDelete={deleteTab}
       />
-      <div key={tabs[selectedIndex].tabId} className={styles.editor_inner}>
-        <Monaco
-          height="100%"
-          defaultLanguage="javascript"
-          defaultValue={tabs[selectedIndex].query}
-          onMount={handleEditorDidMount}
-          onChange={(value) => onChangeQuery(value)}
-          options={{
-            minimap: {
-              enabled: false,
-            },
-            scrollbar: {
-              vertical: 'hidden',
-              horizontal: 'hidden',
-            },
-            renderLineHighlight: 'none',
-            contextmenu: false,
-            overviewRulerBorder: false,
-            tabSize: 2,
-            quickSuggestions: false,
-          }}
-        />
+      <div key={activeQuery.id} className={styles.editor_inner}>
+        <div>
+          <Monaco
+            defaultLanguage="typescript"
+            defaultValue={activeQuery.query.value}
+            onMount={handleEditorDidMount(editorRef)}
+            onChange={(value) => onChangeQuery(value, 'query')}
+            options={editorOptions}
+          />
+          <Variables
+            isOpen={isVarsAndHeadersOpen}
+            setIsOpen={setIsVarsAndHeadersOpen}
+            editorContent={editorContent}
+            onChangeQuery={(value) => onChangeQuery(value, activeQuery.selectedVarsOrHeadersTab)}
+          >
+            <Tabs
+              tabs={currentTabs}
+              selectedTabId={selectedQueryId}
+              onClickTab={(id: string, tabName: string) => {
+                changeTab(id, tabName.toLowerCase());
+              }}
+              selectedVarsOrHeadersTab={activeQuery.selectedVarsOrHeadersTab}
+            />
+          </Variables>
+        </div>
         <div className={styles.control}>
-          <CustomButton onClick={showValue} className={styles.control_btn}>
-            query
+          <CustomButton onClick={fetchAndSetResponse} className={styles.control_btn}>
+            <svg width="35" height="35" viewBox="3.5,4.5,24,24">
+              <path d="M 11 9 L 24 16 L 11 23 z"></path>
+            </svg>
           </CustomButton>
         </div>
-        <div className={styles.editor_answer} />
+        <Response responseData={answerContent}></Response>
       </div>
     </div>
   );
