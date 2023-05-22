@@ -21,19 +21,17 @@ const Variables = ({
   setIsOpen,
   onChangeQuery,
 }: VariablesProps) => {
-  const [value, setValue] = useState('');
+  const [value, setValue] = useState(editorContent || '');
 
   const editorRef = useRef<monacoEditor.editor.IStandaloneCodeEditor | null>(null);
   const btnSign = isOpen ? '∨' : '∧';
 
   useEffect(() => {
-    if (editorRef.current) {
-      setValue(editorContent as string);
-    }
+    setValue(editorContent as string);
   }, [editorContent]);
 
   const handleEditorChange = (newValue: string | undefined) => {
-    if (newValue) {
+    if (newValue !== undefined) {
       onChangeQuery(newValue);
     }
   };

@@ -87,7 +87,7 @@ const EditorPage: React.FC = () => {
 
   const onChangeQuery = useCallback(
     (value: string | undefined, field: FieldName): void => {
-      if (value) {
+      if (value !== undefined) {
         setQueries((queries) =>
           queries.map((query) => {
             if (query.id === selectedQueryId) {
