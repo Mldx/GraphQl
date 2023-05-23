@@ -11,8 +11,8 @@ import {
   GraphQLSchema,
 } from 'graphql';
 
-import { Link } from 'react-router-dom';
-import styles from './Sch.module.scss';
+import ScreenWithType from 'components/Sch/ScreenWithType';
+import ScreenWithField from 'components/Sch/ScreenWithField';
 
 const serverUrl = 'https://rickandmortyapi.com/graphql';
 const options = {
@@ -54,10 +54,6 @@ function Sch() {
       });
   }, []);
 
-  if (error) {
-    return <div>{error}</div>;
-  }
-
   if (!schema) {
     return <div>Loading...</div>;
   }
@@ -81,125 +77,38 @@ function Sch() {
   };
 
   const curScr = curScreen[curScreen.length - 1];
-  if (curScr instanceof GraphQLObjectType) {
-    const fields = Object.values(curScr.getFields());
+
+  if (error) {
+    return <div>{error}</div>;
+  }
+
+  if (
+    curScr instanceof GraphQLObjectType ||
+    curScr instanceof GraphQLInputObjectType ||
+    curScr instanceof GraphQLScalarType
+  ) {
     return (
-      <div className={styles.main_container}>
-        <div className={styles.backMenu} onClick={handleClickBack}>
-          {curScreen.length > 2 && '<' + curScreen[curScreen.length - 2]?.name}
-        </div>
-        <div className={styles.name}>{curScr?.name}</div>
-        {fields.map((field, index) => (
-          <div key={index}>
-            <div>
-              <Link to="" onClick={(e) => handleClickField(e)}>
-                {field.name}
-              </Link>
-              {!!field.args.length && (
-                <>
-                  (
-                  <span>
-                    {field.args.map((arg, argIndex) => (
-                      <div key={argIndex} className={styles.arg}>
-                        <span>
-                          <span>{arg.name}</span>:
-                          <Link to="" onClick={(e) => handleClickType(e)}>
-                            {` ${arg.type.toString()}`}
-                          </Link>
-                        </span>
-                      </div>
-                    ))}
-                  </span>
-                  )
-                </>
-              )}
-              :
-              <Link to="" onClick={(e) => handleClickType(e)}>
-                {` ${field.type.toString()}`}
-              </Link>
-            </div>
-            <div className={styles.desc}>
-              <p>{field.description}</p>
-            </div>
-          </div>
-        ))}
-      </div>
+      <ScreenWithType
+        value={curScr}
+        onClickType={handleClickType}
+        onClickField={handleClickField}
+        onClickBack={handleClickBack}
+        currentScreen={curScreen}
+      />
     );
   }
 
-  if (curScr instanceof GraphQLInputObjectType) {
-    const fields = curScr ? Object.values(curScr.getFields()) : [];
+  if (curScr) {
     return (
-      <div className={styles.main_container}>
-        <div className={styles.backMenu} onClick={handleClickBack}>
-          {curScreen.length > 2 && '<' + curScreen[curScreen.length - 2]?.name}
-        </div>
-        <div className={styles.name}>{curScr?.name}</div>
-        {fields.map((field, index) => (
-          <div key={index}>
-            <div>
-              <Link to="" onClick={(e) => handleClickField(e)}>
-                {field.name}
-              </Link>
-              :
-              <Link to="" onClick={(e) => handleClickType(e)}>
-                {` ${field.type.toString()}`}
-              </Link>
-            </div>
-            <div className={styles.desc}>
-              <p>{field.description}</p>
-            </div>
-          </div>
-        ))}
-      </div>
+      <ScreenWithField
+        value={curScr as GraphQLField<string, string>}
+        onClickType={handleClickType}
+        onClickBack={handleClickBack}
+        currentScreen={curScreen}
+      />
     );
   }
-
-  if (curScr instanceof GraphQLScalarType) {
-    return (
-      <div className={styles.main_container}>
-        <div className={styles.backMenu} onClick={handleClickBack}>
-          {curScreen.length > 2 && '<' + curScreen[curScreen.length - 2]?.name}
-        </div>
-        <div className={styles.name}>{curScr?.name}</div>
-        <div className={styles.desc}>
-          <p>{curScr.description && curScr.description.replaceAll('`', '')}</p>
-        </div>
-      </div>
-    );
-  }
-  return (
-    <div className={styles.main_container}>
-      <div className={styles.backMenu} onClick={handleClickBack}>
-        {curScreen.length > 2 && '<' + curScreen[curScreen.length - 2]?.name}
-      </div>
-      <div className={styles.name}>{curScr?.name}</div>
-      <div>{curScr?.description}</div>
-      <div>
-        Type:
-        <Link to="" onClick={(e) => handleClickType(e)}>
-          {curScr && 'type' in curScr && ` ${curScr.type.toString()}`}
-        </Link>
-      </div>
-      {curScr && 'args' in curScr && !!curScr.args.length && (
-        <div>
-          <div>Arguments:</div>
-          <span>
-            {curScr.args.map((arg, argIndex) => (
-              <div key={argIndex}>
-                <span>
-                  <span>{arg.name}</span>:
-                  <Link to="" onClick={(e) => handleClickType(e)}>
-                    {` ${arg.type.toString()}`}
-                  </Link>
-                </span>
-              </div>
-            ))}
-          </span>
-        </div>
-      )}
-    </div>
-  );
+  return <>Ops, something went wrong</>;
 }
 
 export default Sch;
