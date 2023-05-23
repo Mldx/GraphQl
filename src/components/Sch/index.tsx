@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import {
   buildClientSchema,
+  getIntrospectionQuery,
   GraphQLField,
   GraphQLInputField,
   GraphQLInputObjectType,
@@ -9,9 +10,9 @@ import {
   GraphQLScalarType,
   GraphQLSchema,
 } from 'graphql';
+
 import { Link } from 'react-router-dom';
 import styles from './Sch.module.scss';
-import { getIntrospectionQuery } from 'graphql/index';
 
 const serverUrl = 'https://rickandmortyapi.com/graphql';
 const options = {
