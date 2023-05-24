@@ -32,9 +32,9 @@ function ScreenWithType(props: IScreenWithField) {
       <div className={styles.name}>{value.name}</div>
       <div>{value?.description}</div>
       <div>
-        Type:
-        <Link to="" onClick={(e) => onClickType(e)}>
-          {value && 'type' in value && ` ${value.type.toString()}`}
+        Type:&nbsp;
+        <Link className={styles.typeName} to="" onClick={(e) => onClickType(e)}>
+          {value && 'type' in value && value.type.toString()}
         </Link>
       </div>
       {value && 'args' in value && !!value.args.length && (
@@ -44,9 +44,10 @@ function ScreenWithType(props: IScreenWithField) {
             {value.args.map((arg, argIndex) => (
               <div key={argIndex}>
                 <span>
-                  <span>{arg.name}</span>:
-                  <Link to="" onClick={(e) => onClickType(e)}>
-                    {` ${arg.type.toString()}`}
+                  <span>{arg.name}</span>
+                  :&nbsp;
+                  <Link className={styles.typeName} to="" onClick={(e) => onClickType(e)}>
+                    {arg.type.toString()}
                   </Link>
                 </span>
               </div>

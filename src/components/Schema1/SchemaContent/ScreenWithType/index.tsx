@@ -30,6 +30,7 @@ interface IScreenWithType {
 function ScreenWithType(props: IScreenWithType) {
   const { value, currentScreen, onClickType, onClickField, onClickBack } = props;
   const fields = 'getFields' in value ? Object.values(value.getFields()) : [];
+  console.log(value);
   return (
     <div className={styles.main_container}>
       {currentScreen.length > 2 && (
@@ -41,7 +42,7 @@ function ScreenWithType(props: IScreenWithType) {
       {fields.map((field, index) => (
         <div key={index}>
           <div>
-            <Link to="" onClick={(e) => onClickField(e)}>
+            <Link className={styles.fieldName} to="" onClick={(e) => onClickField(e)}>
               {field.name}
             </Link>
             {'args' in field && !!field.args.length && (
@@ -51,9 +52,10 @@ function ScreenWithType(props: IScreenWithType) {
                   {field.args.map((arg: GraphQLArgument, argIndex: number) => (
                     <div key={argIndex} className={styles.arg}>
                       <span>
-                        <span>{arg.name}</span>:
-                        <Link to="" onClick={(e) => onClickType(e)}>
-                          {` ${arg.type.toString()}`}
+                        <span className={styles.argName}>{arg.name}</span>
+                        :&nbsp;
+                        <Link className={styles.typeName} to="" onClick={(e) => onClickType(e)}>
+                          {arg.type.toString()}
                         </Link>
                       </span>
                     </div>
@@ -62,9 +64,9 @@ function ScreenWithType(props: IScreenWithType) {
                 )
               </>
             )}
-            :
-            <Link to="" onClick={(e) => onClickType(e)}>
-              {` ${field.type.toString()}`}
+            :&nbsp;
+            <Link className={styles.typeName} to="" onClick={(e) => onClickType(e)}>
+              {field.type.toString()}
             </Link>
           </div>
           <div className={styles.desc}>

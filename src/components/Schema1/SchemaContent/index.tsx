@@ -11,10 +11,10 @@ import {
 } from 'graphql';
 
 import { IScreenInitialData, SCREEN_INITIAL_DATA } from 'constants/schemaScreenInitialData.ts';
-import ScreenWithType from 'components/Sch/ScreenWithType';
-import ScreenWithField from 'components/Sch/ScreenWithField';
+import ScreenWithType from 'components/Schema1/SchemaContent/ScreenWithType';
+import ScreenWithField from 'components/Schema1/SchemaContent/ScreenWithField';
 import { sdlRequest } from 'utils/schemaQuery.ts';
-import ScreenInitial from 'components/Sch/ScreenInitial';
+import ScreenInitial from 'components/Schema1/SchemaContent/ScreenInitial';
 
 function Sch() {
   const [error, setError] = useState(null);

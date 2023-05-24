@@ -18,13 +18,12 @@ function ScreenInitial(props: IScreenInitialProps) {
       <div className={styles.name}>{ScreenInitialData.name}</div>
       <div>{ScreenInitialData.description}</div>
       <div>
-        <div>
-          <div>
-            {ScreenInitialData.field.name}:
-            <Link to="" onClick={(e) => onClickType(e)}>
-              {` ${ScreenInitialData.field.type}`}
-            </Link>
-          </div>
+        <div className={styles.field}>
+          <div className={styles.fieldNameRoot}>{ScreenInitialData.field.name}</div>
+          :&nbsp;
+          <Link className={styles.typeName} to="" onClick={(e) => onClickType(e)}>
+            {ScreenInitialData.field.type}
+          </Link>
         </div>
       </div>
     </div>
