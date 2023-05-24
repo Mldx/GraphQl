@@ -1,5 +1,6 @@
 import { baseURL } from 'constants/index';
-import { QueryItem, Variables } from 'types/index';
+import { FieldName, QueryItem, Variables } from 'types/index';
+import * as monacoEditor from 'monaco-editor/esm/vs/editor/editor.api';
 
 export const getStartQuery = (): QueryItem => ({
   id: crypto.randomUUID(),
@@ -49,4 +50,40 @@ export const parseQuery = (query: string, variables: Variables): string => {
     }
   }
   return queryWithoutVariables + parsedQuery;
+};
+
+export const handleEditorDidMount = (
+  editorRef: React.MutableRefObject<monacoEditor.editor.IStandaloneCodeEditor | null>
+) => {
+  return (
+    editor: monacoEditor.editor.IStandaloneCodeEditor,
+    monaco: typeof import('monaco-editor')
+  ) => {
+    monaco.languages.typescript.typescriptDefaults.setDiagnosticsOptions({
+      noSemanticValidation: true,
+      noSyntaxValidation: true,
+      noSuggestionDiagnostics: true,
+    });
+    editorRef.current = editor;
+  };
+};
+
+export const getIndex = (array: QueryItem[], id: string) =>
+  array.findIndex((item) => item.id === id);
+
+export const updateQueryField = (
+  queries: QueryItem[],
+  field: FieldName,
+  value: string,
+  id: string
+) => {
+  return queries.map((query) => {
+    if (query.id === id) {
+      const newQuery = { ...query };
+      newQuery[field] = { ...newQuery[field], value };
+      return newQuery;
+    } else {
+      return query;
+    }
+  });
 };

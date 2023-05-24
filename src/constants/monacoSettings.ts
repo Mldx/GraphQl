@@ -13,6 +13,15 @@ export const editorOptions: monacoEditor.editor.IStandaloneEditorConstructionOpt
   overviewRulerBorder: false,
   tabSize: 2,
   quickSuggestions: false,
+  padding: {
+    top: 5,
+    bottom: 5,
+  },
+  hover: {
+    enabled: false,
+  },
+  hideCursorInOverviewRuler: true,
+  overviewRulerLanes: 0,
 };
 
 export const editorOptionsNoEdit = Object.assign({}, editorOptions, {

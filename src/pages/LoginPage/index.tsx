@@ -3,8 +3,10 @@ import { Link, useNavigate } from 'react-router-dom';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import { useEffect, useState } from 'react';
 import LoginForm from 'components/forms/LoginForm';
+import { useTranslation } from 'react-i18next';
 
 function LoginPage() {
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const [loading, setLoading] = useState(true);
 
@@ -28,9 +30,9 @@ function LoginPage() {
     <div className={styles.login_page_wrapper}>
       <LoginForm />
       <div>
-        You don&apos;t have an account,&nbsp;
+        {t('loginPage.description_part1')}
         <Link to="/signup" className={styles.link}>
-          create an account
+          {t('loginPage.description_part2')}
         </Link>
       </div>
     </div>

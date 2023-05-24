@@ -1,6 +1,7 @@
 export interface IDeveloper {
   id: string;
   name: string;
+  position: string;
   photo: string;
   gitHub: string;
   description: string;
@@ -24,3 +25,5 @@ export interface QueryItem {
 export interface Variables {
   page: string;
 }
+
+export type FieldName = 'query' | 'variables' | 'headers' | 'answer';
