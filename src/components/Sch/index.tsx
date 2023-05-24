@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import {
   buildClientSchema,
-  getIntrospectionQuery,
   GraphQLField,
   GraphQLInputField,
   GraphQLInputObjectType,
@@ -11,17 +10,11 @@ import {
   GraphQLSchema,
 } from 'graphql';
 
+import { IScreenInitialData, SCREEN_INITIAL_DATA } from 'constants/schemaScreenInitialData.ts';
 import ScreenWithType from 'components/Sch/ScreenWithType';
 import ScreenWithField from 'components/Sch/ScreenWithField';
-
-const serverUrl = 'https://rickandmortyapi.com/graphql';
-const options = {
-  method: 'POST',
-  headers: {
-    'Content-Type': 'application/json',
-  },
-  body: JSON.stringify({ query: getIntrospectionQuery() }),
-};
+import { sdlRequest } from 'utils/schemaQuery.ts';
+import ScreenInitial from 'components/Sch/ScreenInitial';
 
 function Sch() {
   const [error, setError] = useState(null);
@@ -35,19 +28,20 @@ function Sch() {
       | GraphQLNamedType
       | GraphQLField<string, string>
       | GraphQLInputField
+      | IScreenInitialData
       | undefined
       | null
     >
   >([null]);
 
   useEffect(() => {
-    fetch(serverUrl, options)
-      .then((response) => response.json())
-      .then((data) => {
-        const schema = buildClientSchema(data.data);
+    sdlRequest()
+      .then(({ data }) => {
+        const schema = buildClientSchema(data);
         setSchema(schema);
+        console.log(schema);
         setCurType(schema.getQueryType());
-        setCurScreen([schema.getQueryType(), schema.getQueryType()]);
+        setCurScreen([SCREEN_INITIAL_DATA, SCREEN_INITIAL_DATA]);
       })
       .catch((error) => {
         setError(error.message);
@@ -82,6 +76,10 @@ function Sch() {
     return <div>{error}</div>;
   }
 
+  if (schema && curScreen.length <= 2) {
+    return <ScreenInitial onClickType={handleClickType} />;
+  }
+
   if (
     curScr instanceof GraphQLObjectType ||
     curScr instanceof GraphQLInputObjectType ||
@@ -108,6 +106,7 @@ function Sch() {
       />
     );
   }
+
   return <>Ops, something went wrong</>;
 }
 

@@ -2,15 +2,16 @@ import styles from '../Sch.module.scss';
 import { Link } from 'react-router-dom';
 import React from 'react';
 import {
+  GraphQLArgument,
   GraphQLField,
   GraphQLInputField,
   GraphQLNamedType,
   GraphQLObjectType,
-  GraphQLArgument,
   GraphQLType,
 } from 'graphql';
+import { IScreenInitialData } from 'constants/schemaScreenInitialData.ts';
 
-interface ISchemaType {
+interface IScreenWithType {
   value: GraphQLType;
   onClickType: (e: React.MouseEvent<HTMLAnchorElement>) => void;
   onClickField: (e: React.MouseEvent<HTMLAnchorElement>) => void;
@@ -20,14 +21,14 @@ interface ISchemaType {
     | GraphQLNamedType
     | GraphQLField<string, string>
     | GraphQLInputField
+    | IScreenInitialData
     | undefined
     | null
   >;
 }
 
-function ScreenWithType(props: ISchemaType) {
+function ScreenWithType(props: IScreenWithType) {
   const { value, currentScreen, onClickType, onClickField, onClickBack } = props;
-  console.log(value);
   const fields = 'getFields' in value ? Object.values(value.getFields()) : [];
   return (
     <div className={styles.main_container}>

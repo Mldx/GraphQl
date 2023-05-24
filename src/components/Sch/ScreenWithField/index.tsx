@@ -2,8 +2,9 @@ import styles from '../Sch.module.scss';
 import { Link } from 'react-router-dom';
 import React from 'react';
 import { GraphQLField, GraphQLInputField, GraphQLNamedType, GraphQLObjectType } from 'graphql';
+import { IScreenInitialData } from 'constants/schemaScreenInitialData.ts';
 
-interface ScreenWithField {
+interface IScreenWithField {
   value: GraphQLField<string, string>;
   onClickType: (e: React.MouseEvent<HTMLAnchorElement>) => void;
   onClickBack: () => void;
@@ -12,12 +13,13 @@ interface ScreenWithField {
     | GraphQLNamedType
     | GraphQLField<string, string>
     | GraphQLInputField
+    | IScreenInitialData
     | undefined
     | null
   >;
 }
 
-function ScreenWithType(props: ScreenWithField) {
+function ScreenWithType(props: IScreenWithField) {
   const { value, currentScreen, onClickType, onClickBack } = props;
 
   return (
