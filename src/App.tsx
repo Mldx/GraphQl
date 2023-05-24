@@ -5,7 +5,7 @@ import { WelcomePage } from 'pages/WelcomePage';
 import EditorPage from 'pages/EditorPage';
 import LoginPage from 'pages/LoginPage';
 import SignupPage from 'pages/SignupPage';
-import Sch from 'components/Sch';
+import Sch from 'components/Schema1/SchemaContent';
 
 function App() {
   return (
