@@ -37,6 +37,35 @@
   font-weight: 500;
 }
 
+
+.fieldName {
+  color: #5F89D8;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.argName {
+  color: #FF6B8B;
+}
+
+.fieldNameRoot {
+  color: #5F89D8;
+}
+
+.typeName {
+  color: #EB9C00;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.field {
+  display: flex;
+}
+
 .backMenu {
   cursor: pointer;
 
