@@ -32,14 +32,22 @@
     border: 1px solid transparent;
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
-    left: -60px;
+    height: 30px;
+    left: 0;
     padding: 5px 18px 5px;
     position: absolute;
     text-transform: uppercase;
-    top: 100px;
-    transform: rotate(-90deg);
-    z-index: 3;
+    transform: translateX(calc(-50% - 15px)) rotate(-90deg);
     user-select: none;
+    z-index: 3;
+  }
+
+  &_reloadBtn {
+    top: 20px;
+  }
+
+  &_schemeBtn {
+    top: 100px;
   }
 
   .stateCircle {
@@ -53,6 +61,7 @@
     width: 6px;
 
     &_loading {
+      animation: loading linear 0.3s infinite alternate;
       background: white;
       box-shadow: white 0 0 3px 2px;
     }
@@ -66,5 +75,14 @@
       background: greenyellow;
       box-shadow: greenyellow 0 0 3px 2px;
     }
+  }
+}
+
+@keyframes loading {
+  from {
+    box-shadow: white 0 0 3px 2px;
+  }
+  to {
+    box-shadow: white 0 0 3px 0;
   }
 }
