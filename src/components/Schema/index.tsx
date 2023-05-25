@@ -10,7 +10,7 @@ import { buildClientSchema } from 'graphql/index';
 const Schema = () => {
   const [isOpen, setIsOpen] = React.useState(false);
   const [schema, setSchema] = useState<GraphQLSchema | null>(null);
-  const [error, setError] = useState(null);
+  const [error, setError] = useState<boolean | null>(null);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -20,9 +20,9 @@ const Schema = () => {
         setSchema(schema);
         setIsLoading(false);
       })
-      .catch((error) => {
+      .catch(() => {
         setIsLoading(false);
-        setError(error.message);
+        setError(true);
       });
   }, []);
 
