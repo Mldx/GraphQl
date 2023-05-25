@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import {
-  buildClientSchema,
   GraphQLField,
   GraphQLInputField,
   GraphQLInputObjectType,
@@ -13,14 +12,16 @@ import {
 import { IScreenInitialData, SCREEN_INITIAL_DATA } from 'constants/schemaScreenInitialData.ts';
 import ScreenWithType from 'components/Schema1/SchemaContent/ScreenWithType';
 import ScreenWithField from 'components/Schema1/SchemaContent/ScreenWithField';
-import { sdlRequest } from 'utils/schemaQuery.ts';
 import ScreenInitial from 'components/Schema1/SchemaContent/ScreenInitial';
+import styles from 'components/Schema1/SchemaContent/SchemaContent.module.scss';
 
-function SchemaContent() {
-  const [error, setError] = useState(null);
-  const [schema, setSchema] = useState<GraphQLSchema | null>(null);
+interface ISchemaContent {
+  schema: GraphQLSchema;
+}
+
+function SchemaContent({ schema }: ISchemaContent) {
   const [curType, setCurType] = useState<GraphQLObjectType | GraphQLNamedType | null | undefined>(
-    null
+    schema.getQueryType()
   );
   const [curScreen, setCurScreen] = useState<
     Array<
@@ -30,73 +31,51 @@ function SchemaContent() {
       | GraphQLInputField
       | IScreenInitialData
       | undefined
-      | null
     >
-  >([null]);
+  >([SCREEN_INITIAL_DATA, SCREEN_INITIAL_DATA]);
 
-  useEffect(() => {
-    sdlRequest()
-      .then(({ data }) => {
-        const schema = buildClientSchema(data);
-        setSchema(schema);
-        console.log(schema);
-        setCurType(schema.getQueryType());
-        setCurScreen([SCREEN_INITIAL_DATA, SCREEN_INITIAL_DATA]);
-      })
-      .catch((error) => {
-        setError(error.message);
-      });
-  }, []);
+  try {
+    const handleClickType = (e: React.MouseEvent<HTMLAnchorElement>) => {
+      const text = e.currentTarget.text.replace(/[^a-zA-Z]/g, '');
+      setCurType(schema.getType(text));
+      setCurScreen([...curScreen, schema.getType(text)]);
+    };
+    const handleClickField = (e: React.MouseEvent<HTMLAnchorElement>) => {
+      const text = e.currentTarget.text;
+      if (curType instanceof GraphQLObjectType || curType instanceof GraphQLInputObjectType) {
+        setCurScreen([...curScreen, curType.getFields()[text]]);
+      }
+    };
+    const handleClickBack = () => {
+      if (curScreen.length > 2) {
+        const lastScreen = curScreen[curScreen.length - 2];
+        lastScreen && lastScreen.name && setCurType(schema.getType(lastScreen.name));
+      }
+      setCurScreen(curScreen.slice(0, -1));
+    };
 
-  if (!schema) {
-    return <div>Loading...</div>;
-  }
-  const handleClickType = (e: React.MouseEvent<HTMLAnchorElement>) => {
-    const text = e.currentTarget.text.replace(/[^a-zA-Z]/g, '');
-    setCurType(schema.getType(text));
-    setCurScreen([...curScreen, schema.getType(text)]);
-  };
-  const handleClickField = (e: React.MouseEvent<HTMLAnchorElement>) => {
-    const text = e.currentTarget.text;
-    if (curType instanceof GraphQLObjectType || curType instanceof GraphQLInputObjectType) {
-      setCurScreen([...curScreen, curType.getFields()[text]]);
+    const curScr = curScreen[curScreen.length - 1];
+
+    if (schema && curScreen.length <= 2) {
+      return <ScreenInitial onClickType={handleClickType} />;
     }
-  };
-  const handleClickBack = () => {
-    if (curScreen.length > 2) {
-      const lastScreen = curScreen[curScreen.length - 2];
-      lastScreen && lastScreen.name && setCurType(schema.getType(lastScreen.name));
+
+    if (
+      curScr instanceof GraphQLObjectType ||
+      curScr instanceof GraphQLInputObjectType ||
+      curScr instanceof GraphQLScalarType
+    ) {
+      return (
+        <ScreenWithType
+          value={curScr}
+          onClickType={handleClickType}
+          onClickField={handleClickField}
+          onClickBack={handleClickBack}
+          currentScreen={curScreen}
+        />
+      );
     }
-    setCurScreen(curScreen.slice(0, -1));
-  };
 
-  const curScr = curScreen[curScreen.length - 1];
-
-  if (error) {
-    return <div>{error}</div>;
-  }
-
-  if (schema && curScreen.length <= 2) {
-    return <ScreenInitial onClickType={handleClickType} />;
-  }
-
-  if (
-    curScr instanceof GraphQLObjectType ||
-    curScr instanceof GraphQLInputObjectType ||
-    curScr instanceof GraphQLScalarType
-  ) {
-    return (
-      <ScreenWithType
-        value={curScr}
-        onClickType={handleClickType}
-        onClickField={handleClickField}
-        onClickBack={handleClickBack}
-        currentScreen={curScreen}
-      />
-    );
-  }
-
-  if (curScr) {
     return (
       <ScreenWithField
         value={curScr as GraphQLField<string, string>}
@@ -105,9 +84,13 @@ function SchemaContent() {
         currentScreen={curScreen}
       />
     );
+  } catch (e) {
+    return (
+      <div className={styles.main_container}>
+        <div className={styles.err}> Ops, something went wrong</div>
+      </div>
+    );
   }
-
-  return <>Ops, something went wrong</>;
 }
 
 export default SchemaContent;

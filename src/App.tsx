@@ -5,7 +5,6 @@ import { WelcomePage } from 'pages/WelcomePage';
 import EditorPage from 'pages/EditorPage';
 import LoginPage from 'pages/LoginPage';
 import SignupPage from 'pages/SignupPage';
-import Sch from 'components/Schema1/SchemaContent';
 
 function App() {
   return (
@@ -16,7 +15,6 @@ function App() {
         <Route path="/main" element={<EditorPage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/signup" element={<SignupPage />} />
-        <Route path="/sch" element={<Sch />} />
         <Route path="*" element={<Navigate to="/404" replace />} />
       </Route>
     </Routes>

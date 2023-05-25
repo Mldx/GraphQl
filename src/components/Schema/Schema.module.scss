@@ -1,17 +1,18 @@
 @import 'styles/variables.scss';
 
 .schema {
-  display: flex;
-  flex-direction: column;
-  position: absolute;
-  right: 0;
-  row-gap: 15px;
   background-color: #eeeeee;
-  padding: 10px;
-  user-select: none;
-  width: 250px;
+  display: flex;
   height: 100%;
-  overflow-y: auto;
+  position: absolute;
+  right: -250px;
+  row-gap: 15px;
+  transition: right .25s linear;
+  width: 250px;
+
+  &__active {
+    right: 0;
+  }
 
   &::-webkit-scrollbar {
     width: 5px;
@@ -27,26 +28,43 @@
   }
 
   &_btn {
-    position: absolute;
+    background-color: $color-iron-gray;
+    border: 1px solid transparent;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    left: -60px;
     padding: 5px 18px 5px;
-    right: - 32px;
+    position: absolute;
+    text-transform: uppercase;
     top: 100px;
     transform: rotate(-90deg);
-    border-top-right-radius: 5px;
-    border-top-left-radius: 5px;
-    text-transform: uppercase;
-    background-color: $color-iron-gray;
     z-index: 3;
+  }
 
-    &__active {
-      background-color: $color-dusty-gray;
-      border: 1px solid $color-iron-gray;
-      right: 5px;
-      top: 0;
-      transform: initial;
-      border-radius: initial;
-      border-bottom-right-radius: 5px;
-      border-bottom-left-radius: 5px;
+  .stateCircle {
+    background: crimson;
+    border-radius: 50%;
+    box-shadow: crimson 0 0 3px 2px;
+    height: 6px;
+    left: 5px;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 6px;
+
+    &_loading {
+      background: white;
+      box-shadow: white 0 0 3px 2px;
+    }
+
+    &_error {
+      background: crimson;
+      box-shadow: crimson 0 0 3px 2px;
+    }
+
+    &_sucsess {
+      background: greenyellow;
+      box-shadow: greenyellow 0 0 3px 2px;
     }
   }
 }
