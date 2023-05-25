@@ -1,4 +1,4 @@
-import styles from '../Sch.module.scss';
+import styles from '../SchemaContent.module.scss';
 import { Link } from 'react-router-dom';
 import React from 'react';
 import { GraphQLField, GraphQLInputField, GraphQLNamedType, GraphQLObjectType } from 'graphql';
@@ -23,7 +23,7 @@ function ScreenWithType(props: IScreenWithField) {
   const { value, currentScreen, onClickType, onClickBack } = props;
 
   return (
-    <div className={styles.main_container}>
+    <>
       {currentScreen.length > 2 && (
         <div className={styles.backMenu} onClick={onClickBack}>
           {'<' + currentScreen[currentScreen.length - 2]?.name}
@@ -55,7 +55,7 @@ function ScreenWithType(props: IScreenWithField) {
           </span>
         </div>
       )}
-    </div>
+    </>
   );
 }
 

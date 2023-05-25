@@ -1,4 +1,4 @@
-import styles from '../Sch.module.scss';
+import styles from '../SchemaContent.module.scss';
 import { Link } from 'react-router-dom';
 import React from 'react';
 
@@ -14,7 +14,7 @@ function ScreenInitial(props: IScreenInitialProps) {
     description: 'A GraphQL schema provides a root type for each kind of operation.',
   };
   return (
-    <div className={styles.main_container}>
+    <>
       <div className={styles.name}>{ScreenInitialData.name}</div>
       <div>{ScreenInitialData.description}</div>
       <div>
@@ -26,7 +26,7 @@ function ScreenInitial(props: IScreenInitialProps) {
           </Link>
         </div>
       </div>
-    </div>
+    </>
   );
 }
 

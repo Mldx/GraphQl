@@ -16,7 +16,7 @@ import ScreenWithField from 'components/Schema1/SchemaContent/ScreenWithField';
 import { sdlRequest } from 'utils/schemaQuery.ts';
 import ScreenInitial from 'components/Schema1/SchemaContent/ScreenInitial';
 
-function Sch() {
+function SchemaContent() {
   const [error, setError] = useState(null);
   const [schema, setSchema] = useState<GraphQLSchema | null>(null);
   const [curType, setCurType] = useState<GraphQLObjectType | GraphQLNamedType | null | undefined>(
@@ -110,4 +110,4 @@ function Sch() {
   return <>Ops, something went wrong</>;
 }
 
-export default Sch;
+export default SchemaContent;

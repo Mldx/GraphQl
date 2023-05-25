@@ -1,4 +1,4 @@
-import styles from '../Sch.module.scss';
+import styles from '../SchemaContent.module.scss';
 import { Link } from 'react-router-dom';
 import React from 'react';
 import {
@@ -32,7 +32,7 @@ function ScreenWithType(props: IScreenWithType) {
   const fields = 'getFields' in value ? Object.values(value.getFields()) : [];
   console.log(value);
   return (
-    <div className={styles.main_container}>
+    <>
       {currentScreen.length > 2 && (
         <div className={styles.backMenu} onClick={onClickBack}>
           {'<' + currentScreen[currentScreen.length - 2]?.name}
@@ -77,7 +77,7 @@ function ScreenWithType(props: IScreenWithType) {
       {'description' in value && value.description && (
         <div>{value.description.replaceAll('`', '')}</div>
       )}
-    </div>
+    </>
   );
 }
 

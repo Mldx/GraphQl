@@ -1,33 +1,47 @@
 @import 'styles/variables.scss';
 
 .schema {
+  display: flex;
+  flex-direction: column;
   position: absolute;
-  height: 100%;
-  background-color: $color-dusty-gray;
-  max-width: 40%;
-  width: 100%;
-  border-top-right-radius: 5px;
-  border-bottom-right-radius: 5px;
   right: 0;
-  padding: 5px;
-  border-left: 5px solid $color-iron-gray;
+  row-gap: 15px;
+  background-color: #eeeeee;
+  padding: 10px;
+  user-select: none;
+  width: 250px;
+  height: 100%;
+  overflow-y: auto;
+
+  &::-webkit-scrollbar {
+    width: 5px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: #c1c1c1;
+    border-radius: 5px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background-color: #f1f1f1;
+  }
 
   &_btn {
-  position: absolute;
-  padding: 5px 18px 5px;
-  right: - 32px;
-  top: 100px;
-  transform: rotate(-90deg);
-  border-top-right-radius: 5px;
-  border-top-left-radius: 5px;
-  text-transform: uppercase;
-  background-color: $color-iron-gray;
-  z-index: 3;
+    position: absolute;
+    padding: 5px 18px 5px;
+    right: - 32px;
+    top: 100px;
+    transform: rotate(-90deg);
+    border-top-right-radius: 5px;
+    border-top-left-radius: 5px;
+    text-transform: uppercase;
+    background-color: $color-iron-gray;
+    z-index: 3;
 
     &__active {
       background-color: $color-dusty-gray;
       border: 1px solid $color-iron-gray;
-      right: 0;
+      right: 5px;
       top: 0;
       transform: initial;
       border-radius: initial;

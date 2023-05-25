@@ -6,6 +6,7 @@ import { editorOptionsNoEdit } from 'constants/monacoSettings';
 import Schema from 'components/Schema';
 import styles from './Response.module.scss';
 import { handleEditorDidMount } from 'utils/editor';
+import SchemaContent from 'components/Schema1/SchemaContent';
 
 interface ResponseProps {
   responseData: object | null;
@@ -33,7 +34,9 @@ const Response = ({ responseData }: ResponseProps) => {
           'Click the "query" button to get a response here'
         )}
       </div>
-      <Schema>Schema</Schema>
+      <Schema>
+        <SchemaContent />
+      </Schema>
     </div>
   );
 };
