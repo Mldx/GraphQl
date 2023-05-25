@@ -6,7 +6,7 @@ import { GraphQLSchema } from 'graphql';
 import { sdlRequest } from 'utils/schemaQuery.ts';
 import { buildClientSchema } from 'graphql/index';
 
-const LazySchemaContent = lazy(() => import('components/Schema/SchemaExplorer'));
+const LazySchemaExplorer = lazy(() => import('components/Schema/SchemaExplorer'));
 
 const Schema = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -69,8 +69,8 @@ const Schema = () => {
           <span className={styles.schema_btn_text}>Schema</span>
         </CustomButton>
         {schema && (
-          <Suspense fallback={<div>Loading...</div>}>
-            <LazySchemaContent schema={schema} />
+          <Suspense fallback={null}>
+            <LazySchemaExplorer schema={schema} />
           </Suspense>
         )}
       </div>

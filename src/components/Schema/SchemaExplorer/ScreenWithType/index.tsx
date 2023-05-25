@@ -1,36 +1,20 @@
 import styles from '../SchemaExplorer.module.scss';
 import { Link } from 'react-router-dom';
 import React from 'react';
-import {
-  GraphQLArgument,
-  GraphQLField,
-  GraphQLInputField,
-  GraphQLNamedType,
-  GraphQLObjectType,
-  GraphQLType,
-} from 'graphql';
-import { IScreenInitialData } from 'constants/schemaScreenInitialData.ts';
+import { GraphQLArgument, GraphQLType } from 'graphql';
+import { screenHistoryType } from 'types';
 
 interface IScreenWithType {
   value: GraphQLType;
   onClickType: (e: React.MouseEvent<HTMLAnchorElement>) => void;
   onClickField: (e: React.MouseEvent<HTMLAnchorElement>) => void;
   onClickBack: () => void;
-  currentScreen: Array<
-    | GraphQLObjectType
-    | GraphQLNamedType
-    | GraphQLField<string, string>
-    | GraphQLInputField
-    | IScreenInitialData
-    | undefined
-    | null
-  >;
+  currentScreen: Array<screenHistoryType>;
 }
 
 function ScreenWithType(props: IScreenWithType) {
   const { value, currentScreen, onClickType, onClickField, onClickBack } = props;
   const fields = 'getFields' in value ? Object.values(value.getFields()) : [];
-  console.log(value);
   return (
     <div className={styles.main_container}>
       {currentScreen.length > 2 && (

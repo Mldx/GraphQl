@@ -1,22 +1,14 @@
 import styles from '../SchemaExplorer.module.scss';
 import { Link } from 'react-router-dom';
 import React from 'react';
-import { GraphQLField, GraphQLInputField, GraphQLNamedType, GraphQLObjectType } from 'graphql';
-import { IScreenInitialData } from 'constants/schemaScreenInitialData.ts';
+import { GraphQLField } from 'graphql';
+import { screenHistoryType } from 'types';
 
 interface IScreenWithField {
   value: GraphQLField<string, string>;
   onClickType: (e: React.MouseEvent<HTMLAnchorElement>) => void;
   onClickBack: () => void;
-  currentScreen: Array<
-    | GraphQLObjectType
-    | GraphQLNamedType
-    | GraphQLField<string, string>
-    | GraphQLInputField
-    | IScreenInitialData
-    | undefined
-    | null
-  >;
+  currentScreen: Array<screenHistoryType>;
 }
 
 function ScreenWithType(props: IScreenWithField) {

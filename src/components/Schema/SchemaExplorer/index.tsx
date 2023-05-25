@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import {
   GraphQLField,
-  GraphQLInputField,
   GraphQLInputObjectType,
   GraphQLNamedType,
   GraphQLObjectType,
@@ -9,79 +8,77 @@ import {
   GraphQLSchema,
 } from 'graphql';
 
-import { IScreenInitialData, SCREEN_INITIAL_DATA } from 'constants/schemaScreenInitialData.ts';
+import { SCREEN_INITIAL_DATA } from 'constants/schemaScreenInitialData.ts';
 import ScreenWithType from 'components/Schema/SchemaExplorer/ScreenWithType';
 import ScreenWithField from 'components/Schema/SchemaExplorer/ScreenWithField';
 import ScreenInitial from 'components/Schema/SchemaExplorer/ScreenInitial';
 import styles from 'components/Schema/SchemaExplorer/SchemaExplorer.module.scss';
+import { screenHistoryType } from 'types';
 
 interface ISchemaContent {
   schema: GraphQLSchema;
 }
 
 function SchemaExplorer({ schema }: ISchemaContent) {
-  const [curType, setCurType] = useState<GraphQLObjectType | GraphQLNamedType | null | undefined>(
-    schema.getQueryType()
-  );
-  const [curScreen, setCurScreen] = useState<
-    Array<
-      | GraphQLObjectType
-      | GraphQLNamedType
-      | GraphQLField<string, string>
-      | GraphQLInputField
-      | IScreenInitialData
-      | undefined
-    >
-  >([SCREEN_INITIAL_DATA, SCREEN_INITIAL_DATA]);
+  const [currentType, setCurrentType] = useState<
+    GraphQLObjectType | GraphQLNamedType | null | undefined
+  >(schema.getQueryType());
+  const [screenHistory, setScreenHistory] = useState<Array<screenHistoryType>>([
+    SCREEN_INITIAL_DATA,
+    SCREEN_INITIAL_DATA,
+  ]);
 
   try {
     const handleClickType = (e: React.MouseEvent<HTMLAnchorElement>) => {
       const text = e.currentTarget.text.replace(/[^a-zA-Z]/g, '');
-      setCurType(schema.getType(text));
-      setCurScreen([...curScreen, schema.getType(text)]);
+      setCurrentType(schema.getType(text));
+      setScreenHistory([...screenHistory, schema.getType(text)]);
     };
     const handleClickField = (e: React.MouseEvent<HTMLAnchorElement>) => {
       const text = e.currentTarget.text;
-      if (curType instanceof GraphQLObjectType || curType instanceof GraphQLInputObjectType) {
-        setCurScreen([...curScreen, curType.getFields()[text]]);
+      if (
+        currentType instanceof GraphQLObjectType ||
+        currentType instanceof GraphQLInputObjectType
+      ) {
+        setScreenHistory([...screenHistory, currentType.getFields()[text]]);
       }
     };
     const handleClickBack = () => {
-      if (curScreen.length > 2) {
-        const lastScreen = curScreen[curScreen.length - 2];
-        lastScreen && lastScreen.name && setCurType(schema.getType(lastScreen.name));
+      if (screenHistory.length > 2) {
+        const lastScreen = screenHistory[screenHistory.length - 2];
+        lastScreen && lastScreen.name && setCurrentType(schema.getType(lastScreen.name));
       }
-      setCurScreen(curScreen.slice(0, -1));
+      setScreenHistory(screenHistory.slice(0, -1));
     };
 
-    const curScr = curScreen[curScreen.length - 1];
+    const currentScreen = screenHistory[screenHistory.length - 1];
 
-    if (schema && curScreen.length <= 2) {
+    if (schema && screenHistory.length <= 2) {
       return <ScreenInitial onClickType={handleClickType} />;
     }
 
     if (
-      curScr instanceof GraphQLObjectType ||
-      curScr instanceof GraphQLInputObjectType ||
-      curScr instanceof GraphQLScalarType
+      currentScreen instanceof GraphQLObjectType ||
+      currentScreen instanceof GraphQLInputObjectType ||
+      currentScreen instanceof GraphQLScalarType
     ) {
       return (
         <ScreenWithType
-          value={curScr}
+          value={currentScreen}
           onClickType={handleClickType}
           onClickField={handleClickField}
           onClickBack={handleClickBack}
-          currentScreen={curScreen}
+          currentScreen={screenHistory}
         />
       );
     }
 
     return (
       <ScreenWithField
-        value={curScr as GraphQLField<string, string>}
+        value={currentScreen as GraphQLField<string, string>}
         onClickType={handleClickType}
         onClickBack={handleClickBack}
-        currentScreen={curScreen}
+        currentScreen={screenHistory}
       />
     );
   } catch (e) {
