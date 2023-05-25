@@ -11,14 +11,17 @@ const Schema = () => {
   const [isOpen, setIsOpen] = React.useState(false);
   const [schema, setSchema] = useState<GraphQLSchema | null>(null);
   const [error, setError] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     sdlRequest()
       .then(({ data }) => {
         const schema = buildClientSchema(data);
         setSchema(schema);
+        setIsLoading(false);
       })
       .catch((error) => {
+        setIsLoading(false);
         setError(error.message);
       });
   }, []);
@@ -39,8 +42,8 @@ const Schema = () => {
         >
           <span
             className={classnames(styles.stateCircle, {
-              [styles.stateCircle_error]: error && !schema,
-              [styles.stateCircle_loading]: !error && !schema,
+              [styles.stateCircle_error]: error,
+              [styles.stateCircle_loading]: isLoading,
               [styles.stateCircle_sucsess]: !!schema,
             })}
           ></span>
