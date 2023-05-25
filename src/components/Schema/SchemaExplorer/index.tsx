@@ -10,16 +10,16 @@ import {
 } from 'graphql';
 
 import { IScreenInitialData, SCREEN_INITIAL_DATA } from 'constants/schemaScreenInitialData.ts';
-import ScreenWithType from 'components/Schema1/SchemaContent/ScreenWithType';
-import ScreenWithField from 'components/Schema1/SchemaContent/ScreenWithField';
-import ScreenInitial from 'components/Schema1/SchemaContent/ScreenInitial';
-import styles from 'components/Schema1/SchemaContent/SchemaContent.module.scss';
+import ScreenWithType from 'components/Schema/SchemaExplorer/ScreenWithType';
+import ScreenWithField from 'components/Schema/SchemaExplorer/ScreenWithField';
+import ScreenInitial from 'components/Schema/SchemaExplorer/ScreenInitial';
+import styles from 'components/Schema/SchemaExplorer/SchemaExplorer.module.scss';
 
 interface ISchemaContent {
   schema: GraphQLSchema;
 }
 
-function SchemaContent({ schema }: ISchemaContent) {
+function SchemaExplorer({ schema }: ISchemaContent) {
   const [curType, setCurType] = useState<GraphQLObjectType | GraphQLNamedType | null | undefined>(
     schema.getQueryType()
   );
@@ -93,4 +93,4 @@ function SchemaContent({ schema }: ISchemaContent) {
   }
 }
 
-export default SchemaContent;
+export default SchemaExplorer;

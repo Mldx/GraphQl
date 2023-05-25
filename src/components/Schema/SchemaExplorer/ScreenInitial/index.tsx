@@ -1,4 +1,4 @@
-import styles from '../SchemaContent.module.scss';
+import styles from '../SchemaExplorer.module.scss';
 import { Link } from 'react-router-dom';
 import React from 'react';
 

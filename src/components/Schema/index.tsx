@@ -6,7 +6,7 @@ import { GraphQLSchema } from 'graphql';
 import { sdlRequest } from 'utils/schemaQuery.ts';
 import { buildClientSchema } from 'graphql/index';
 
-const LazySchemaContent = lazy(() => import('components/Schema1/SchemaContent'));
+const LazySchemaContent = lazy(() => import('components/Schema/SchemaExplorer'));
 
 const Schema = () => {
   const [isOpen, setIsOpen] = useState(false);
