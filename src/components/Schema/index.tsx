@@ -1,19 +1,24 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState, lazy, Suspense } from 'react';
 import CustomButton from 'components/CustomButton';
 import classnames from 'classnames';
 import styles from './Schema.module.scss';
-import SchemaContent from 'components/Schema1/SchemaContent';
 import { GraphQLSchema } from 'graphql';
 import { sdlRequest } from 'utils/schemaQuery.ts';
 import { buildClientSchema } from 'graphql/index';
 
+const LazySchemaContent = lazy(() => import('components/Schema1/SchemaContent'));
+
 const Schema = () => {
-  const [isOpen, setIsOpen] = React.useState(false);
+  const [isOpen, setIsOpen] = useState(false);
   const [schema, setSchema] = useState<GraphQLSchema | null>(null);
   const [error, setError] = useState<boolean | null>(null);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
+    fetchSchema();
+  }, []);
+
+  const fetchSchema = () => {
     sdlRequest()
       .then(({ data }) => {
         const schema = buildClientSchema(data);
@@ -24,7 +29,14 @@ const Schema = () => {
         setIsLoading(false);
         setError(true);
       });
-  }, []);
+  };
+
+  const reFetchSchema = () => {
+    setSchema(null);
+    setError(null);
+    setIsLoading(true);
+    fetchSchema();
+  };
 
   return (
     <>
@@ -34,10 +46,17 @@ const Schema = () => {
         })}
       >
         <CustomButton
+          disabled={isLoading}
+          title={'Re-fetch GraphQL schema'}
+          className={classnames(styles.schema_btn, styles.schema_reloadBtn)}
+          onClick={reFetchSchema}
+        >
+          ↻
+        </CustomButton>
+        <CustomButton
+          title={`${isOpen ? 'Hide' : 'Show'} Documentation Explorer`}
           disabled={!schema}
-          className={classnames(styles.schema_btn, {
-            [styles.schema_btn__active]: isOpen,
-          })}
+          className={classnames(styles.schema_btn, styles.schema_schemeBtn)}
           onClick={() => setIsOpen(!isOpen)}
         >
           <span
@@ -47,9 +66,13 @@ const Schema = () => {
               [styles.stateCircle_sucsess]: !!schema,
             })}
           ></span>
-          Schema
+          <span className={styles.schema_btn_text}>Schema</span>
         </CustomButton>
-        {schema && <SchemaContent schema={schema} />}
+        {schema && (
+          <Suspense fallback={<div>Loading...</div>}>
+            <LazySchemaContent schema={schema} />
+          </Suspense>
+        )}
       </div>
     </>
   );
