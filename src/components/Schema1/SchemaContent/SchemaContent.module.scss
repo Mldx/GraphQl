@@ -31,6 +31,7 @@
 .name {
   font-size: 1.5rem;
   font-weight: 500;
+  user-select: none;
 }
 
 .fieldName {
@@ -64,7 +65,7 @@
 .backMenu {
   cursor: pointer;
   width: fit-content;
-
+  user-select: none;
   &:hover {
     text-decoration: underline;
   }

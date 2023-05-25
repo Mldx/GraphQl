@@ -39,17 +39,17 @@
     top: 100px;
     transform: rotate(-90deg);
     z-index: 3;
+    user-select: none;
   }
 
   .stateCircle {
-    background: crimson;
     border-radius: 50%;
-    box-shadow: crimson 0 0 3px 2px;
     height: 6px;
     left: 5px;
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
+    transition: background 0.15s linear;
     width: 6px;
 
     &_loading {
