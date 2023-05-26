@@ -33,7 +33,7 @@ const Response = ({ responseData }: ResponseProps) => {
           'Click the "query" button to get a response here'
         )}
       </div>
-      <Schema>Schema</Schema>
+      <Schema />
     </div>
   );
 };

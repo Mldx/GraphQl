@@ -1,38 +1,89 @@
 @import 'styles/variables.scss';
 
 .schema {
-  position: absolute;
+  background-color: #eeeeee;
+  display: flex;
   height: 100%;
-  background-color: $color-dusty-gray;
-  max-width: 40%;
-  width: 100%;
-  border-top-right-radius: 5px;
-  border-bottom-right-radius: 5px;
-  right: 0;
-  padding: 5px;
-  border-left: 5px solid $color-iron-gray;
+  position: absolute;
+  right: -250px;
+  row-gap: 15px;
+  transition: right .25s linear;
+  width: 250px;
+
+  &__active {
+    right: 0;
+  }
+
+  &::-webkit-scrollbar {
+    width: 5px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: #c1c1c1;
+    border-radius: 5px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background-color: #f1f1f1;
+  }
 
   &_btn {
-  position: absolute;
-  padding: 5px 18px 5px;
-  right: - 32px;
-  top: 100px;
-  transform: rotate(-90deg);
-  border-top-right-radius: 5px;
-  border-top-left-radius: 5px;
-  text-transform: uppercase;
-  background-color: $color-iron-gray;
-  z-index: 3;
+    align-items: center;
+    background-color: $color-iron-gray;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    display: flex;
+    height: 30px;
+    left: 0;
+    padding: 5px 18px 5px;
+    position: absolute;
+    text-transform: uppercase;
+    transform: translateX(calc(-50% - 15px)) rotate(-90deg);
+    user-select: none;
+    z-index: 3;
+  }
 
-    &__active {
-      background-color: $color-dusty-gray;
-      border: 1px solid $color-iron-gray;
-      right: 0;
-      top: 0;
-      transform: initial;
-      border-radius: initial;
-      border-bottom-right-radius: 5px;
-      border-bottom-left-radius: 5px;
+  &_reloadBtn {
+    top: 20px;
+  }
+
+  &_schemeBtn {
+    top: 100px;
+  }
+
+  .stateCircle {
+    border-radius: 50%;
+    height: 6px;
+    left: 5px;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    transition: background 0.15s linear;
+    width: 6px;
+
+    &_loading {
+      animation: loading linear 0.3s infinite alternate;
+      background: white;
+      box-shadow: white 0 0 3px 2px;
     }
+
+    &_error {
+      background: crimson;
+      box-shadow: crimson 0 0 3px 2px;
+    }
+
+    &_sucsess {
+      background: greenyellow;
+      box-shadow: greenyellow 0 0 3px 2px;
+    }
+  }
+}
+
+@keyframes loading {
+  from {
+    box-shadow: white 0 0 3px 2px;
+  }
+  to {
+    box-shadow: white 0 0 3px 0;
   }
 }
