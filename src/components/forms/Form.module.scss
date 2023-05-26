@@ -1,3 +1,5 @@
+@import 'styles/variables.scss';
+
 .form {
   display: flex;
   flex-direction: column;
@@ -13,6 +15,10 @@
   button:last-of-type {
     margin-top: 40px;
   }
+
+  @media (max-width:600px) {
+    padding: 10px;
+  }
 }
 
 .title {
@@ -27,17 +33,18 @@
 
 .input {
   box-sizing: border-box;
-  font-size: 1.5rem;
-  font-weight: 200;
+  font-size: 1.3rem;
+  font-weight: 400;
   height: 35px;
-  min-width: 320px;
+  min-width: 280px;
   background: #eeeeee;
   border: none;
   padding: 0 5px;
   border-radius: 3px;
 
   &::placeholder {
-    color: #000000;
+    color: rgb(42, 42, 42, .6);
+    font-size: 1.1rem;
   }
 
   &:focus-visible {

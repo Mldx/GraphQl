@@ -1,7 +1,22 @@
 @import 'styles/variables.scss';
 
 .button {
-  display: flex;
+  font-weight: 700;
+  font-size: 1.2rem;
+  text-align: center;
+  border-radius: 5rem;
+  cursor: pointer;
+  white-space: nowrap;
+  padding: 0.2rem 1rem 0.3rem;
+  color: #1d201c;
+  background-color: #d5d4d4;
+  border: 0.15rem solid #f432d0;
+  transition: background-color $transitionHover;
+
+  &:hover {
+    background-color: $hover-btn;
+  }
+/*   display: flex;
   align-items: center;
   justify-content: center;
   background: $bg-btn-header;
@@ -15,7 +30,7 @@
 
   &:hover {
     background-color: $hover-btn;
-  }
+  } */
 
   &:focus-visible {
     outline: none;

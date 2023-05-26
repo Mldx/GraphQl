@@ -1,3 +1,5 @@
+@import 'styles/variables.scss';
+
 .login_page_wrapper {
   display: flex;
   flex-direction: column;
@@ -8,10 +10,12 @@
 
 .link {
   transition: color .15s linear;
-  color: #000000;
+  color: #3768e3;
   text-decoration: underline;
+  cursor: pointer;
+  transition: color $transitionHover;
 
   &:hover {
-    color: #8ee100;
+    color: $hover-btn;
   }
 }

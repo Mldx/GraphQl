@@ -1,7 +1,6 @@
 @import 'styles/variables.scss';
 
 .header {
-  position: sticky;
   top: 0;
   flex: 0 0 auto;
   width: 100%;
@@ -19,7 +18,7 @@
   width: $width-wrap-app-content;
   margin: 0 auto;
   gap: .3rem;
-  padding: 0 .5rem;
+  padding: .5rem .5rem;
   align-items: center;
   justify-content: space-between;
 }
@@ -28,7 +27,7 @@
   position: sticky;
   flex: 0 0 auto;
   width: 100%;
-  height: 4rem;
+  min-height: 4rem;
   display: flex;
   align-items: center;
   justify-content: center;

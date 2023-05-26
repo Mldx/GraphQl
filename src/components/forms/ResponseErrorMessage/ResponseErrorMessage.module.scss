@@ -2,11 +2,9 @@ $font-size-normal: 1.3rem;
 
 .validation_error {
   font-size: $font-size-normal;
-  line-height: $font-size-normal;
-  bottom: -$font-size-normal;
-  background: #ff5670;
+  line-height: calc($font-size-normal + 5px);
   padding: 5px;
-  color: white;
+  color: rgb(226, 32, 32);
   font-weight: 400;
   cursor: default;
   border-radius: 2px;
