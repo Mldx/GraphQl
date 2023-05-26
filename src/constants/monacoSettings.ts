@@ -4,10 +4,6 @@ export const editorOptions: monacoEditor.editor.IStandaloneEditorConstructionOpt
   minimap: {
     enabled: false,
   },
-  scrollbar: {
-    vertical: 'hidden',
-    horizontal: 'hidden',
-  },
   renderLineHighlight: 'none',
   contextmenu: false,
   overviewRulerBorder: false,
@@ -23,6 +19,10 @@ export const editorOptions: monacoEditor.editor.IStandaloneEditorConstructionOpt
   hideCursorInOverviewRuler: true,
   overviewRulerLanes: 0,
   scrollBeyondLastLine: false,
+  scrollbar: {
+    verticalScrollbarSize: 5,
+    horizontalScrollbarSize: 5,
+  },
 };
 
 export const editorOptionsNoEdit = Object.assign({}, editorOptions, {
