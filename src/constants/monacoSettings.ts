@@ -22,6 +22,7 @@ export const editorOptions: monacoEditor.editor.IStandaloneEditorConstructionOpt
   },
   hideCursorInOverviewRuler: true,
   overviewRulerLanes: 0,
+  scrollBeyondLastLine: false,
 };
 
 export const editorOptionsNoEdit = Object.assign({}, editorOptions, {
