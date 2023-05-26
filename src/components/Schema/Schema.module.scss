@@ -14,8 +14,13 @@
 
   &_btn {
   position: absolute;
-  padding: 5px 18px 5px;
-  right: - 32px;
+  width: 100px;
+  height: 25px;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  right: - 38px;
   top: 100px;
   transform: rotate(-90deg);
   border-top-right-radius: 5px;
