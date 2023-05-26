@@ -13,12 +13,9 @@
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  //background-color: #d4d4d4;
-  //overflow-x: hidden;
 
   &_wrap {
     width: $width-wrap-app-content;
-    //position: relative;
     margin: 0 auto;
     display: flex;
     flex-direction: column;
@@ -28,18 +25,10 @@
     overflow-x: hidden;
   }
 }
-body {
-  //background-image: url(bg.jpg);
-	//background-size: 50px;
-	//color: #fafafa;
-	overflow-x: hidden;
-}
 
 .bg_img__welcome {
   position: absolute;
   right: 5rem;
-  //top: calc(var(--index) * 7);
-  //width: calc(var(--index) * 70);
   width: 70%;
   z-index: -1;
 
@@ -52,8 +41,6 @@ body {
 
 .welcome_title_wrap {
   display: flex;
-  //margin-top: calc(var(--index) * 7);
-  //background-color: rgba(25, 25, 25, .6);
   align-items: center;
   height: 100vh;
   z-index: 1;
@@ -61,12 +48,7 @@ body {
 }
 
 .title {
-  //position: absolute;
-	//bottom: 5vh;
-  //width: calc(var(--index) * 30);
   width: 60%;
-  //line-height: .9;
-  //background-color: rgba(25, 25, 25, .6);
   gap: 4rem;
   
   @media (max-width: 600px) {
@@ -78,8 +60,6 @@ body {
   text-align: left;
   font-size: 1.8rem;
   background:linear-gradient(to right,rgba(25, 25, 25, .9) 0%, rgba(25, 25, 25, .8) 60%,rgba(25, 25, 25, .01) 100%);
-
-  //color: rgb(182, 180, 180);
   width: 100%;
 
   @media (max-width: 600px) {
@@ -92,7 +72,6 @@ body {
   width: 100%;
   margin: 0;
   text-align: left;
-  //color: rgb(203, 200, 200);
   @media (max-width: 600px) {
     font-size: 3rem;
   }
@@ -100,9 +79,7 @@ body {
 
 .gallery {
   display: flex;
-  //flex-wrap: wrap;
   justify-content: center;
-  //width: 100%;
   gap: 2rem;
   padding-bottom: 4rem;
 
@@ -136,11 +113,11 @@ body {
   align-items: center;
 
   & div:nth-child(1) {
-    background-image: url(./dev-bg2.png);
+    background-image: url(/dev-bg2.png);
   }
 
   & div:nth-child(3) {
-    background-image: url(./dev-bg3.png);
+    background-image: url(/dev-bg3.png);
   }
 }
 
@@ -148,12 +125,12 @@ body {
   align-items: center;
 
   & div:nth-child(2) {
-    background-image: url(./dev-bg.png);
+    background-image: url(/dev-bg.png);
   }
 }
 
 .gallery_description {
-  font-size: 1.3rem;
+  font-size: 1.1rem;
   max-width: 60%;
 
   @media (max-width: 600px) {
