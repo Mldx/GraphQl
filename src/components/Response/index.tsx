@@ -6,6 +6,7 @@ import { editorOptionsNoEdit } from 'constants/monacoSettings';
 import Schema from 'components/Schema';
 import styles from './Response.module.scss';
 import { handleEditorDidMount } from 'utils/editor';
+import { useTranslation } from 'react-i18next';
 
 interface ResponseProps {
   responseData: object | null;
@@ -14,6 +15,7 @@ interface ResponseProps {
 const Response = ({ responseData }: ResponseProps) => {
   const editorRef = useRef<monacoEditor.editor.IStandaloneCodeEditor | null>(null);
   const formattedData = JSON.stringify(responseData, null, 2);
+  const { t } = useTranslation();
 
   return (
     <div className={styles.response}>
@@ -30,10 +32,10 @@ const Response = ({ responseData }: ResponseProps) => {
             options={editorOptionsNoEdit}
           />
         ) : (
-          'Click the "query" button to get a response here'
+          <div>{t('editor.responsePlaceholder')}</div>
         )}
       </div>
-      <Schema>Schema</Schema>
+      <Schema>{t('editor.schema')}</Schema>
     </div>
   );
 };

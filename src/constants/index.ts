@@ -2,19 +2,19 @@ export const baseURL = 'https://rickandmortyapi.com/graphql';
 
 export const entity = {
   query: {
-    tabName: 'New Tab',
+    tabName: 'new tab',
     value: '',
   },
   answer: {
     value: '',
   },
   variables: {
-    tabName: 'Variables',
+    tabName: 'variables',
     value: '',
   },
   isVariablesSelected: true,
   headers: {
-    tabName: 'Headers',
+    tabName: 'headers',
     value: '',
   },
 };

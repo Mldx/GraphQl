@@ -2,6 +2,7 @@ import React from 'react';
 import CustomButton from 'components/CustomButton';
 import classnames from 'classnames';
 import styles from './Schema.module.scss';
+import { useTranslation } from 'react-i18next';
 
 type SchemaProps = {
   children?: React.ReactNode;
@@ -9,6 +10,8 @@ type SchemaProps = {
 
 const Schema = ({ children }: SchemaProps) => {
   const [isOpen, setIsOpen] = React.useState(false);
+  const { t } = useTranslation();
+
   return (
     <>
       <CustomButton
@@ -17,7 +20,7 @@ const Schema = ({ children }: SchemaProps) => {
         })}
         onClick={() => setIsOpen(!isOpen)}
       >
-        Schema
+        {t('editor.schema')}
       </CustomButton>
       {isOpen && <div className={styles.schema}>{children}</div>}
     </>

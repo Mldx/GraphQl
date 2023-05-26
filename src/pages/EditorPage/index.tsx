@@ -18,10 +18,12 @@ import {
 } from 'utils/editor';
 import styles from './EditorPage.module.scss';
 import Response from 'components/Response';
+import { useTranslation } from 'react-i18next';
 
 const defaultQuery: QueryItem[] = [getStartQuery()];
 
 const EditorPage: React.FC = () => {
+  const { t } = useTranslation();
   const [selectedQueryId, setSelectedQueryId] = useState(defaultQuery[0].id);
   const [queries, setQueries] = useState(defaultQuery);
   const [isVarsAndHeadersOpen, setIsVarsAndHeadersOpen] = useState(false);
@@ -30,19 +32,21 @@ const EditorPage: React.FC = () => {
 
   const addTab = useCallback(() => {
     const newQuery = getStartQuery();
+    newQuery.query.tabName = t('editor.tab') as string;
     setQueries((currQueries) => [...currQueries, newQuery]);
     setSelectedQueryId(newQuery.id);
-  }, []);
+  }, [t]);
 
   const changeTab = useCallback(
     (id: string, tabName: string) => {
-      if (!isVarsAndHeadersOpen && tabName !== 'New Tab') {
+      const clickedTab = tabName.toLowerCase() === t('editor.variables') ? 'variables' : 'headers';
+      if (!isVarsAndHeadersOpen && tabName !== t('editor.tab')) {
         setIsVarsAndHeadersOpen(true);
       }
 
-      if (tabName === 'New Tab') {
+      if (tabName === t('editor.tab')) {
         setSelectedQueryId(id);
-      } else if (activeQuery.selectedVarsOrHeadersTab !== tabName) {
+      } else if (activeQuery.selectedVarsOrHeadersTab !== clickedTab) {
         const newVarsOrHeadersTab =
           activeQuery.selectedVarsOrHeadersTab === 'variables' ? 'headers' : 'variables';
         setQueries((currQueries) =>
@@ -52,7 +56,7 @@ const EditorPage: React.FC = () => {
         );
       }
     },
-    [isVarsAndHeadersOpen, activeQuery.selectedVarsOrHeadersTab]
+    [isVarsAndHeadersOpen, t, activeQuery.selectedVarsOrHeadersTab]
   );
 
   //TODO: это подписка на проверку логина и редирект если не залогинен
@@ -115,12 +119,12 @@ const EditorPage: React.FC = () => {
   const currentTabs = [
     {
       tabId: activeQuery.id,
-      label: activeQuery.variables.tabName,
+      label: t('editor.variables'),
       query: activeQuery.variables.value,
     },
     {
       tabId: activeQuery.id,
-      label: activeQuery.headers.tabName,
+      label: t('editor.headers'),
       query: activeQuery.headers.value,
     },
   ];
@@ -132,12 +136,12 @@ const EditorPage: React.FC = () => {
 
   const answerContent = activeQuery.answer.value ? JSON.parse(activeQuery.answer.value) : '';
 
-  const tabs = queries.map((tab) => {
+  const tabs = queries.map((query) => {
     return {
-      tabId: tab.id,
-      label: tab.query.tabName,
-      query: tab.query.value,
-      isSelected: tab.id === selectedQueryId,
+      tabId: query.id,
+      label: t('editor.tab') as string,
+      query: query.query.value,
+      isSelected: query.id === selectedQueryId,
     };
   });
 
@@ -150,7 +154,7 @@ const EditorPage: React.FC = () => {
       <Tabs
         tabs={tabs}
         selectedTabId={selectedQueryId}
-        onClickTab={(id: string) => changeTab(id, 'New Tab')}
+        onClickTab={(id: string) => changeTab(id, t('editor.tab'))}
         onClickTabAdd={addTab}
         onClickTabDelete={deleteTab}
       />
