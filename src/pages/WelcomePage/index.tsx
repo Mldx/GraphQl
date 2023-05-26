@@ -2,8 +2,9 @@ import style from './WelcomePage.module.scss';
 import { Developer } from 'components/Developer';
 import { developers } from 'utils/developer';
 import classNames from 'classnames';
-import { gsap } from 'gsap';
-import { useEffect, useRef } from 'react';
+// import { gsap } from 'gsap';
+// import { useEffect, useRef } from 'react';
+import { useTranslation } from 'react-i18next';
 /* import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { ScrollSmoother } from 'gsap/ScrollSmoother'; */
 
@@ -79,6 +80,7 @@ export const WelcomePage: React.FC = () => {
 
     //return () => ctx.revert();
   }, []); */
+  const { t } = useTranslation();
   return (
     <div className={style.welcome_page}>
       <div className={style.welcome_page_wrap}>
@@ -97,17 +99,17 @@ export const WelcomePage: React.FC = () => {
           <div className={classNames(style.gallery_left, style.gallery_side)}>
             <Developer {...developers[0]} />
             <p className={classNames(style.gallery_description, style.gallery__item)}>
-              {developers[1].description}
+              {t(developers[1].description)}
             </p>
             <Developer {...developers[2]} />
           </div>
           <div className={classNames(style.gallery_right, style.gallery_side)}>
             <p className={classNames(style.gallery_description, style.gallery__item)}>
-              {developers[0].description}
+              {t(developers[0].description)}
             </p>
             <Developer {...developers[1]} />
             <p className={classNames(style.gallery_description, style.gallery__item)}>
-              {developers[2].description}
+              {t(developers[2].description)}
             </p>
           </div>
         </div>

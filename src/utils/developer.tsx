@@ -6,7 +6,12 @@ export const developers = [
     gitHub: 'https://github.com/mldx',
     position: 'developers.anton.position',
     description: 'developers.anton.description',
-    tasks: ['developers.anton.task1', 'developers.anton.task2', 'developers.anton.task3'],
+    tasks: [
+      'developers.anton.task1',
+      'developers.anton.task2',
+      'developers.anton.task3',
+      'developers.anton.task4',
+    ],
   },
   {
     id: '2',

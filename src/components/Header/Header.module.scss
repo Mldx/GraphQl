@@ -1,47 +1,66 @@
 @import 'styles/variables.scss';
 
 .header {
-  top: 0;
-  flex: 0 0 auto;
-  width: 100%;
-  min-height: 4rem;
-  display: flex;
   align-items: center;
-  justify-content: center;
   background-color: #eeeeee;
   border-bottom: 0.3px black solid;
-  padding: .2rem;
+  display: flex;
+  flex: 0 0 auto;
+  justify-content: center;
+  min-height: 85px;
+  padding: 0.4rem 0.2rem;
+  top: 0;
+  width: 100%;
+
+
+  @media (max-width: 600px) {
+    min-height: 135px;
+  }
 }
 
 .wrapper {
+  align-items: center;
   display: flex;
   flex-wrap: wrap;
-  width: $width-wrap-app-content;
-  margin: 0 auto;
   gap: .3rem;
-  padding: 0 .5rem;
-  align-items: center;
   justify-content: space-between;
+  margin: 0 auto;
+  padding: 0 .5rem;
+  width: $width-wrap-app-content;
+  @media (max-width: 600px) {
+    flex-direction: column;
+    align-items: start;
+  }
 }
 
 .sticky {
-  position: sticky;
-  flex: 0 0 auto;
-  width: 100%;
-  min-height: 4rem;
-  display: flex;
   align-items: center;
-  justify-content: center;
-  top: 0;
-  z-index: 100;
-  box-shadow: 0 0 8px 6px rgb(157, 157, 157);
   background-color: rgb(255, 255, 255);
-  padding: .2rem;
+  box-shadow: 0 0 8px 6px rgb(157, 157, 157);
+  display: flex;
+  flex: 0 0 auto;
+  justify-content: center;
+  border-bottom: 0.3px transparent solid;
+  min-height: 85px;
+  padding: 0.4rem 0.2rem;
+  position: sticky;
+  top: 0;
+  width: 100%;
+  z-index: 100;
+  transition: box-shadow 0.1s linear;
+
+  @media (max-width: 600px) {
+    min-height: 135px;
+  }
 }
 
 .box1 {
+  align-items: end;
   display: flex;
   flex-direction: column;
-  align-items: end;
   row-gap: 10px;
+
+  @media (max-width: 600px) {
+    align-self: end;
+  }
 }
