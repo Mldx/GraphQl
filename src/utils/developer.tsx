@@ -5,7 +5,7 @@ export const developers = [
     photo: 'https://avatars.githubusercontent.com/u/94230056?v=4',
     gitHub: 'https://github.com/mldx',
     description:
-      'Lorem ipsum dolor sit amet. Ea inventore eius est iusto veritatis id aliquid voluptatem et saepe rerum id porro dignissimos. Sed libero sequi aut architecto velit qui doloribus eius. Id natus atque aut tenetur nihil et quod totam eum sunt delectus sit accusamus porro eum cumque quaerat.',
+      'Lorem ipsum dolor sit amet. Ea inventore eius est iusto veritatis id aliquid voluptatem et saepe rerum id porro dignissimos. Sed libero sequi aut architecto velit qui doloribus eius. Id natus atque aut tenetur',
     tasks: ['Authorisation', 'Login/out pages'],
   },
   {

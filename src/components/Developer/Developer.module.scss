@@ -29,6 +29,7 @@
   @media (max-width: 600px) {
     max-width: calc(100%);
     width: calc(var(--index) * 45);
+    padding: 10px;
   }
 }
 
