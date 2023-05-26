@@ -1,6 +1,4 @@
 import { GraphQLField, GraphQLInputField, GraphQLNamedType, GraphQLObjectType } from 'graphql';
-import { IScreenInitialData } from 'constants/schemaScreenInitialData.ts';
-
 export interface IDeveloper {
   id: string;
   name: string;
@@ -38,3 +36,9 @@ export type screenHistoryType =
   | GraphQLInputField
   | IScreenInitialData
   | undefined;
+
+export interface IScreenInitialData {
+  name: string;
+  field: { name: string; type: string };
+  description: string;
+}

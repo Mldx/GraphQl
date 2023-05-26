@@ -1,8 +1,4 @@
-export interface IScreenInitialData {
-  name: string;
-  field: { name: string; type: string };
-  description: string;
-}
+import { IScreenInitialData } from 'types/index.ts';
 
 export const SCREEN_INITIAL_DATA: IScreenInitialData = {
   name: 'Docs',
