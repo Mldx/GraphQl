@@ -19,6 +19,7 @@ import {
 import styles from './EditorPage.module.scss';
 import Response from 'components/Response';
 import { useTranslation } from 'react-i18next';
+import Loader from 'components/Loader';
 
 const defaultQuery: QueryItem[] = [getStartQuery()];
 
@@ -27,6 +28,7 @@ const EditorPage: React.FC = () => {
   const [selectedQueryId, setSelectedQueryId] = useState(defaultQuery[0].id);
   const [queries, setQueries] = useState(defaultQuery);
   const [isVarsAndHeadersOpen, setIsVarsAndHeadersOpen] = useState(false);
+  const [isQueryLoading, setIsQueryLoading] = useState(false);
 
   const activeQuery = queries[getIndex(queries, selectedQueryId)];
 
@@ -107,7 +109,9 @@ const EditorPage: React.FC = () => {
 
     const resultQuery = variables ? parseQuery(query, JSON.parse(variables)) : query;
     if (resultQuery) {
+      setIsQueryLoading(true);
       const responseData = await makeRequest(resultQuery);
+      setIsQueryLoading(false);
       setQueries((queries) =>
         updateQueryField(queries, 'answer', JSON.stringify(responseData), selectedQueryId)
       );
@@ -185,9 +189,13 @@ const EditorPage: React.FC = () => {
         </div>
         <div className={styles.control}>
           <CustomButton onClick={fetchAndSetResponse} className={styles.control_btn}>
-            <svg width="35" height="35" viewBox="3.5,4.5,24,24">
-              <path d="M 11 9 L 24 16 L 11 23 z"></path>
-            </svg>
+            {isQueryLoading ? (
+              <Loader />
+            ) : (
+              <svg width="35" height="35" viewBox="3.5,4.5,24,24">
+                <path d="M 11 9 L 24 16 L 11 23 z"></path>
+              </svg>
+            )}
           </CustomButton>
         </div>
         <Response responseData={answerContent}></Response>
