@@ -1,16 +1,17 @@
 @import 'styles/variables.scss';
 
 .button {
-  font-weight: 700;
-    font-size: 1.4rem;
+    font-weight: 600;
+    font-size: 1.2rem;
     text-align: center;
     border-radius: 5rem;
     cursor: pointer;
     white-space: nowrap;
-    padding: 0.4rem 1.5rem 0.5rem;
+    padding: 0.3rem 1.2rem 0.4rem;
     color: #1d201c;
     background-color: #d26db2;
-    border: 0.2rem solid #eaeaea;
+    //border: 0.2rem solid #eaeaea;
+    border: none;
     transition: background-color $transitionHover;
 
   &:hover {

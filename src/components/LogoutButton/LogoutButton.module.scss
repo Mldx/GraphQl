@@ -1,17 +1,18 @@
 @import 'styles/variables.scss';
 
 .button {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: $bg-btn-header;
-  border: none;
-  border-radius: 10px;
-  cursor: pointer;
-  transition: transform .05s linear, background-color .1s linear;
-  font-weight: 200;
-  padding: 5px 20px;
+  font-weight: 600;
   font-size: 1.2rem;
+  text-align: center;
+  border-radius: 5rem;
+  cursor: pointer;
+  white-space: nowrap;
+  padding: 0.3rem 1.2rem 0.4rem;
+  color: #1d201c;
+  background-color: #d26db2;
+  //border: 0.2rem solid #eaeaea;
+  border: none;
+  transition: background-color $transitionHover;
 
   &:hover {
     background-color: $hover-btn;
