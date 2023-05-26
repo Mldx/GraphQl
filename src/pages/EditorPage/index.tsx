@@ -55,7 +55,6 @@ const EditorPage: React.FC = () => {
     [isVarsAndHeadersOpen, activeQuery.selectedVarsOrHeadersTab]
   );
 
-  //TODO: это подписка на проверку логина и редирект если не залогинен
   const navigate = useNavigate();
   const [loading, setLoading] = useState(true);
 
@@ -70,7 +69,6 @@ const EditorPage: React.FC = () => {
 
     return unsubscribe;
   }, [navigate]);
-  //TODO: тут заканчивается
 
   const deleteTab = useCallback(
     (queryIdToDelete: string) => {
