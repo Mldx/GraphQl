@@ -28,7 +28,7 @@ function LoginPage() {
     <div className={styles.login_page_wrapper}>
       <LoginForm />
       <div>
-        You don&apos;t have an account,&nbsp;
+        Don&apos;t have an account,&nbsp;
         <Link to="/signup" className={styles.link}>
           create an account
         </Link>

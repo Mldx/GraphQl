@@ -1,8 +1,11 @@
+@import 'styles/variables.scss';
+
 .layout_wrap {
   display: flex;
   flex-direction: column;
   width: 100%;
   height: 100%;
+  //background: $color-bg-main;
 }
 
 .main {

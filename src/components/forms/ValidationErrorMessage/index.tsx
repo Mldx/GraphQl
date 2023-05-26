@@ -6,7 +6,11 @@ interface IValidationErrorMessageProps {
 
 function ValidationErrorMessage(props: IValidationErrorMessageProps) {
   const { errorMessage } = props;
-  return errorMessage ? <span className={styles.validation_error}>{errorMessage}</span> : null;
+  return errorMessage ? (
+    <span className={styles.validation_error}>{errorMessage}</span>
+  ) : (
+    <span className={styles.validation_error}></span>
+  );
 }
 
 export default ValidationErrorMessage;

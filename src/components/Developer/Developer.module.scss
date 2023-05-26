@@ -1,17 +1,24 @@
 @import 'styles/variables.scss';
 
+:root {
+  --index:calc(1vw+1vh);
+}
+
 .card_info {
   display: flex;
   flex-direction: column;
-  max-width: calc((100% - 4rem) / 3);
+  width: calc(var(--index) * 36);
   padding: 20px;
   border-radius: 10px;
-  background-color: rgba(248, 248, 248, 0.9);
+  background-color: $color-bg-card;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
   gap: 2rem;
-  box-shadow: 4px 5px 9px 0 rgba(33, 55, 71, 0.2);
+  box-shadow: 4px 5px 9px 0 rgba(255, 249, 249, 0.2);
   opacity: 0;
   animation: fadeIn $animation-time-welcome ease-in both;
-  transition: .9s;
+  transition: scale $transitionHover;
   will-change: transform;
   cursor: pointer;
 
@@ -21,6 +28,7 @@
 
   @media (max-width: 600px) {
     max-width: calc(100%);
+    width: calc(var(--index) * 45);
   }
 }
 
@@ -43,7 +51,6 @@
 }
 
 .task {
-  color: black;
   font-size: 12px;
   font-weight: 700;
 }
