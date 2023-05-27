@@ -15,7 +15,8 @@ export default defineConfig({
       utils: '/src/utils',
       api: '/src/api',
       hooks: '/src/hooks',
+      assets: '/src/assets',
     },
   },
-  base: './',
+  base: '/',
 });
