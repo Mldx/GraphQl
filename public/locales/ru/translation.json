@@ -69,6 +69,13 @@
     "auth/too-many-requests": "слишком много запросов",
     "auth/user-not-found": "пользователь не найден",
     "auth/email-already-in-use": "этот адрес электронный почты уже используется"
+  },
+  "editor": {
+    "responsePlaceholder": "нажмите кнопку 'воспроизвести', чтобы получить ответ",
+    "variables": "переменные",
+    "headers": "заголовки",
+    "tab": "вкладка",
+    "schema": "схема"
   }
 }
 

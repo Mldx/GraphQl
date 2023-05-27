@@ -2,6 +2,7 @@ import { useEffect, useState, lazy, Suspense } from 'react';
 import CustomButton from 'components/CustomButton';
 import classnames from 'classnames';
 import styles from './Schema.module.scss';
+import { useTranslation } from 'react-i18next';
 import { GraphQLSchema } from 'graphql';
 import { sdlRequest } from 'utils/schemaQuery.ts';
 import { buildClientSchema } from 'graphql/index';
@@ -13,6 +14,7 @@ const Schema = () => {
   const [schema, setSchema] = useState<GraphQLSchema | null>(null);
   const [error, setError] = useState<boolean | null>(null);
   const [isLoading, setIsLoading] = useState(true);
+  const { t } = useTranslation();
 
   useEffect(() => {
     fetchSchema();
@@ -66,7 +68,7 @@ const Schema = () => {
               [styles.stateCircle_sucsess]: !!schema,
             })}
           ></span>
-          <span className={styles.schema_btn_text}>Schema</span>
+          <span className={styles.schema_btn_text}>{t('editor.schema')}</span>
         </CustomButton>
         {schema && (
           <Suspense fallback={null}>

@@ -1,6 +1,7 @@
 import React from 'react';
 import classnames from 'classnames';
 import styles from './Tabs.module.scss';
+import { useTranslation } from 'react-i18next';
 
 export interface TabItem {
   tabId: string;
@@ -27,46 +28,44 @@ const Tabs: React.FC<TabsProps> = ({
   onClickTabAdd,
   onClickTabDelete,
 }: TabsProps) => {
+  const { t } = useTranslation();
+
   const tabDelHandler = (event: React.MouseEvent, id: string) => {
-    if (onClickTabDelete) {
-      onClickTabDelete(id);
-      event.stopPropagation();
-    }
+    onClickTabDelete?.(id);
+    event.stopPropagation();
   };
 
   return (
     <div className={classnames(styles.tabs, className)}>
-      {tabs &&
-        tabs.map((tab) => {
-          let isSelected;
+      {tabs?.map((tab) => {
+        const isQueryTab = tab.label === t('editor.tab');
+        const tabCategory = tab.label === t('editor.variables') ? 'variables' : 'headers';
+        const isSelected = isQueryTab
+          ? tab.tabId === selectedTabId
+          : selectedVarsOrHeadersTab === tabCategory;
 
-          if (tab.label === 'New Tab') {
-            isSelected = tab.tabId === selectedTabId;
-          } else {
-            isSelected = tab.label?.toLowerCase() === selectedVarsOrHeadersTab;
-          }
-          return (
+        return (
+          <div
+            key={isQueryTab ? `query_${tab.tabId}` : `${tab.label}_${tab.tabId}`}
+            className={classnames(styles.tab, {
+              [styles.tab__selected]: isSelected,
+            })}
+            onClick={() => onClickTab(tab.tabId, tab.label as string)}
+          >
             <div
-              key={tab.label === 'New Tab' ? `query_${tab.tabId}` : `${tab.label}_${tab.tabId}`}
-              className={classnames(styles.tab, {
-                [styles.tab__selected]: isSelected,
+              className={classnames(styles.tab_label, {
+                [styles.tab_label__selected]: isSelected,
               })}
-              onClick={() => onClickTab(tab.tabId, tab.label as string)}
             >
-              <div
-                className={classnames(styles.tab_label, {
-                  [styles.tab_label__selected]: isSelected,
-                })}
-              >
-                {tab.label}
-              </div>
-              {tabs[0].label === 'New Tab' && (
-                <span onClick={(e) => tabDelHandler(e, tab.tabId)}></span>
-              )}
+              {t(tab.label as string)}
             </div>
-          );
-        })}
-      {tabs && tabs[0].label === 'New Tab' && (
+            {tabs[0].label === t('editor.tab') && (
+              <span onClick={(e) => tabDelHandler(e, tab.tabId)}></span>
+            )}
+          </div>
+        );
+      })}
+      {tabs?.[0].label === t('editor.tab') && (
         <div
           className={classnames(styles.tab, styles.tab_plus)}
           onClick={() => {

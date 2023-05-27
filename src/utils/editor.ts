@@ -5,19 +5,19 @@ import * as monacoEditor from 'monaco-editor/esm/vs/editor/editor.api';
 export const getStartQuery = (): QueryItem => ({
   id: crypto.randomUUID(),
   query: {
-    tabName: 'New Tab',
+    tabName: 'tab',
     value: '',
   },
   answer: {
     value: '',
   },
   variables: {
-    tabName: 'Variables',
+    tabName: 'variables',
     value: '',
   },
   selectedVarsOrHeadersTab: 'variables',
   headers: {
-    tabName: 'Headers',
+    tabName: 'headers',
     value: '',
   },
 });
