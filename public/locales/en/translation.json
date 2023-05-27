@@ -35,7 +35,7 @@
     "logout": "logout"
   },
   "loginPage": {
-    "description_part1": "You don't have an account, ",
+    "description_part1": "Don't have an account, ",
     "description_part2": "create an account"
   },
   "signupPage": {
