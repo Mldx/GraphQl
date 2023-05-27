@@ -15,6 +15,7 @@
   transition: scale $transitionHover;
   width: 80%;
   will-change: transform;
+  cursor: default;
 
   &:hover {
     scale: 1.03;
