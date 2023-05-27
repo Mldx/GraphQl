@@ -1,11 +1,12 @@
 import style from './Footer.module.scss';
+import rssLogo from 'assets/images/rsschool.svg';
 
 export const Footer: React.FC = () => {
   return (
     <footer className={style.footer}>
       <div className={style.wrapper}>
         <a className={style.GHLink} href="https://rs.school/" target="_blank" rel="noreferrer">
-          <img className={style.rsschool_link} src="rsschool.svg" alt="rsschool" />
+          <img className={style.rsschool_link} src={rssLogo} alt="rsschool" />
         </a>
         <ul className={style.gitHub_list}>
           <li>

@@ -1,39 +1,39 @@
 @import 'styles/variables.scss';
 
 .welcome_page {
-  height: 100%;
-  max-width: 100%;
-  display: flex;
-  background-image: url("/bg.jpeg");
+  background-color: #d4d4d4;
+  background-image: url("assets/images/bg.webp");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  background-color: #d4d4d4;
+  display: flex;
+  height: 100%;
+  max-width: 100%;
 
   &_wrap {
-    max-width: $width-wrap-app-content;
-    margin: 0 auto;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    padding: 1rem;
     gap: 2rem;
+    justify-content: center;
+    margin: 0 auto;
+    max-width: $width-wrap-app-content;
+    padding: 1rem;
   }
 }
 
 .dev_container {
   display: flex;
   flex-wrap: wrap;
+  gap: 2rem;
   justify-content: center;
   width: 100%;
-  gap: 2rem;
 
   & div:nth-child(2) {
     animation-delay: $animation-time-welcome;
   }
 
   & div:nth-child(3) {
-    animation-delay: calc($animation-time-welcome*2);
+    animation-delay: calc($animation-time-welcome * 2);
   }
 }
 
@@ -46,14 +46,14 @@
 }
 
 .title {
-  text-align: left;
-  font-size: 1.3rem;
   color: rgb(61, 60, 60);
+  font-size: 1.3rem;
+  text-align: left;
 }
 
 .title_main {
-  width: 100%;
+  color: rgb(61, 60, 60);
   margin: 0;
   text-align: left;
-  color: rgb(61, 60, 60);
+  width: 100%;
 }
