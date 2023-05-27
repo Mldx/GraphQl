@@ -1,24 +1,24 @@
 @import 'styles/variables.scss';
 
 .welcome_page {
-  height: 100%;
-  max-width: 100%;
-  display: flex;
   background-color: $color-bg-main;
-  color: aliceblue;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+  color: aliceblue;
+  display: flex;
+  height: 100%;
+  max-width: 100%;
 
   &_wrap {
-    width: $width-wrap-app-content;
-    margin: 0 auto;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    padding: 1rem;
     gap: 2rem;
+    justify-content: center;
+    margin: 0 auto;
     overflow-x: hidden;
+    padding: 1rem;
+    width: $width-wrap-app-content;
   }
 }
 
@@ -36,16 +36,16 @@
 }
 
 .welcome_title_wrap {
-  display: flex;
   align-items: center;
+  display: flex;
   height: 100vh;
-  z-index: 1;
   width: 100%;
+  z-index: 1;
 }
 
 .title {
-  width: 60%;
   gap: 4rem;
+  width: 60%;
 
   @media (max-width: 600px) {
     width: 100%;
@@ -53,9 +53,9 @@
 }
 
 .title_text {
-  text-align: left;
+  background: linear-gradient(to right, rgba(25, 25, 25, .9) 0%, rgba(25, 25, 25, .8) 60%, rgba(25, 25, 25, .01) 100%);
   font-size: 1.8rem;
-  background:linear-gradient(to right,rgba(25, 25, 25, .9) 0%, rgba(25, 25, 25, .8) 60%,rgba(25, 25, 25, .01) 100%);
+  text-align: left;
   width: 100%;
 
   @media (max-width: 600px) {
@@ -65,9 +65,9 @@
 
 .title_main {
   font-size: 5rem;
-  width: 100%;
   margin: 0;
   text-align: left;
+  width: 100%;
   @media (max-width: 600px) {
     font-size: 3rem;
   }
@@ -75,8 +75,8 @@
 
 .gallery {
   display: flex;
-  justify-content: center;
   gap: 2rem;
+  justify-content: center;
   padding-bottom: 4rem;
 
   & div:nth-child(1) {
@@ -88,7 +88,7 @@
   }
 
   & div:nth-child(3) {
-    animation-delay: calc($animation-time-welcome*2);
+    animation-delay: calc($animation-time-welcome * 2);
   }
 
   @media (max-width: 600px) {
@@ -98,12 +98,12 @@
 }
 
 .gallery_side {
-  width: calc(100% / 2);
-  gap: 5rem;
+  align-items: center;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  gap: 5rem;
   justify-content: center;
+  width: calc(100% / 2);
 
   @media (max-width: 600px) {
     width: 100%;
@@ -114,12 +114,12 @@
   align-items: center;
 
   & div:nth-child(1) {
-    background-image: url(/dev-bg2.png);
+    background-image: url('assets/images/dev-bg2.png');
 
   }
 
   & div:nth-child(3) {
-    background-image: url(/dev-bg3.png);
+    background-image: url('assets/images/dev-bg3.png');
   }
 }
 
@@ -127,18 +127,18 @@
   align-items: center;
 
   & div:nth-child(2) {
-    background-image: url(/dev-bg.png);
+    background-image: url('assets/images/dev-bg1.png');
   }
 }
 
 .gallery_description {
   font-size: 1.1rem;
-  width: 60%;
   text-align: center;
+  width: 60%;
 
   @media (max-width: 600px) {
-    font-size: 1rem;
     display: none;
+    font-size: 1rem;
   }
 }
 
