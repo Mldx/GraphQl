@@ -7,7 +7,7 @@ export const Developer = (props: IDeveloper) => {
   return (
     <div className={style.card_info}>
       <div className={style.dev_main}>
-        <img className={style.developer_img} src={props.photo} alt="" />
+        <img className={style.developer_img} src={props.photo} draggable={false} alt="" />
         <div>
           <div className={style.contacts}>
             <h2 className={style.name}>{t(props.name)}</h2>
