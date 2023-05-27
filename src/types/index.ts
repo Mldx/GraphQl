@@ -1,3 +1,4 @@
+import { GraphQLField, GraphQLInputField, GraphQLNamedType, GraphQLObjectType } from 'graphql';
 export interface IDeveloper {
   id: string;
   name: string;
@@ -27,3 +28,17 @@ export interface Variables {
 }
 
 export type FieldName = 'query' | 'variables' | 'headers' | 'answer';
+
+export type screenHistoryType =
+  | GraphQLObjectType
+  | GraphQLNamedType
+  | GraphQLField<string, string>
+  | GraphQLInputField
+  | IScreenInitialData
+  | undefined;
+
+export interface IScreenInitialData {
+  name: string;
+  field: { name: string; type: string };
+  description: string;
+}

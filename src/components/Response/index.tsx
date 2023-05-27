@@ -35,7 +35,7 @@ const Response = ({ responseData }: ResponseProps) => {
           <div>{t('editor.responsePlaceholder')}</div>
         )}
       </div>
-      <Schema>{t('editor.schema')}</Schema>
+      <Schema />
     </div>
   );
 };
