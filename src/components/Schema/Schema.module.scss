@@ -9,6 +9,7 @@
   row-gap: 15px;
   transition: right .25s linear;
   width: 250px;
+  z-index: 11;
 
   &__active {
     right: 0;
