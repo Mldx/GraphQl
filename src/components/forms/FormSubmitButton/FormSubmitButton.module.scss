@@ -1,3 +1,5 @@
+@import 'styles/variables.scss';
+
 .button {
   background: #eeeeee;
   height: 35px;
@@ -7,7 +9,12 @@
   border-radius: 10px;
   font-weight: 500;
   cursor: pointer;
-  transition: transform .05s linear;
+  transition: background-color $transitionHover linear;
+  background-color: $primerySecondarycolor;
+
+  &:hover {
+    background-color: $hover-btn;
+  }
 
   &:focus-visible {
     outline: none;

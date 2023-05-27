@@ -9,6 +9,7 @@
       "task1": "Authorisation",
       "task2": "Login/Signup pages",
       "task3": "Localization",
+      "task4": "Schema",
       "description": "Greetings, my name is Anton Zaprustski. I come from Belarus. I have graduated BNTU, faculty of information technology and robotics. Currently, I am studying at RS School. Studying is my pleasure, I enjoy uncovering new ways to improve myself."
     },
     "maksim": {
@@ -34,7 +35,7 @@
     "logout": "logout"
   },
   "loginPage": {
-    "description_part1": "You don't have an account, ",
+    "description_part1": "Don't have an account, ",
     "description_part2": "create an account"
   },
   "signupPage": {

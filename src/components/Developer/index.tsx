@@ -41,7 +41,7 @@ export const Developer = (props: IDeveloper) => {
           </ul>
         </div>
       </div>
-      <p>{t(props.description)}</p>
+      <p className={style.description}>{t(props.description)}</p>
     </div>
   );
 };

@@ -1,8 +1,14 @@
 .wrapper {
-  background-image: url('assets/images/404.webp');
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: contain;
   height: 100%;
   width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+
+.img {
+  display: block;
+  width: 40%;
+  height: 40%;
 }
