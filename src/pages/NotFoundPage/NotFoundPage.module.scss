@@ -1,14 +1,17 @@
 .wrapper {
-  height: 100%;
-  width: 100%;
-  display: flex;
-  justify-content: center;
   align-items: center;
+  display: flex;
+  flex: 1;
+  justify-content: center;
+}
 
+.img_box {
+  max-height: 60vh;
+  aspect-ratio: 1/1;
 }
 
 .img {
   display: block;
-  width: 40%;
-  height: 40%;
+  height: 100%;
+  width: 100%;
 }

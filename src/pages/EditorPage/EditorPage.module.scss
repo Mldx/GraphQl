@@ -2,8 +2,9 @@
 
 .editor {
   max-width: $width-wrap-app-content;
+  padding: 40px 20px;
   margin: 0 auto;
-  padding: 20px;
+  width: min(1440px, 100%);
 
   &_inner {
     background: $color-light-gray;
