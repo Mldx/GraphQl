@@ -90,3 +90,16 @@
     }
   }
 }
+
+@media (max-width: 700px) {
+  .tab {
+
+      &_label {
+          padding: 3px 18px;
+      }
+
+      & span {
+        right: 2px;
+      }
+  }
+}

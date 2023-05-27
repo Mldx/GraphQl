@@ -10,6 +10,11 @@
   transition: right .25s linear;
   width: 250px;
 
+  @media (max-width: 450px) {
+    right: -200px;
+    width: 200px;
+  }
+
   &__active {
     right: 0;
   }

@@ -8,9 +8,9 @@
   &_inner {
     background: $color-light-gray;
     padding: 7px;
-    height: calc(100vh - 66px - 4rem - 128px);
+    min-height: calc(100vh - 66px - 4rem - 128px);
     display: flex;
-    column-gap: 5px;
+    gap: 5px;
     justify-content: space-between;
     border-bottom-right-radius: 5px;
     border-bottom-left-radius: 5px;
@@ -19,6 +19,7 @@
       overflow: hidden;
       position: relative;
       width: 100%;
+      min-height: 500px;
     }
   }
 
@@ -48,5 +49,14 @@
 
   & button {
     padding: 5px;
+  }
+}
+
+@media (max-width: 700px) {
+  .editor {
+
+    &_inner {
+      flex-wrap: wrap;
+    }
   }
 }
