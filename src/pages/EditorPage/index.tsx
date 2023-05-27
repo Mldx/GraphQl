@@ -102,16 +102,31 @@ const EditorPage: React.FC = () => {
   );
 
   const fetchAndSetResponse = useCallback(async () => {
-    const query = activeQuery.query.value;
-    const variables = activeQuery.variables.value;
+    try {
+      const query = activeQuery.query.value;
+      let variables = activeQuery.variables.value;
+      const regex = /^\s*$/;
 
-    const resultQuery = variables ? parseQuery(query, JSON.parse(variables)) : query;
-    if (resultQuery) {
-      setIsQueryLoading(true);
-      const responseData = await makeRequest(resultQuery);
-      setIsQueryLoading(false);
+      if (regex.test(variables)) {
+        variables = '';
+      }
+      const resultQuery = variables ? parseQuery(query, JSON.parse(variables)) : query;
+      if (resultQuery) {
+        setIsQueryLoading(true);
+        const responseData = await makeRequest(resultQuery);
+        setIsQueryLoading(false);
+        setQueries((queries) =>
+          updateQueryField(queries, 'answer', JSON.stringify(responseData), selectedQueryId)
+        );
+      }
+    } catch (error) {
       setQueries((queries) =>
-        updateQueryField(queries, 'answer', JSON.stringify(responseData), selectedQueryId)
+        updateQueryField(
+          queries,
+          'answer',
+          JSON.stringify({ error: (error as Error).message }),
+          selectedQueryId
+        )
       );
     }
   }, [selectedQueryId, activeQuery.query.value, activeQuery.variables.value]);
