@@ -40,6 +40,14 @@ const Schema = () => {
     fetchSchema();
   };
 
+  const generateTitleForSchemaBnt = () => {
+    return `${
+      isOpen
+        ? t<string>('editor.schema_btn_tittle_p1.hide')
+        : t<string>('editor.schema_btn_tittle_p1.show')
+    } ${t<string>('editor.schema_btn_tittle_p2')}`;
+  };
+
   return (
     <>
       <div
@@ -49,14 +57,14 @@ const Schema = () => {
       >
         <CustomButton
           disabled={isLoading}
-          title={'Re-fetch GraphQL schema'}
+          title={t<string>('editor.reload_btn_tittle')}
           className={classnames(styles.schema_btn, styles.schema_reloadBtn)}
           onClick={reFetchSchema}
         >
           ↻
         </CustomButton>
         <CustomButton
-          title={`${isOpen ? 'Hide' : 'Show'} Documentation Explorer`}
+          title={generateTitleForSchemaBnt()}
           disabled={!schema}
           className={classnames(styles.schema_btn, styles.schema_schemeBtn)}
           onClick={() => setIsOpen(!isOpen)}

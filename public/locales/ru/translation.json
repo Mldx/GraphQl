@@ -75,7 +75,13 @@
     "variables": "переменные",
     "headers": "заголовки",
     "tab": "вкладка",
-    "schema": "схема"
+    "schema": "схема",
+    "schema_btn_tittle_p1": {
+      "show": "Показать",
+      "hide": "Скрыть"
+    },
+    "schema_btn_tittle_p2": "проводник Документации",
+    "reload_btn_tittle": "Загрузить заново схему GraphQL"
   }
 }
 

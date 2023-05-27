@@ -75,7 +75,13 @@
     "variables": "variables",
     "headers": "headers",
     "tab": "tab",
-    "schema": "schema"
+    "schema": "schema",
+    "schema_btn_tittle_p1": {
+      "show": "Show",
+      "hide": "Hide"
+    },
+    "schema_btn_tittle_p2": "Documentation Explorer",
+    "reload_btn_tittle": "Re-fetch GraphQL schema"
   }
 }
 
