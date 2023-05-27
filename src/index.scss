@@ -38,6 +38,11 @@ a {
 }
 
 .monaco-editor,
+.monaco-editor .slider,
 .monaco-editor .overflow-guard {
   border-radius: 5px;
+}
+
+.monaco-editor .scroll-decoration {
+  box-shadow: none !important;
 }

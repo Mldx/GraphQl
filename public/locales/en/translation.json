@@ -68,6 +68,13 @@
     "auth/too-many-requests": "too many requests",
     "auth/user-not-found": "user not found",
     "auth/email-already-in-use": "email already in use"
+  },
+  "editor": {
+    "responsePlaceholder": "click the 'play' button to get a response",
+    "variables": "variables",
+    "headers": "headers",
+    "tab": "tab",
+    "schema": "schema"
   }
 }
 
