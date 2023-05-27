@@ -118,6 +118,8 @@ const EditorPage: React.FC = () => {
         setQueries((queries) =>
           updateQueryField(queries, 'answer', JSON.stringify(responseData), selectedQueryId)
         );
+      } else if (variables === '' && query === '') {
+        setQueries((queries) => updateQueryField(queries, 'answer', '', selectedQueryId));
       }
     } catch (error) {
       setQueries((queries) =>
