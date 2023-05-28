@@ -85,6 +85,7 @@ const EditorPage: React.FC = () => {
         setSelectedQueryId(filteredQueries[prevQueryIndex].id);
         setQueries(filteredQueries);
       } else {
+        const defaultQuery = [getStartQuery()];
         setQueries(defaultQuery);
         setSelectedQueryId(() => defaultQuery[0].id);
       }
