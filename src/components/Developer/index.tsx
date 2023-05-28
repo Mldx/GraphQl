@@ -18,8 +18,8 @@ export const Developer = (props: IDeveloper) => {
               rel="noreferrer"
             >
               <svg
-                width="25"
-                height="25"
+                width="35"
+                height="35"
                 viewBox="0 0 20 20"
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
