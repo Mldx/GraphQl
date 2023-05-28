@@ -20,7 +20,7 @@ const Response = ({ responseData }: ResponseProps) => {
   return (
     <div className={styles.response}>
       <div
-        className={classnames(styles.response_container, {
+        className={classnames('response_monaco', styles.response_container, {
           [styles.response_container__active]: responseData,
         })}
       >

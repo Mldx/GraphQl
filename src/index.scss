@@ -46,3 +46,16 @@ a {
 .monaco-editor .scroll-decoration {
   box-shadow: none !important;
 }
+
+.response_monaco .overflow-guard {
+  border-radius: 0px;
+}
+
+.editor_query .overflow-guard {
+  border-bottom-right-radius: 0px;
+  border-bottom-left-radius: 0px;
+}
+
+.editor_query>section {
+  height: calc(100% - 49px) !important;
+}

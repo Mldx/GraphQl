@@ -31,7 +31,9 @@ const Tabs: React.FC<TabsProps> = ({
   const { t } = useTranslation();
 
   const tabDelHandler = (event: React.MouseEvent, id: string) => {
-    onClickTabDelete?.(id);
+    if (tabs.length > 1) {
+      onClickTabDelete?.(id);
+    }
     event.stopPropagation();
   };
 
