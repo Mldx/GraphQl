@@ -1,0 +1,87 @@
+{
+  "welcomePage": {
+    "description": "the GraphQL integrated development environment (IDE). It’s a powerful (and all-around awesome) tool you’ll use often while building Gatsby websites. It offers syntax highlighting, intellisense autocompletion, automatic documentation, and much more."
+  },
+  "developers": {
+    "anton": {
+      "name": "Anton",
+      "position": "FRONT-END DEVELOPER",
+      "task1": "Authorisation",
+      "task2": "Login/Signup pages",
+      "task3": "Localization",
+      "task4": "Schema",
+      "description": "Greetings, my name is Anton Zaprustski. I come from Belarus. I have graduated BNTU, faculty of information technology and robotics. Currently, I am studying at RS School. Studying is my pleasure, I enjoy uncovering new ways to improve myself."
+    },
+    "maksim": {
+      "name": "Maksim",
+      "position": "FRONT-END DEVELOPER",
+      "task1": "Main page",
+      "description": "Hi, everybody! My main goal is to become a front-end developer. I have some experience from the 2021Q1. I am ready to work hard again, to learn another new technologies and to continue my develop."
+    },
+    "julia": {
+      "name": "Julia",
+      "position": "FRONT-END DEVELOPER",
+      "task1": "Welcome page",
+      "task2": "404 page",
+      "task3": "Header",
+      "task4": "Footer",
+      "description": "Hello, my name is Yuliya. I am a self-taught front-end developer. I primarily focus on writing clean, elegant, and efficient code. I am proficient in HTML, CSS, SCSS, JavaScript and Type Script."
+    }
+  },
+  "buttons": {
+    "main": "go to main page",
+    "signin": "signin",
+    "signup": "signup",
+    "logout": "logout"
+  },
+  "loginPage": {
+    "description_part1": "Don't have an account, ",
+    "description_part2": "create an account"
+  },
+  "signupPage": {
+    "description_part1": "Already have an account? ",
+    "description_part2": "login"
+  },
+  "forms": {
+    "placeholder_email": "Email",
+    "placeholder_password": "Password",
+    "login": {
+      "tittle": "Login",
+      "button": "Login"
+    },
+    "signup": {
+      "tittle": "Create Account",
+      "button": "Sign up"
+    }
+  },
+  "validateMessages": {
+    "required": "field is required",
+    "oneLetterCheck": "required 1+ letter",
+    "oneDigitCheck": "required 1+ digit",
+    "oneSpecCheck": "required 1+ spec symbol",
+    "min8sym": "required 8+ symbols",
+    "emailCheck": "invalid email"
+  },
+  "firebaseResponseMessage": {
+    "auth/invalid-email": "invalid email",
+    "auth/missing-password": "please enter your password",
+    "auth/wrong-password": "wrong password",
+    "auth/too-many-requests": "too many requests",
+    "auth/user-not-found": "user not found",
+    "auth/email-already-in-use": "email already in use"
+  },
+  "editor": {
+    "responsePlaceholder": "click the 'play' button to get a response",
+    "variables": "variables",
+    "headers": "headers",
+    "tab": "tab",
+    "schema": "schema",
+    "schema_btn_tittle_p1": {
+      "show": "Show",
+      "hide": "Hide"
+    },
+    "schema_btn_tittle_p2": "Documentation Explorer",
+    "reload_btn_tittle": "Re-fetch GraphQL schema"
+  }
+}
+

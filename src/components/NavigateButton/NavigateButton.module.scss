@@ -1,0 +1,28 @@
+@import 'styles/variables.scss';
+
+.button {
+  background-color: #d26db2;
+  border: none;
+  border-radius: 5rem;
+  color: #1d201c;
+  cursor: pointer;
+  font-size: 1.2rem;
+  font-weight: 500;
+  padding: 0.3rem 0.6rem 0.4rem;
+  text-align: center;
+  //border: 0.2rem solid #eaeaea;
+  transition: background-color $transitionHover;
+  white-space: nowrap;
+
+  &:hover {
+    background-color: $hover-btn;
+  }
+
+  &:focus-visible {
+    outline: none;
+  }
+
+  &:active {
+    transform: scale(0.97);
+  }
+}

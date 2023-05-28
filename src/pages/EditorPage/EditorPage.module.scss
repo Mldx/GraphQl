@@ -1,0 +1,65 @@
+@import 'styles/variables.scss';
+
+.editor {
+  max-width: $width-wrap-app-content;
+  padding: 40px 20px;
+  margin: 0 auto;
+  width: min(1440px, 100%);
+
+  &_inner {
+    background: $color-light-gray;
+    padding: 7px;
+    min-height: calc(100vh - 81px - 4rem - 128px);
+    display: flex;
+    gap: 5px;
+    justify-content: space-between;
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+
+    &>div:nth-child(1) {
+      overflow: hidden;
+      position: relative;
+      width: 100%;
+      min-height: 500px;
+    }
+  }
+
+  &_query {
+    width: 100%;
+    background-color: $color-dusty-gray;
+  }
+}
+
+.control {
+  background-color: #fff;
+  padding: 4px;
+  border-radius: 5px;
+
+  &_btn {
+    border-radius: 5px;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-self: center;
+
+    &>svg {
+      fill: #fff;
+    }
+  }
+
+  & button {
+    padding: 5px;
+  }
+}
+
+@media (max-width: 700px) {
+  .editor {
+    padding-left: 16px;
+    padding-right: 16px;
+
+    &_inner {
+      flex-wrap: wrap;
+    }
+  }
+}

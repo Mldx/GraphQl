@@ -1,0 +1,13 @@
+$font-size-normal: 1rem;
+
+.validation_error{
+  height: 1.2rem;
+  font-weight: 200;
+  font-size: $font-size-normal;
+  line-height: calc($font-size-normal + .4rem);
+  margin: 0;
+  bottom: -$font-size-normal;
+  left: 5px;
+  color: #DC143CFF;
+  cursor: default;
+}

@@ -1,0 +1,14 @@
+$font-size-normal: 1.2rem;
+
+.response_error {
+  font-size: $font-size-normal;
+  line-height: $font-size-normal;
+  bottom: -$font-size-normal;
+  padding: 5px;
+  color: #ff5670;
+  font-weight: 400;
+  cursor: default;
+  border-radius: 2px;
+  width: 280px;
+  text-align: center;
+}

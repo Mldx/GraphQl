@@ -1,0 +1,19 @@
+.switchLng {
+  display: flex;
+  column-gap: 10px;
+  cursor: default;
+  user-select: none;
+
+  input {
+    display: none;
+  }
+
+  span {
+    transition: color .15s linear;
+    cursor: pointer;
+  }
+
+  input:checked + span {
+    color: #8ee100;
+  }
+}

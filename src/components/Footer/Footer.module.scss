@@ -1,0 +1,66 @@
+@import 'styles/variables.scss';
+
+.footer {
+  background-color: rgb(233, 230, 230);
+  border-top: solid .1px rgb(108, 108, 108);
+}
+
+.wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .5rem;
+  justify-content: space-between;
+  align-items: center;
+  max-width: $width-wrap-app-content;
+  height: 100%;
+  margin: 0 auto;
+  padding: .3rem;
+  color: black;
+  min-height: 65px;
+
+  @media (max-width: 600px) {
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px 0;
+  }
+}
+
+.rsschool_link {
+  height: 3rem;
+  width: 5rem;
+
+  &:hover {
+    opacity: .5;
+  }
+}
+
+.GHLink {
+  color: black;
+  cursor: pointer;
+  transition: color $transitionHover;
+
+  &:hover {
+    color: $primerySecondarycolor;
+  }
+}
+
+.gitHub_list {
+  display: flex;
+  flex-wrap: wrap;
+  font-size: 1.1rem;
+  font-weight: 500;
+  gap: 1rem;
+  justify-content: center;
+
+  @media (max-width: 600px) {
+    gap: .5rem;
+  }
+}
+
+.school_link {
+  display: flex;
+  flex-wrap: wrap;
+  font-size: 1.3rem;
+  font-weight: 500;
+  gap: .5rem;
+}

@@ -1,0 +1,136 @@
+@import 'styles/variables.scss';
+
+.welcome_page {
+  background-color: $color-bg-main;
+  color: aliceblue;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  &_wrap {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    padding: 1rem;
+    max-width: $width-wrap-app-content;
+    margin-bottom: 40px;
+  }
+}
+
+.bg_img__welcome {
+  position: absolute;
+  right: 5rem;
+  width: 70%;
+  z-index: -1;
+
+  @media (max-width: 600px) {
+    right: 1rem;
+    top: 10%;
+    width: 95%;
+  }
+}
+
+.welcome_title_wrap {
+  align-items: center;
+  display: flex;
+  height: 100vh;
+  z-index: 1;
+}
+
+.title {
+  width: 60%;
+
+  @media (max-width: 600px) {
+    width: 100%;
+  }
+}
+
+.title_text {
+  background: linear-gradient(to right, rgba(25, 25, 25, .9) 0%, rgba(25, 25, 25, .8) 60%, rgba(25, 25, 25, .01) 100%);
+  font-size: 1.8rem;
+  text-align: left;
+
+  @media (max-width: 600px) {
+    font-size: 1.2rem;
+  }
+}
+
+.title_main {
+  font-size: 5rem;
+  margin: 0;
+  text-align: left;
+
+  @media (max-width: 600px) {
+    font-size: 3rem;
+  }
+}
+
+.gallery {
+  display: flex;
+  gap: 2rem;
+  justify-content: center;
+  z-index: 1;
+
+  & div:nth-child(1) {
+    animation-delay: $animation-time-welcome;
+  }
+
+  & div:nth-child(2) {
+    animation-delay: $animation-time-welcome;
+  }
+
+  & div:nth-child(3) {
+    animation-delay: calc($animation-time-welcome * 2);
+  }
+
+  @media (max-width: 600px) {
+    flex-direction: column;
+    gap: 4rem;
+  }
+}
+
+.gallery_side {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  gap: 5rem;
+  justify-content: center;
+  width: calc(100% / 2);
+
+  @media (max-width: 600px) {
+    width: 100%;
+  }
+}
+
+.gallery_left {
+  align-items: center;
+
+  & div:nth-child(1) {
+    background-image: url('assets/images/dev-bg2.png');
+
+  }
+
+  & div:nth-child(3) {
+    background-image: url('assets/images/dev-bg3.png');
+  }
+}
+
+.gallery_right {
+  align-items: center;
+
+  & div:nth-child(2) {
+    background-image: url('assets/images/dev-bg1.png');
+  }
+}
+
+.gallery_description {
+  font-size: 1.3rem;
+  text-align: center;
+  width: 60%;
+
+  @media (max-width: 600px) {
+    display: none;
+    font-size: 1rem;
+  }
+}
+
