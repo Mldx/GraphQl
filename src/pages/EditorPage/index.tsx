@@ -178,7 +178,7 @@ const EditorPage: React.FC = () => {
         onClickTabDelete={deleteTab}
       />
       <div key={activeQuery.id} className={styles.editor_inner}>
-        <div>
+        <div className="editor_query">
           <Monaco
             defaultLanguage="typescript"
             defaultValue={activeQuery.query.value}
