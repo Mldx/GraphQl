@@ -85,6 +85,7 @@ const EditorPage: React.FC = () => {
         setSelectedQueryId(filteredQueries[prevQueryIndex].id);
         setQueries(filteredQueries);
       } else {
+        const defaultQuery = [getStartQuery()];
         setQueries(defaultQuery);
         setSelectedQueryId(() => defaultQuery[0].id);
       }
@@ -178,7 +179,7 @@ const EditorPage: React.FC = () => {
         onClickTabDelete={deleteTab}
       />
       <div key={activeQuery.id} className={styles.editor_inner}>
-        <div>
+        <div className="editor_query">
           <Monaco
             defaultLanguage="typescript"
             defaultValue={activeQuery.query.value}
