@@ -92,15 +92,18 @@
   }
 }
 
-@media (max-width: 700px) {
+@media (max-width: 770px) {
+  .tabs {
+    column-gap: 2px;
+  }
+
   .tab {
+    &_label {
+        padding: 4px 18px;
+    }
 
-      &_label {
-          padding: 4px 18px;
-      }
-
-      & span {
-        right: 2px;
-      }
+    & span {
+      right: 2px;
+    }
   }
 }

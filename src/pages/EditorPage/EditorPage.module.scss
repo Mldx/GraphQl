@@ -54,6 +54,8 @@
 
 @media (max-width: 700px) {
   .editor {
+    padding-left: 16px;
+    padding-right: 16px;
 
     &_inner {
       flex-wrap: wrap;
