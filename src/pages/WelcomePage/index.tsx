@@ -1,6 +1,6 @@
 import style from './WelcomePage.module.scss';
 import { Developer } from 'components/Developer';
-import { developers } from 'utils/developer';
+import { developers } from 'utils/developer.ts';
 import classNames from 'classnames';
 import { useTranslation } from 'react-i18next';
 import bgImage from 'assets/images/bg-welcome.png';
