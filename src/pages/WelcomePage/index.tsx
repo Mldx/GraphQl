@@ -13,13 +13,9 @@ export const WelcomePage: React.FC = () => {
         <div className={style.welcome_title_wrap}>
           <div className={style.title}>
             <h1 className={style.title_main}>GraphiQL</h1>
-            <p className={style.title_text}>
-              the GraphQL integrated development environment (IDE). It’s a powerful (and all-around
-              awesome) tool you’ll use often while building Gatsby websites. It offers syntax
-              highlighting, intellisense autocompletion, automatic documentation, and much more.
-            </p>
+            <p className={style.title_text}>{t('welcomePage.description')}</p>
           </div>
-          <img className={style.bg_img__welcome} src={bgImage} alt="alt" />
+          <img className={style.bg_img__welcome} src={bgImage} draggable={false} alt="alt" />
         </div>
         <div className={style.gallery}>
           <div className={classNames(style.gallery_left, style.gallery_side)}>

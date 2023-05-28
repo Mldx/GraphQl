@@ -4,7 +4,7 @@ export const useStickyHeader = (offset = 0) => {
   const [stick, setStick] = useState(false);
 
   const handleScroll = () => {
-    setStick(window.scrollY > offset);
+    setStick(window.scrollY >= offset);
   };
 
   useLayoutEffect(() => {

@@ -7,7 +7,7 @@ export const Developer = (props: IDeveloper) => {
   return (
     <div className={style.card_info}>
       <div className={style.dev_main}>
-        <img className={style.developer_img} src={props.photo} alt="" />
+        <img className={style.developer_img} src={props.photo} draggable={false} alt="" />
         <div>
           <div className={style.contacts}>
             <h2 className={style.name}>{t(props.name)}</h2>
@@ -18,8 +18,8 @@ export const Developer = (props: IDeveloper) => {
               rel="noreferrer"
             >
               <svg
-                width="25"
-                height="25"
+                width="35"
+                height="35"
                 viewBox="0 0 20 20"
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"

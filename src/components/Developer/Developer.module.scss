@@ -1,41 +1,43 @@
 @import 'styles/variables.scss';
 
 .card_info {
-  display: flex;
-  flex-direction: column;
-  min-height: 13rem;
-  width: 80%;
-  padding: 20px;
-  border-radius: 10px;
   background-color: $color-bg-card;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+  border-radius: 10px;
+  box-shadow: -10px 0 10px -10px rgba(82, 122, 132, 0.7);;
+  display: flex;
+  flex-direction: column;
   gap: 2rem;
-  box-shadow: -10px 0 10px -10px  rgba(82, 122, 132, 0.7);;
+  min-height: 13rem;
+  padding: 20px;
   transition: scale $transitionHover;
+  width: 80%;
   will-change: transform;
-  cursor: pointer;
+  cursor: default;
+  font-size: 1.5rem;
 
   &:hover {
     scale: 1.03;
   }
 
   @media (max-width: 600px) {
+    padding: 0;
     width: 100%;
-    padding: 10px;
+    overflow: hidden;
   }
 }
 
 .developer_img {
-  width: 120px;
-  height: 120px;
   border-radius: 50%;
+  height: 120px;
+  width: 120px;
 }
 
 .contacts {
-  display: flex;
   align-items: center;
+  display: flex;
   gap: .5rem
 }
 
@@ -43,14 +45,22 @@
   display: flex;
   flex-wrap: wrap;
   gap: 2rem;
+  @media (max-width: 600px) {
+    padding: 10px;
+  }
 }
 
 .task {
-  font-size: 12px;
+  font-size: 1.1rem;
   font-weight: 700;
 }
 
 .description {
+  backdrop-filter: blur(5px);
+  background-color: rgba(28, 28, 28, 0.68);
+  padding: 10px;
+  font-size: 1rem;
+  border-top: 1px solid #eeeeee;
   @media (min-width: 600px) {
     display: none;
   }
